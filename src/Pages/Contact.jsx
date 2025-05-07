@@ -58,11 +58,11 @@ const Contact = () => {
       <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-4">
         <motion.form
           ref={form}
-          onSubmit={sendEmail} // Moved onSubmit to the form element
+          onSubmit={sendEmail}
           variants={listVariant}
           initial="initial"
-          whileInView="animate" // Use whileInView for scroll-triggered animations
-          viewport={{ once: true, amount: 0.3 }} // Configure viewport for whileInView
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.3 }}
           className="w-full max-w-lg flex flex-col gap-5 bg-slate-800/50 backdrop-blur-sm p-6 sm:p-8 md:p-10 rounded-2xl shadow-2xl border border-purple-700/50"
         >
           <motion.h1
@@ -73,15 +73,15 @@ const Contact = () => {
           </motion.h1>
           <motion.div variants={listVariant} className="flex flex-col gap-2">
             <label
-              htmlFor="user_username"
+              htmlFor="name"
               className="text-sm font-medium text-purple-300"
             >
               Name
             </label>
             <input
-              id="user_username"
+              id="name"
               type="text"
-              name="user_username"
+              name="name" // Updated name attribute
               placeholder="Your Name"
               required
               className="p-3 bg-slate-700/50 border border-purple-600/50 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all"
@@ -89,15 +89,15 @@ const Contact = () => {
           </motion.div>
           <motion.div variants={listVariant} className="flex flex-col gap-2">
             <label
-              htmlFor="user_email"
+              htmlFor="email"
               className="text-sm font-medium text-purple-300"
             >
               Email
             </label>
             <input
-              id="user_email"
+              id="email"
               type="email"
-              name="user_email"
+              name="email" // Updated name attribute
               placeholder="your.email@example.com"
               required
               className="p-3 bg-slate-700/50 border border-purple-600/50 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all"
@@ -105,15 +105,31 @@ const Contact = () => {
           </motion.div>
           <motion.div variants={listVariant} className="flex flex-col gap-2">
             <label
-              htmlFor="user_message"
+              htmlFor="subject"
+              className="text-sm font-medium text-purple-300"
+            >
+              Subject
+            </label>
+            <input
+              id="subject"
+              type="text"
+              name="subject" // Added subject field
+              placeholder="Subject"
+              required
+              className="p-3 bg-slate-700/50 border border-purple-600/50 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all"
+            />
+          </motion.div>
+          <motion.div variants={listVariant} className="flex flex-col gap-2">
+            <label
+              htmlFor="message"
               className="text-sm font-medium text-purple-300"
             >
               Message
             </label>
             <textarea
-              id="user_message"
-              rows={6} // Adjusted rows for a more compact look
-              name="user_message"
+              id="message"
+              rows={6}
+              name="message" // Updated name attribute
               placeholder="Write your message here..."
               required
               className="p-3 bg-slate-700/50 border border-purple-600/50 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all resize-none"
@@ -121,7 +137,7 @@ const Contact = () => {
           </motion.div>
           <motion.button
             variants={listVariant}
-            type="submit" // Explicitly set button type
+            type="submit"
             className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold p-3 sm:p-4 rounded-lg cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg"
           >
             Send Message

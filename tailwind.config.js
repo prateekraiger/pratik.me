@@ -1,6 +1,10 @@
+const {heroui} = require('@heroui/theme');
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{js,jsx}"],
+  content: [
+    "./src/**/*.{js,jsx}",
+    "./node_modules/@heroui/theme/dist/components/navbar.js"
+  ],
   mode: "jit",
   theme: {
     extend: {
@@ -23,5 +27,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [heroui()],
 };

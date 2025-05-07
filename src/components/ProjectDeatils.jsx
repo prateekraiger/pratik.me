@@ -1,5 +1,5 @@
 import React from "react";
-import { FaTimes, FaArrowUp } from "react-icons/fa";
+import { FaTimes, FaArrowRight } from "react-icons/fa";
 
 const ProjectDetails = ({
   title,
@@ -67,7 +67,7 @@ const ProjectDetails = ({
               className="inline-flex items-center gap-2 px-8 py-4 font-bold bg-[#915EFF]/30 hover:bg-[#915EFF]/60 rounded-xl transition-all duration-300 cursor-pointer text-white text-lg shadow-lg"
             >
               View Project
-              <FaArrowUp className="text-white" />
+              <FaArrowRight className="text-white" />
             </a>
           </div>
         </div>

@@ -16,49 +16,71 @@ const Tech = () => {
           </p>
         </div>
 
-        <motion.div
-          initial="initial"
-          animate="animate"
-          transition={{ staggerChildren: 0.05 }}
-          className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-        >
-          {Object.entries(categorizedSkills).map(([category, skills]) => (
-            <div key={category} className="col-span-1">
-              <h3 className="mb-6 text-2xl font-semibold text-center text-white sm:text-left sm:mb-8">
-                {category}
-              </h3>
-              {skills.map((skill) => (
-                <motion.div
-                  key={skill.name}
-                  variants={{
-                    initial: { scale: 0.5, y: 50, opacity: 0 },
-                    animate: { scale: 1, y: 0, opacity: 1 },
-                  }}
-                  transition={{
-                    type: "spring",
-                    mass: 3,
-                    stiffness: 400,
-                    damping: 50,
-                  }}
-                  className="group flex flex-col items-center p-4 sm:p-6 text-center transition-all duration-300 transform bg-neutral-800/50 border border-neutral-700 rounded-xl hover:bg-neutral-700/70 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/20"
-                >
-                  <Icon
-                    icon={skill.icon}
-                    width="64"
-                    height="64"
-                    className="transition-all duration-300 group-hover:scale-110 group-hover:opacity-90"
-                  />
-                  <p className="mt-4 text-md sm:text-lg font-semibold text-white transition-colors duration-300 group-hover:text-purple-300">
-                    {skill.name}
-                  </p>
-                  <p className="mt-2 text-sm text-gray-400">
-                    {skill.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          ))}
-        </motion.div>
+        <div className="mt-12 space-y-16">
+          {Object.entries(categorizedSkills).map(
+            ([category, skills], categoryIndex) => (
+              <div key={category} className="relative">
+                {/* Category Background Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#915EFF]/5 to-transparent rounded-3xl"></div>
+
+                <div className="relative">
+                  <motion.h3
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: categoryIndex * 0.2 }}
+                    className="text-2xl font-semibold text-white mb-8 flex items-center gap-3"
+                  >
+                    <span className="w-1.5 h-8 bg-[#915EFF] rounded-full"></span>
+                    {category}
+                  </motion.h3>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {skills.map((skill, skillIndex) => (
+                      <motion.div
+                        key={skill.name}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 0.5,
+                          delay: categoryIndex * 0.2 + skillIndex * 0.1,
+                        }}
+                        className="group"
+                      >
+                        <div className="relative h-full">
+                          {/* Card Background Effect */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-[#915EFF]/10 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+
+                          <div className="relative h-full p-6 bg-black/40 border border-[#915EFF]/20 rounded-2xl hover:border-[#915EFF]/40 transition-all duration-300">
+                            <div className="flex items-start gap-4">
+                              <div className="w-12 h-12 bg-[#915EFF]/10 rounded-xl flex items-center justify-center group-hover:bg-[#915EFF]/20 transition-colors duration-300">
+                                <Icon
+                                  icon={skill.icon}
+                                  width="28"
+                                  height="28"
+                                  className="text-[#915EFF] transition-all duration-300 group-hover:scale-110"
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="text-lg font-semibold text-white group-hover:text-[#915EFF] transition-colors duration-300">
+                                  {skill.name}
+                                </h4>
+                                <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+                                  {skill.description}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )
+          )}
+        </div>
       </div>
     </section>
   );

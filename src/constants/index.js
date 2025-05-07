@@ -316,9 +316,10 @@ export const categorizedSkills = {
       description: "I use HTML and CSS to structure and style web pages.",
     },
     {
-      name: "CSS",
-      icon: "skill-icons:css",
-      description: "I use HTML and CSS to structure and style web pages.",
+      name: "Tailwind CSS",
+      icon: "skill-icons:tailwindcss-dark",
+      description:
+        "I utilize Tailwind CSS for utility-first styling in web projects.",
     },
     {
       name: "React",
@@ -331,12 +332,6 @@ export const categorizedSkills = {
       icon: "skill-icons:nodejs-dark",
       description:
         "I use Node.js for server-side scripting and building scalable network applications.",
-    },
-    {
-      name: "Tailwind CSS",
-      icon: "skill-icons:tailwindcss-dark",
-      description:
-        "I utilize Tailwind CSS for utility-first styling in web projects.",
     },
   ],
   Databases: [
@@ -355,17 +350,12 @@ export const categorizedSkills = {
   ],
   "DevOps & Tools": [
     {
-      name: "Git",
-      icon: "skill-icons:git",
-      description:
-        "I use Git for version control and collaboration on projects.",
-    },
-    {
       name: "Github",
       icon: "skill-icons:github-dark",
       description:
         "I manage my repositories and collaborate on projects using GitHub.",
     },
+
     {
       name: "Vercel",
       icon: "skill-icons:vercel-dark",

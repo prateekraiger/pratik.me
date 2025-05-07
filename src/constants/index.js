@@ -1,70 +1,4 @@
-// import {
-//   javascript,
-//   typescript,
-//   html,
-//   css,
-//   reactjs,
-//   redux,
-//   tailwind,
-//   nodejs,
-//   mongodb,
-//   git,
-// } from "../assets";
-
-// const technologies = [
-//   {
-//     name: "HTML 5",
-//     icon: html,
-//   },
-//   {
-//     name: "CSS 3",
-//     icon: css,
-//   },
-//   {
-//     name: "JavaScript",
-//     icon: javascript,
-//   },
-//   {
-//     name: "TypeScript",
-//     icon: typescript,
-//   },
-//   {
-//     name: "React JS",
-//     icon: reactjs,
-//   },
-//   {
-//     name: "Redux Toolkit",
-//     icon: redux,
-//   },
-//   {
-//     name: "Tailwind CSS",
-//     icon: tailwind,
-//   },
-//   {
-//     name: "Node JS",
-//     icon: nodejs,
-//   },
-//   {
-//     name: "MongoDB",
-//     icon: mongodb,
-//   },
-//   {
-//     name: "Three JS",
-//     icon: threejs,
-//   },
-//   {
-//     name: "git",
-//     icon: git,
-//   },
-//   {
-//     name: "figma",
-//     icon: figma,
-//   },
-//   {
-//     name: "docker",
-//     icon: docker,
-//   },
-// ];
+// TODO:write ur skills
 
 // const experiences = [
 //   {
@@ -348,4 +282,107 @@ export const myProjects = [
   },
 ];
 
-// export { technologies, experiences };
+export const categorizedSkills = {
+  "Programming Languages": [
+    {
+      name: "Java",
+      icon: "logos:java",
+      description:
+        "I have experience with Java for building robust backend systems and applications.",
+    },
+    {
+      name: "Python",
+      icon: "logos:python",
+      description:
+        "I use Python for scripting, data analysis, and backend development.",
+    },
+    {
+      name: "C++",
+      icon: "logos:c-plusplus",
+      description:
+        "I am familiar with C++ for performance-critical applications and system programming.",
+    },
+    {
+      name: "JavaScript",
+      icon: "skill-icons:javascript",
+      description:
+        "I primarily use JavaScript for web development, both on the client and server side.",
+    },
+  ],
+  "Web Development": [
+    {
+      name: "HTML",
+      icon: "skill-icons:html",
+      description: "I use HTML and CSS to structure and style web pages.",
+    },
+    {
+      name: "CSS",
+      icon: "skill-icons:css",
+      description: "I use HTML and CSS to structure and style web pages.",
+    },
+    {
+      name: "React",
+      icon: "skill-icons:react-dark",
+      description:
+        "I primarily work with React for building dynamic user interfaces.",
+    },
+    {
+      name: "Node.js",
+      icon: "skill-icons:nodejs-dark",
+      description:
+        "I use Node.js for server-side scripting and building scalable network applications.",
+    },
+    {
+      name: "Tailwind CSS",
+      icon: "skill-icons:tailwindcss-dark",
+      description:
+        "I utilize Tailwind CSS for utility-first styling in web projects.",
+    },
+  ],
+  Databases: [
+    {
+      name: "MongoDB",
+      icon: "skill-icons:mongodb",
+      description:
+        "I use MongoDB for NoSQL database solutions in various projects.",
+    },
+    {
+      name: "SQL",
+      icon: "skill-icons:mysql-dark",
+      description:
+        "I am experienced with SQL for managing and querying relational databases.",
+    },
+  ],
+  "DevOps & Tools": [
+    {
+      name: "Git",
+      icon: "skill-icons:git",
+      description:
+        "I use Git for version control and collaboration on projects.",
+    },
+    {
+      name: "Github",
+      icon: "skill-icons:github-dark",
+      description:
+        "I manage my repositories and collaborate on projects using GitHub.",
+    },
+    {
+      name: "Vercel",
+      icon: "skill-icons:vercel-dark",
+      description:
+        "I deploy my web applications on Vercel for seamless hosting.",
+    },
+    {
+      name: "VSCode",
+      icon: "skill-icons:vscode-dark",
+      description:
+        "I use Visual Studio Code as my primary code editor for development.",
+    },
+    {
+      name: "Postman",
+      icon: "skill-icons:postman",
+      description:
+        "I test my APIs using Postman to ensure they function correctly.",
+    },
+  ],
+};

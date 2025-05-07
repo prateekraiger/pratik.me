@@ -1,72 +1,7 @@
 import React from "react";
 import { Icon } from "@iconify/react";
-
-const categorizedSkills = {
-  "Programming Languages": [
-    { name: "Java", icon: "logos:java", width: "64", height: "64" },
-    { name: "Python", icon: "logos:python", width: "64", height: "64" },
-    { name: "C++", icon: "logos:c-plusplus", width: "64", height: "64" },
-    {
-      name: "JavaScript",
-      icon: "skill-icons:javascript",
-      width: "64",
-      height: "64",
-    },
-  ],
-  "Web Development": [
-    { name: "HTML", icon: "skill-icons:html", width: "64", height: "64" },
-    { name: "CSS", icon: "skill-icons:css", width: "64", height: "64" },
-    {
-      name: "React",
-      icon: "skill-icons:react-dark",
-      width: "64",
-      height: "64",
-    },
-    {
-      name: "Node.js",
-      icon: "skill-icons:nodejs-dark",
-      width: "64",
-      height: "64",
-    },
-    {
-      name: "Tailwind CSS",
-      icon: "skill-icons:tailwindcss-dark",
-      width: "64",
-      height: "64",
-    },
-  ],
-  Databases: [
-    { name: "MongoDB", icon: "skill-icons:mongodb", width: "64", height: "64" },
-    { name: "SQL", icon: "skill-icons:mysql-dark", width: "64", height: "64" }, // Using MySQL icon as a generic SQL representation
-  ],
-  "DevOps & Tools": [
-    { name: "Git", icon: "skill-icons:git", width: "64", height: "64" },
-    {
-      name: "Github",
-      icon: "skill-icons:github-dark",
-      width: "64",
-      height: "64",
-    },
-    {
-      name: "Vercel",
-      icon: "skill-icons:vercel-dark",
-      width: "64",
-      height: "64",
-    },
-    {
-      name: "VSCode",
-      icon: "skill-icons:vscode-dark",
-      width: "64",
-      height: "64",
-    },
-    {
-      name: "Postman",
-      icon: "skill-icons:postman",
-      width: "64",
-      height: "64",
-    },
-  ],
-};
+import { motion } from "framer-motion";
+import { categorizedSkills } from "../constants/index";
 
 const Tech = () => {
   return (
@@ -81,33 +16,49 @@ const Tech = () => {
           </p>
         </div>
 
-        <div className="mt-12 space-y-12 sm:mt-16">
+        <motion.div
+          initial="initial"
+          animate="animate"
+          transition={{ staggerChildren: 0.05 }}
+          className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
           {Object.entries(categorizedSkills).map(([category, skills]) => (
-            <div key={category}>
+            <div key={category} className="col-span-1">
               <h3 className="mb-6 text-2xl font-semibold text-center text-white sm:text-left sm:mb-8">
                 {category}
               </h3>
-              <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 xl:gap-10">
-                {skills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="group flex flex-col items-center p-4 sm:p-6 text-center transition-all duration-300 transform bg-neutral-800/50 border border-neutral-700 rounded-xl hover:bg-neutral-700/70 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/20"
-                  >
-                    <Icon
-                      icon={skill.icon}
-                      width={skill.width || "64"}
-                      height={skill.height || "64"}
-                      className="transition-all duration-300 group-hover:scale-110 group-hover:opacity-90"
-                    />
-                    <p className="mt-4 text-md sm:text-lg font-semibold text-white transition-colors duration-300 group-hover:text-purple-300">
-                      {skill.name}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              {skills.map((skill) => (
+                <motion.div
+                  key={skill.name}
+                  variants={{
+                    initial: { scale: 0.5, y: 50, opacity: 0 },
+                    animate: { scale: 1, y: 0, opacity: 1 },
+                  }}
+                  transition={{
+                    type: "spring",
+                    mass: 3,
+                    stiffness: 400,
+                    damping: 50,
+                  }}
+                  className="group flex flex-col items-center p-4 sm:p-6 text-center transition-all duration-300 transform bg-neutral-800/50 border border-neutral-700 rounded-xl hover:bg-neutral-700/70 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/20"
+                >
+                  <Icon
+                    icon={skill.icon}
+                    width="64"
+                    height="64"
+                    className="transition-all duration-300 group-hover:scale-110 group-hover:opacity-90"
+                  />
+                  <p className="mt-4 text-md sm:text-lg font-semibold text-white transition-colors duration-300 group-hover:text-purple-300">
+                    {skill.name}
+                  </p>
+                  <p className="mt-2 text-sm text-gray-400">
+                    {skill.description}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

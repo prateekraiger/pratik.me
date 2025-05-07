@@ -1,13 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
-import Home from "./Pages/Home";
-import About from "./Pages/About";
-import Project from "./Pages/Project";
-import Contact from "./Pages/Contact";
+import AnimatedRoutes from "./components/AnimatedRoutes";
 
 const App = () => {
   return (
@@ -25,15 +21,10 @@ const App = () => {
         {/* Navbar */}
         <Navbar />
 
-        {/* Main Content */}
+        {/* Main Content with AnimatedRoutes */}
         <main className="flex-grow w-full pt-20 md:pt-24 px-4 md:px-8 relative mb-20">
           <div className="max-w-[1920px] mx-auto">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/projects" element={<Project />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
+            <AnimatedRoutes />
           </div>
         </main>
 

@@ -211,21 +211,23 @@ const Navbar = () => {
                       animate="visible"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      className="relative cursor-pointer"
+                      className="relative"
                     >
                       <div className="absolute inset-0 bg-[#915EFF]/20 blur-xl rounded-full"></div>
-                      <img
-                        src="https://res.cloudinary.com/dk3pg4zly/image/upload/v1746615371/image_jj87l2.webp"
-                        alt="Pratik"
-                        className="w-8 h-8 rounded-full object-cover border-2 border-[#915EFF] relative z-10"
+                      <Avatar
+                        src="/avatar.png"
+                        className="w-10 h-10 cursor-pointer relative z-10 bg-[#915EFF]/30"
                       />
                     </motion.div>
                   </DropdownTrigger>
                   <DropdownMenu
-                    aria-label="Social Media Links"
+                    aria-label="Social Links"
+                    className="bg-black/80 backdrop-blur-md border border-[#915EFF]/20 p-2"
+                    itemClasses={{
+                      base: "rounded-lg",
+                    }}
                     variant="flat"
-                    className="p-2 glass border border-[#915EFF]/20 mt-2 min-w-[200px] rounded-2xl overflow-hidden"
-                    placement="bottom"
+                    showArrow
                     motionProps={{
                       variants: {
                         enter: {

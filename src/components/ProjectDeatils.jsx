@@ -26,23 +26,25 @@ const ProjectDetails = ({
             className="object-cover rounded-2xl w-full max-h-[400px] shadow-md"
           />
         </div>
-        <div className="p-6 md:p-8 flex-1 flex flex-col md:w-1/2">
-          <h3 className="mb-4 text-3xl font-bold text-white">{title}</h3>
-          <div className="mb-6 space-y-4 overflow-y-auto">
-            <p className="font-normal text-lg text-white/90 leading-relaxed">
+        <div className="p-8 md:p-10 flex-1 flex flex-col md:w-1/2 bg-black/40 rounded-b-2xl md:rounded-bl-none md:rounded-r-2xl">
+          <h3 className="mb-6 text-4xl font-extrabold text-white drop-shadow-lg">
+            {title}
+          </h3>
+          <div className="mb-8 space-y-6 overflow-y-auto">
+            <p className="font-semibold text-xl text-white leading-relaxed drop-shadow">
               {description}
             </p>
             {subDescription &&
               subDescription.map((subDesc, index) => (
                 <p
                   key={index}
-                  className="font-normal text-base text-neutral-300 leading-relaxed"
+                  className="font-normal text-lg text-neutral-200 leading-relaxed"
                 >
                   {subDesc}
                 </p>
               ))}
           </div>
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mt-6">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mt-8">
             <div className="flex flex-wrap gap-4">
               {tags &&
                 tags.map((tag) => (
@@ -52,7 +54,7 @@ const ProjectDetails = ({
                       alt={tag.name}
                       className="w-10 h-10 rounded-lg hover-animation"
                     />
-                    <span className="text-xs text-neutral-400 mt-1">
+                    <span className="text-sm text-neutral-300 mt-1">
                       {tag.name}
                     </span>
                   </div>
@@ -62,7 +64,7 @@ const ProjectDetails = ({
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 font-medium bg-[#915EFF]/20 hover:bg-[#915EFF]/40 rounded-xl transition-all duration-300 cursor-pointer text-white"
+              className="inline-flex items-center gap-2 px-8 py-4 font-bold bg-[#915EFF]/30 hover:bg-[#915EFF]/60 rounded-xl transition-all duration-300 cursor-pointer text-white text-lg shadow-lg"
             >
               View Project
               <FaArrowUp className="text-white" />

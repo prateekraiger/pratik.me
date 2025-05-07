@@ -19,6 +19,8 @@ import {
   FaGithub,
   FaTwitterSquare,
   FaInstagram,
+  FaTimes,
+  FaBars,
 } from "react-icons/fa";
 import logo from "../assets/logo.png";
 
@@ -132,33 +134,20 @@ const Navbar = () => {
             </motion.div>
 
             {/* Mobile Menu Button */}
-            <Button
-              className="md:hidden bg-transparent hover:bg-[#915EFF]/20 p-1.5 sm:p-2 rounded-full border border-[#915EFF]/30"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              <svg
-                className="w-5 h-5 sm:w-6 sm:h-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            <NavbarItem className="md:hidden">
+              <Button
+                isIconOnly
+                variant="light"
+                className="bg-transparent hover:bg-[#915EFF]/20 p-1.5 sm:p-2 rounded-full border border-[#915EFF]/30"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
                 {isMobileMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                  <FaTimes className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
+                  <FaBars className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 )}
-              </svg>
-            </Button>
+              </Button>
+            </NavbarItem>
 
             {/* Desktop Navigation - Center */}
             <motion.div
@@ -216,33 +205,26 @@ const Navbar = () => {
               <NavbarContent as="div" justify="end">
                 <Dropdown placement="bottom-end">
                   <DropdownTrigger>
-                    <motion.button
+                    <motion.div
                       variants={avatarVariants}
                       initial="hidden"
                       animate="visible"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      className="relative"
+                      className="relative cursor-pointer"
                     >
                       <div className="absolute inset-0 bg-[#915EFF]/20 blur-xl rounded-full"></div>
-                      <Avatar
-                        isBordered={true}
-                        className="transition-transform relative z-10 w-8 h-8"
-                        color="secondary"
-                        name="Pratik"
-                        size="sm"
+                      <img
                         src="https://res.cloudinary.com/dk3pg4zly/image/upload/v1746615371/image_jj87l2.webp"
-                        classNames={{
-                          base: "ring-1 ring-[#915EFF] ring-offset-1 ring-offset-background w-8 h-8",
-                          img: "object-cover w-8 h-8",
-                        }}
+                        alt="Pratik"
+                        className="w-8 h-8 rounded-full object-cover border-2 border-[#915EFF] relative z-10"
                       />
-                    </motion.button>
+                    </motion.div>
                   </DropdownTrigger>
                   <DropdownMenu
                     aria-label="Social Media Links"
                     variant="flat"
-                    className="glass border border-[#915EFF]/20 mt-2 min-w-[200px] rounded-2xl overflow-hidden"
+                    className="p-2 glass border border-[#915EFF]/20 mt-2 min-w-[200px] rounded-2xl overflow-hidden"
                     placement="bottom"
                     motionProps={{
                       variants: {
@@ -265,53 +247,52 @@ const Navbar = () => {
                       },
                     }}
                   >
-                    <div className="p-2">
-                      {[
-                        {
-                          key: "github",
-                          href: "https://github.com/prateekraiger",
-                          icon: <FaGithub className="h-5 w-5 text-white" />,
-                          label: "GitHub",
-                        },
-                        {
-                          key: "linkedin",
-                          href: "https://linkedin.com/in/pratik-r1104/",
-                          icon: <FaLinkedinIn className="h-5 w-5 text-white" />,
-                          label: "LinkedIn",
-                        },
-                        {
-                          key: "twitter",
-                          href: "https://x.com/mrpratik753",
-                          icon: (
-                            <FaTwitterSquare className="h-5 w-5 text-white" />
-                          ),
-                          label: "Twitter",
-                        },
-                        {
-                          key: "instagram",
-                          href: "https://www.instagram.com/pratik.raiger/",
-                          icon: <FaInstagram className="h-5 w-5 text-white" />,
-                          label: "Instagram",
-                        },
-                      ].map((item) => (
-                        <DropdownItem
-                          key={item.key}
-                          className="p-0 mb-1 last:mb-0"
+                    {/* Remove the wrapping div and map directly to DropdownItem */}
+                    {[
+                      {
+                        key: "github",
+                        href: "https://github.com/prateekraiger",
+                        icon: <FaGithub className="h-5 w-5 text-white" />,
+                        label: "GitHub",
+                      },
+                      {
+                        key: "linkedin",
+                        href: "https://linkedin.com/in/pratik-r1104/",
+                        icon: <FaLinkedinIn className="h-5 w-5 text-white" />,
+                        label: "LinkedIn",
+                      },
+                      {
+                        key: "twitter",
+                        href: "https://x.com/mrpratik753",
+                        icon: (
+                          <FaTwitterSquare className="h-5 w-5 text-white" />
+                        ),
+                        label: "Twitter",
+                      },
+                      {
+                        key: "instagram",
+                        href: "https://www.instagram.com/pratik.raiger/",
+                        icon: <FaInstagram className="h-5 w-5 text-white" />,
+                        label: "Instagram",
+                      },
+                    ].map((item) => (
+                      <DropdownItem
+                        key={item.key}
+                        className="p-0 mb-1 last:mb-0"
+                      >
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full h-full flex items-center gap-3 px-4 py-2.5 text-white bg-[#915EFF]/10 hover:bg-[#915EFF]/20 transition-all duration-300 rounded-xl"
                         >
-                          <a
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full h-full flex items-center gap-3 px-4 py-2.5 text-white bg-[#915EFF]/10 hover:bg-[#915EFF]/20 transition-all duration-300 rounded-xl"
-                          >
-                            {item.icon}
-                            <span className="text-sm font-medium">
-                              {item.label}
-                            </span>
-                          </a>
-                        </DropdownItem>
-                      ))}
-                    </div>
+                          {item.icon}
+                          <span className="text-sm font-medium">
+                            {item.label}
+                          </span>
+                        </a>
+                      </DropdownItem>
+                    ))}
                   </DropdownMenu>
                 </Dropdown>
               </NavbarContent>

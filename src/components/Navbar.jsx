@@ -85,9 +85,9 @@ const Navbar = () => {
   };
 
   return (
-    <NextNavbar className="py-4 px-4 md:px-8 fixed w-full top-0 z-50 bg-transparent">
+    <NextNavbar className="py-2 sm:py-4 px-3 sm:px-8 fixed w-full top-0 z-50 bg-transparent">
       <div className="max-w-[1920px] w-full mx-auto">
-        <div className="relative rounded-full px-6 py-3 flex justify-between items-center">
+        <div className="relative rounded-full px-3 sm:px-6 py-2 sm:py-3 flex justify-between items-center">
           {/* Purple Accent - keep this for a subtle accent */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#915EFF_0%,transparent_50%)] opacity-30 rounded-full"></div>
 
@@ -103,7 +103,7 @@ const Navbar = () => {
               animate="visible"
               className="flex items-center"
             >
-              <NavbarBrand className="gap-2 md:gap-4">
+              <NavbarBrand className="gap-1 sm:gap-2 md:gap-4">
                 <Link to="/">
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
@@ -115,13 +115,13 @@ const Navbar = () => {
                     <img
                       src={logo}
                       alt="logo"
-                      className="w-8 h-8 md:w-10 md:h-10 object-contain relative z-10"
+                      className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 object-contain relative z-10"
                     />
                   </motion.div>
                 </Link>
                 <Link to="/">
                   <motion.p
-                    className="font-bold text-lg md:text-2xl text-white text-glow cursor-pointer"
+                    className="font-bold text-sm sm:text-lg md:text-2xl text-white text-glow cursor-pointer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -130,6 +130,35 @@ const Navbar = () => {
                 </Link>
               </NavbarBrand>
             </motion.div>
+
+            {/* Mobile Menu Button */}
+            <Button
+              className="md:hidden bg-transparent hover:bg-[#915EFF]/20 p-1.5 sm:p-2 rounded-full border border-[#915EFF]/30"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <svg
+                className="w-5 h-5 sm:w-6 sm:h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {isMobileMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </Button>
 
             {/* Desktop Navigation - Center */}
             <motion.div
@@ -182,73 +211,61 @@ const Navbar = () => {
               </div>
             </motion.div>
 
-            {/* Right Section - Avatar (Desktop) / Menu Button (Mobile) */}
-            <div className="flex items-center gap-4">
-              {/* Mobile Menu Button */}
-              <Button
-                className="md:hidden bg-transparent hover:bg-[#915EFF]/20 p-2 rounded-full border border-[#915EFF]/30"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              >
-                <svg
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  {isMobileMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  )}
-                </svg>
-              </Button>
-
-              {/* Avatar - Hidden on Mobile */}
-              <motion.div
-                variants={avatarVariants}
-                initial="hidden"
-                animate="visible"
-                className="hidden md:flex items-center"
-              >
-                <NavbarContent as="div" justify="end">
-                  <Dropdown placement="bottom-end">
-                    <DropdownTrigger>
-                      <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="relative"
-                      >
-                        <div className="absolute inset-0 bg-[#915EFF]/20 blur-xl rounded-full"></div>
-                        <Avatar
-                          isBordered
-                          as="button"
-                          className="transition-transform relative z-10 w-8 h-8"
-                          color="secondary"
-                          name="Pratik"
-                          size="sm"
-                          src="https://res.cloudinary.com/dk3pg4zly/image/upload/v1745383781/image_z17yda.jpg"
-                          classNames={{
-                            base: "ring-1 ring-[#915EFF] ring-offset-1 ring-offset-background w-8 h-8",
-                            img: "object-cover w-8 h-8",
-                          }}
-                        />
-                      </motion.div>
-                    </DropdownTrigger>
-                    <DropdownMenu
-                      aria-label="Social Media Links"
-                      variant="flat"
-                      className="glass border border-[#915EFF]/20"
+            {/* Avatar - Hidden on Mobile */}
+            <div className="hidden md:flex items-center">
+              <NavbarContent as="div" justify="end">
+                <Dropdown placement="bottom-end">
+                  <DropdownTrigger>
+                    <motion.button
+                      variants={avatarVariants}
+                      initial="hidden"
+                      animate="visible"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="relative"
                     >
+                      <div className="absolute inset-0 bg-[#915EFF]/20 blur-xl rounded-full"></div>
+                      <Avatar
+                        isBordered={true}
+                        className="transition-transform relative z-10 w-8 h-8"
+                        color="secondary"
+                        name="Pratik"
+                        size="sm"
+                        src="https://res.cloudinary.com/dk3pg4zly/image/upload/v1746615371/image_jj87l2.webp"
+                        classNames={{
+                          base: "ring-1 ring-[#915EFF] ring-offset-1 ring-offset-background w-8 h-8",
+                          img: "object-cover w-8 h-8",
+                        }}
+                      />
+                    </motion.button>
+                  </DropdownTrigger>
+                  <DropdownMenu
+                    aria-label="Social Media Links"
+                    variant="flat"
+                    className="glass border border-[#915EFF]/20 mt-2 min-w-[200px] rounded-2xl overflow-hidden"
+                    placement="bottom"
+                    motionProps={{
+                      variants: {
+                        enter: {
+                          y: 0,
+                          opacity: 1,
+                          transition: {
+                            duration: 0.2,
+                            ease: "easeOut",
+                          },
+                        },
+                        exit: {
+                          y: -10,
+                          opacity: 0,
+                          transition: {
+                            duration: 0.1,
+                            ease: "easeIn",
+                          },
+                        },
+                      },
+                    }}
+                  >
+                    <div className="p-2">
                       {[
                         {
                           key: "github",
@@ -277,22 +294,27 @@ const Navbar = () => {
                           label: "Instagram",
                         },
                       ].map((item) => (
-                        <DropdownItem key={item.key} className="p-0">
+                        <DropdownItem
+                          key={item.key}
+                          className="p-0 mb-1 last:mb-0"
+                        >
                           <a
                             href={item.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-full h-full flex items-center gap-2 px-4 py-2 text-white hover:bg-[#915EFF]/20 transition-colors duration-300"
+                            className="w-full h-full flex items-center gap-3 px-4 py-2.5 text-white bg-[#915EFF]/10 hover:bg-[#915EFF]/20 transition-all duration-300 rounded-xl"
                           >
                             {item.icon}
-                            {item.label}
+                            <span className="text-sm font-medium">
+                              {item.label}
+                            </span>
                           </a>
                         </DropdownItem>
                       ))}
-                    </DropdownMenu>
-                  </Dropdown>
-                </NavbarContent>
-              </motion.div>
+                    </div>
+                  </DropdownMenu>
+                </Dropdown>
+              </NavbarContent>
             </div>
           </div>
         </div>
@@ -306,9 +328,11 @@ const Navbar = () => {
             animate="open"
             exit="closed"
             variants={mobileMenuVariants}
-            className="md:hidden mt-4 bg-black/50 backdrop-blur-md rounded-xl border border-[#915EFF]/20 overflow-hidden"
+            role="menu"
+            aria-orientation="vertical"
+            className="md:hidden absolute top-full left-0 w-full bg-black/70 backdrop-blur-lg rounded-b-2xl border-t border-[#915EFF]/20 overflow-hidden shadow-[0_4px_15px_rgba(145,94,255,0.2)] z-40"
           >
-            <div className="p-4 flex flex-col gap-2">
+            <div className="p-4 flex flex-col gap-3">
               {[
                 { path: "/", label: "Home" },
                 { path: "/about", label: "About" },
@@ -318,12 +342,14 @@ const Navbar = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`text-base font-medium transition-all duration-300 px-4 py-3 rounded-lg ${
-                    location.pathname === item.path
-                      ? "bg-[#915EFF]/20 text-white"
-                      : "text-gray-400 hover:text-white hover:bg-[#915EFF]/10"
-                  }`}
+                  role="menuitem"
+                  tabIndex={0}
                   onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block w-full text-center text-sm sm:text-base font-medium transition-all duration-300 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#915EFF]/50 ${
+                    location.pathname === item.path
+                      ? "bg-[#915EFF]/25 text-white"
+                      : "text-gray-200 hover:text-white bg-[#915EFF]/10 hover:bg-[#915EFF]/20"
+                  }`}
                 >
                   {item.label}
                 </Link>
@@ -352,13 +378,14 @@ const Navbar = () => {
                     href: "https://www.instagram.com/pratik.raiger/",
                     icon: <FaInstagram className="h-5 w-5 text-white" />,
                   },
-                ].map((item) => (
+                ].map((item, idx) => (
                   <a
                     key={item.key}
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-[#915EFF]/10 hover:bg-[#915EFF]/20 rounded-full transition-colors duration-300"
+                    className="p-2 bg-[#915EFF]/10 hover:bg-[#915EFF]/20 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#915EFF]/50"
+                    aria-label={item.key}
                   >
                     {item.icon}
                   </a>

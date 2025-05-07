@@ -14,7 +14,12 @@ import {
   Avatar,
   Button,
 } from "@heroui/react";
-import { FaLinkedinIn, FaGithub, FaTwitterSquare, FaInstagram } from "react-icons/fa";
+import {
+  FaLinkedinIn,
+  FaGithub,
+  FaTwitterSquare,
+  FaInstagram,
+} from "react-icons/fa";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
@@ -86,8 +91,8 @@ const Navbar = () => {
           {/* Purple Accent - keep this for a subtle accent */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#915EFF_0%,transparent_50%)] opacity-30 rounded-full"></div>
 
-          {/* Glass Effect - make it more transparent */}
-          <div className="absolute inset-0 backdrop-blur-md bg-black/10 rounded-full border border-[#915EFF]/30"></div>
+          {/* Glass Effect - enhanced blur and transparency */}
+          <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-r from-black/5 to-black/10 rounded-full border border-[#915EFF]/20 shadow-[0_0_15px_rgba(145,94,255,0.1)]"></div>
 
           {/* Content */}
           <div className="relative z-10 flex justify-between items-center w-full">
@@ -99,24 +104,30 @@ const Navbar = () => {
               className="flex items-center"
             >
               <NavbarBrand className="gap-2 md:gap-4">
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="relative"
-                >
-                  <div className="absolute inset-0 bg-[#915EFF]/20 blur-xl rounded-full"></div>
-                  <img
-                    src={logo}
-                    alt="logo"
-                    className="w-8 h-8 md:w-10 md:h-10 object-contain relative z-10"
-                  />
-                </motion.div>
-                <motion.p
-                  className="font-bold text-lg md:text-2xl text-white text-glow"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  Pratik<span className="text-[#915EFF]">.dev</span>
-                </motion.p>
+                <Link to="/">
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="relative cursor-pointer"
+                  >
+                    <div className="absolute inset-0 bg-[#915EFF]/20 blur-xl rounded-full"></div>
+                    <img
+                      src={logo}
+                      alt="logo"
+                      className="w-8 h-8 md:w-10 md:h-10 object-contain relative z-10"
+                    />
+                  </motion.div>
+                </Link>
+                <Link to="/">
+                  <motion.p
+                    className="font-bold text-lg md:text-2xl text-white text-glow cursor-pointer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Pratik<span className="text-[#915EFF]">.dev</span>
+                  </motion.p>
+                </Link>
               </NavbarBrand>
             </motion.div>
 
@@ -152,6 +163,18 @@ const Navbar = () => {
                         }`}
                       >
                         {item.label}
+                        {location.pathname === item.path && (
+                          <motion.div
+                            layoutId="activeNav"
+                            className="absolute inset-0 bg-[#915EFF]/20 rounded-full -z-10"
+                            transition={{
+                              type: "spring",
+                              bounce: 0.2,
+                              duration: 0.6,
+                            }}
+                          />
+                        )}
+                        <motion.div className="absolute inset-0 bg-[#915EFF]/10 rounded-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </NextLink>
                     </NavbarItem>
                   </motion.div>
@@ -242,7 +265,9 @@ const Navbar = () => {
                         {
                           key: "twitter",
                           href: "https://x.com/mrpratik753",
-                          icon: <FaTwitterSquare className="h-5 w-5 text-white" />,
+                          icon: (
+                            <FaTwitterSquare className="h-5 w-5 text-white" />
+                          ),
                           label: "Twitter",
                         },
                         {

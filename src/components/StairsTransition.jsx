@@ -6,17 +6,27 @@ import Stairs from "./Stairs";
 const StairsTransition = () => {
   const location = useLocation();
   const [isVisible, setIsVisible] = useState(true);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
-    // Reset visibility when route changes
+    // Reset states when route changes
     setIsVisible(true);
+    setIsClosing(false);
 
-    // Hide after animation completes
-    const timer = setTimeout(() => {
+    // Start closing animation after opening completes
+    const closingTimer = setTimeout(() => {
+      setIsClosing(true);
+    }, 1000); // Opening (0.8s) + Pause (0.2s)
+
+    // Hide after closing animation completes
+    const hideTimer = setTimeout(() => {
       setIsVisible(false);
-    }, 1500);
+    }, 1200); // Total: Opening (0.8s) + Pause (0.2s) + Closing (0.2s)
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(closingTimer);
+      clearTimeout(hideTimer);
+    };
   }, [location.pathname]);
 
   return (
@@ -44,7 +54,7 @@ const StairsTransition = () => {
             className="h-screen w-screen fixed bg-[#0a0a0a] top-0 pointer-events-none"
             initial={{ opacity: 0 }}
             animate={{
-              opacity: 0.2,
+              opacity: isClosing ? 0 : 0.2,
               transition: {
                 delay: 0.1,
                 duration: 0.2,

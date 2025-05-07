@@ -27,18 +27,27 @@ const Procont = ({
         </div>
 
         {/* Card content */}
-        <div className="p-6 flex-wrap items-center justify-between py-18 space-y-14 sm:flex sm:space-y-0 mb-8 relative z-10">
-          <div>
-            <p className="text-2xl">{title}</p>
-            <div className="flex gap-5 my-2 text-sand">
+        <div className="p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6 relative z-10 min-h-[150px] sm:min-h-[120px]">
+          <div className="flex-grow">
+            <p className="text-lg sm:text-xl md:text-2xl font-semibold text-white">
+              {title}
+            </p>
+            <div className="flex flex-wrap gap-2 my-2">
               {tags.map((tag) => {
-                return <span key={tag.id}>{tag.name} </span>;
+                return (
+                  <span
+                    key={tag.id}
+                    className="bg-[#915EFF]/20 text-[#c5aeff] text-xs font-medium px-2.5 py-0.5 rounded-full"
+                  >
+                    {tag.name}
+                  </span>
+                );
               })}
             </div>
           </div>
           <button
             onClick={() => setIsHidden(true)}
-            className="flex items-center gap-1 cursor-pointer hover-animation bg-neutral-800 hover:bg-neutral-700 transition-colors px-4 py-2 rounded-lg text-sm font-medium"
+            className="flex-shrink-0 self-start sm:self-center flex items-center gap-1 cursor-pointer hover-animation bg-neutral-800 hover:bg-neutral-700 transition-colors px-4 py-2 rounded-lg text-xs sm:text-sm font-medium text-white"
           >
             Read more
             <FaArrowRight className="ml-1" />

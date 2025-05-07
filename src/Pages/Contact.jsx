@@ -81,7 +81,7 @@ const Contact = () => {
             <input
               id="name"
               type="text"
-              name="name" // Updated name attribute
+              name="name"
               placeholder="Your Name"
               required
               className="p-3 bg-slate-700/50 border border-purple-600/50 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all"

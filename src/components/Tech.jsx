@@ -53,6 +53,18 @@ const categorizedSkills = {
       width: "64",
       height: "64",
     },
+    {
+      name: "VSCode",
+      icon: "skill-icons:vscode-dark",
+      width: "64",
+      height: "64",
+    },
+    {
+      name: "Postman",
+      icon: "skill-icons:postman",
+      width: "64",
+      height: "64",
+    },
   ],
 };
 

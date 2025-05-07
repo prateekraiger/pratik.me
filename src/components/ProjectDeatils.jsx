@@ -1,5 +1,6 @@
 import React from "react";
 import { FaTimes, FaArrowRight } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const ProjectDetails = ({
   title,
@@ -11,8 +12,12 @@ const ProjectDetails = ({
   closeModal,
 }) => {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-auto p-4 backdrop-blur-sm">
-      <div className="relative w-full max-w-4xl min-h-[60vh] border shadow-lg rounded-2xl bg-gradient-to-l from-midnight to-navy border-white/10 my-8 flex flex-col md:flex-row">
+    <motion.div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-auto p-4 backdrop-blur-sm">
+      <motion.div
+        className="relative w-full max-w-4xl min-h-[60vh] border shadow-lg rounded-2xl bg-gradient-to-l from-midnight to-navy border-white/10 my-8 flex flex-col md:flex-row"
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+      >
         <button
           onClick={closeModal}
           className="absolute p-2 rounded-full top-4 right-4 bg-midnight hover:bg-gray-500 z-10 transition-all duration-300"
@@ -71,8 +76,8 @@ const ProjectDetails = ({
             </a>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

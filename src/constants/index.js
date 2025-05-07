@@ -210,7 +210,8 @@ export const myProjects = [
     ],
     href: "",
     logo: "",
-    image: "/assets/projects/blazor-app.jpg",
+    image:
+      "https://github.com/prateekraiger/Voyazo-Travel-Website/raw/main/sample.png",
     tags: [
       {
         id: 1,

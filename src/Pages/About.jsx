@@ -4,6 +4,8 @@ import { twMerge } from "tailwind-merge";
 import { FiBookOpen } from "react-icons/fi";
 import { Grid } from "../components/GridPattern";
 import HobbyBlock from "../components/HobbyBlock";
+import { SocialLinks } from "../components/SocialLinks";
+import Tech from "../components/Tech";
 
 export const About = () => {
   return (
@@ -14,13 +16,33 @@ export const About = () => {
         transition={{
           staggerChildren: 0.1,
         }}
-        className="mx-auto grid max-w-5xl grid-flow-dense grid-cols-12 gap-3 md:gap-6"
+        className="mx-auto grid max-w-7xl grid-flow-dense grid-cols-12 gap-4 md:gap-8"
       >
         <ProfileBlock />
         <IntroBlock />
         <EducationBlock />
         <HobbyBlock />
         <QuoteBlock />
+      </motion.div>
+
+      {/* Social Links Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="mx-auto max-w-7xl mt-12"
+      >
+        <SocialLinks />
+      </motion.div>
+
+      {/* Tech Skills Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7 }}
+        className="mx-auto max-w-7xl mt-12"
+      >
+        <Tech />
       </motion.div>
     </div>
   );
@@ -32,19 +54,19 @@ const ProfileBlock = () => (
       initial={{ scale: 0.8, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative mb-4 md:mb-6 flex justify-center"
+      className="relative mb-6 md:mb-8 flex justify-center"
     >
       <img
         src="https://res.cloudinary.com/dk3pg4zly/image/upload/v1746615371/image_jj87l2.webp"
         alt="Profile"
-        className="rounded-full w-28 h-28 md:w-40 md:h-40 object-cover border-4 border-zinc-700"
+        className="rounded-full w-32 h-32 md:w-48 md:h-48 object-cover border-4 border-zinc-700"
       />
     </motion.div>
     <motion.h2
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.3 }}
-      className="text-xl md:text-2xl font-bold mb-1 md:mb-2 font-cal-sans"
+      className="text-2xl md:text-3xl font-bold mb-2 md:mb-3 font-cal-sans"
     >
       Prateek Raiger
     </motion.h2>
@@ -52,7 +74,7 @@ const ProfileBlock = () => (
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.4 }}
-      className="text-base md:text-lg text-purple-400 mb-3 md:mb-4 font-sansation"
+      className="text-lg md:text-xl text-purple-400 mb-4 md:mb-6 font-sansation"
     >
       Full Stack Developer
     </motion.p>
@@ -60,15 +82,15 @@ const ProfileBlock = () => (
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.5 }}
-      className="flex flex-wrap justify-center gap-2"
+      className="flex flex-wrap justify-center gap-3"
     >
-      <span className="px-3 py-1 bg-purple-900/30 rounded-full text-xs md:text-sm text-purple-300">
+      <span className="px-4 py-2 bg-purple-900/30 rounded-full text-sm md:text-base text-purple-300">
         React
       </span>
-      <span className="px-3 py-1 bg-blue-900/30 rounded-full text-xs md:text-sm text-blue-300">
+      <span className="px-4 py-2 bg-blue-900/30 rounded-full text-sm md:text-base text-blue-300">
         Express
       </span>
-      <span className="px-3 py-1 bg-green-900/30 rounded-full text-xs md:text-sm text-green-300">
+      <span className="px-4 py-2 bg-green-900/30 rounded-full text-sm md:text-base text-green-300">
         Tailwind
       </span>
     </motion.div>
@@ -81,7 +103,7 @@ const IntroBlock = () => (
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
-      className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 text-white font-cal-sans"
+      className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 text-white font-cal-sans"
     >
       Hello, I'm Prateek
     </motion.h3>
@@ -89,7 +111,7 @@ const IntroBlock = () => (
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.2, duration: 0.5 }}
-      className="text-base md:text-xl leading-relaxed text-zinc-300 font-sansation"
+      className="text-lg md:text-2xl leading-relaxed text-zinc-300 font-sansation"
     >
       A passionate full-stack developer with expertise in creating responsive
       and interactive web applications. I specialize in modern JavaScript
@@ -105,18 +127,18 @@ const EducationBlock = () => (
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-white font-cal-sans flex items-center">
+      <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-white font-cal-sans flex items-center">
         <FiBookOpen className="mr-2 text-green-400" /> Education
       </h3>
-      <div className="space-y-3 md:space-y-4 font-sansation">
+      <div className="space-y-4 md:space-y-6 font-sansation">
         <div>
-          <h4 className="text-base md:text-lg text-green-300">
+          <h4 className="text-lg md:text-xl text-green-300">
             B.Tech in Artificial Intelligence & Machine Learning
           </h4>
-          <p className="text-xs md:text-sm text-zinc-400">
+          <p className="text-sm md:text-base text-zinc-400">
             Technocrats Institute of Technology · 2023 – 2027
           </p>
-          <p className="text-xs md:text-sm text-zinc-300 mt-1">
+          <p className="text-sm md:text-base text-zinc-300 mt-2">
             Pursuing a Bachelor's degree with a specialization in AI & ML,
             focusing on software development, data science, and machine learning
             technologies.
@@ -135,11 +157,11 @@ const QuoteBlock = () => (
       transition={{ duration: 0.5, delay: 0.3 }}
       className="h-full flex flex-col justify-center"
     >
-      <p className="text-base md:text-xl italic text-purple-300 mb-3 md:mb-4 font-sansation">
+      <p className="text-lg md:text-2xl italic text-purple-300 mb-4 md:mb-6 font-sansation">
         "I believe in creating clean, efficient code that solves real-world
         problems and delivers exceptional user experiences."
       </p>
-      <p className="text-right text-xs md:text-sm text-zinc-400 font-cal-sans">
+      <p className="text-right text-sm md:text-base text-zinc-400 font-cal-sans">
         — My coding philosophy
       </p>
     </motion.div>
@@ -154,11 +176,11 @@ const Block = ({ children, className }) => (
     }}
     transition={{ duration: 0.5 }}
     className={twMerge(
-      "p-4 md:p-6 rounded-xl shadow-lg relative overflow-hidden",
+      "p-6 md:p-8 rounded-xl shadow-lg relative overflow-hidden",
       className
     )}
   >
-    <Grid size={24} /> {/* Add the Grid component here */}
+    <Grid size={24} />
     <div className="relative z-10">{children}</div>
   </motion.div>
 );

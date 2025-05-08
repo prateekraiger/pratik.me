@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -7,26 +7,56 @@ import {
   NavbarContent,
   NavbarItem,
   Link as NextLink,
-  DropdownItem,
-  DropdownTrigger,
-  Dropdown,
-  DropdownMenu,
-  Avatar,
   Button,
 } from "@heroui/react";
-import {
-  FaLinkedinIn,
-  FaGithub,
-  FaTwitterSquare,
-  FaInstagram,
-  FaTimes,
-  FaBars,
-} from "react-icons/fa";
+import { FaTimes, FaBars, FaPlay, FaPause } from "react-icons/fa";
 import logo from "../assets/logo.png";
+import playMusic from "../assets/loop.mp3";
 
 const Navbar = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    // Initialize audio
+    audioRef.current = new Audio(playMusic);
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.5;
+    audioRef.current.muted = true;
+
+    // Try to play muted on mount
+    const playPromise = audioRef.current.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        console.log("Autoplay prevented");
+      });
+    }
+
+    // Cleanup on unmount
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    };
+  }, []);
+
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      // Unmute on first play
+      if (audioRef.current.muted) {
+        audioRef.current.muted = false;
+      }
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   const navVariants = {
     hidden: { opacity: 0, y: -20 },
@@ -57,7 +87,7 @@ const Navbar = () => {
     },
   };
 
-  const avatarVariants = {
+  const musicButtonVariants = {
     hidden: { opacity: 0, x: 20 },
     visible: {
       opacity: 1,
@@ -90,15 +120,15 @@ const Navbar = () => {
     <NextNavbar className="py-2 sm:py-4 px-3 sm:px-8 fixed w-full top-0 z-50 bg-transparent">
       <div className="max-w-[1920px] w-full mx-auto">
         <div className="relative rounded-full px-3 sm:px-6 py-2 sm:py-3 flex justify-between items-center">
-          {/* Purple Accent - keep this for a subtle accent */}
+          {/* Purple Accent */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#915EFF_0%,transparent_50%)] opacity-30 rounded-full"></div>
 
-          {/* Glass Effect - enhanced blur and transparency */}
+          {/* Glass Effect */}
           <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-r from-black/5 to-black/10 rounded-full border border-[#915EFF]/20 shadow-[0_0_15px_rgba(145,94,255,0.1)]"></div>
 
           {/* Content */}
           <div className="relative z-10 flex justify-between items-center w-full">
-            {/* Logo Section - Left */}
+            {/* Logo Section */}
             <motion.div
               variants={logoVariants}
               initial="hidden"
@@ -149,7 +179,7 @@ const Navbar = () => {
               </Button>
             </NavbarItem>
 
-            {/* Desktop Navigation - Center */}
+            {/* Desktop Navigation */}
             <motion.div
               variants={navVariants}
               initial="hidden"
@@ -157,7 +187,6 @@ const Navbar = () => {
               className="hidden md:flex"
             >
               <div className="flex gap-2">
-                {/* Navigation links section */}
                 {[
                   { path: "/", label: "Home" },
                   { path: "/about", label: "About" },
@@ -200,110 +229,31 @@ const Navbar = () => {
               </div>
             </motion.div>
 
-            {/* Avatar - Hidden on Mobile */}
-            <div className="hidden md:flex items-center">
-              <NavbarContent as="div" justify="end">
-                <Dropdown placement="bottom-end">
-                  <DropdownTrigger>
-                    <motion.div
-                      variants={avatarVariants}
-                      initial="hidden"
-                      animate="visible"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="relative"
-                    >
-                      <div className="absolute inset-0 bg-[#915EFF]/20 blur-xl rounded-full"></div>
-                      <Avatar
-                        src="/avatar.png"
-                        className="w-10 h-10 cursor-pointer relative z-10 bg-[#915EFF]/30"
-                      />
-                    </motion.div>
-                  </DropdownTrigger>
-                  <DropdownMenu
-                    aria-label="Social Links"
-                    className="bg-black/80 backdrop-blur-md border border-[#915EFF]/20 p-2"
-                    itemClasses={{
-                      base: "rounded-lg",
-                    }}
-                    variant="flat"
-                    showArrow
-                    motionProps={{
-                      variants: {
-                        enter: {
-                          y: 0,
-                          opacity: 1,
-                          transition: {
-                            duration: 0.2,
-                            ease: "easeOut",
-                          },
-                        },
-                        exit: {
-                          y: -10,
-                          opacity: 0,
-                          transition: {
-                            duration: 0.1,
-                            ease: "easeIn",
-                          },
-                        },
-                      },
-                    }}
-                  >
-                    {/* Remove the wrapping div and map directly to DropdownItem */}
-                    {[
-                      {
-                        key: "github",
-                        href: "https://github.com/prateekraiger",
-                        icon: <FaGithub className="h-5 w-5 text-white" />,
-                        label: "GitHub",
-                      },
-                      {
-                        key: "linkedin",
-                        href: "https://linkedin.com/in/pratik-r1104/",
-                        icon: <FaLinkedinIn className="h-5 w-5 text-white" />,
-                        label: "LinkedIn",
-                      },
-                      {
-                        key: "twitter",
-                        href: "https://x.com/mrpratik753",
-                        icon: (
-                          <FaTwitterSquare className="h-5 w-5 text-white" />
-                        ),
-                        label: "Twitter",
-                      },
-                      {
-                        key: "instagram",
-                        href: "https://www.instagram.com/pratik.raiger/",
-                        icon: <FaInstagram className="h-5 w-5 text-white" />,
-                        label: "Instagram",
-                      },
-                    ].map((item) => (
-                      <DropdownItem
-                        key={item.key}
-                        className="p-0 mb-1 last:mb-0"
-                      >
-                        <a
-                          href={item.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full h-full flex items-center gap-3 px-4 py-2.5 text-white bg-[#915EFF]/10 hover:bg-[#915EFF]/20 transition-all duration-300 rounded-xl"
-                        >
-                          {item.icon}
-                          <span className="text-sm font-medium">
-                            {item.label}
-                          </span>
-                        </a>
-                      </DropdownItem>
-                    ))}
-                  </DropdownMenu>
-                </Dropdown>
-              </NavbarContent>
-            </div>
+            {/* Music Control Button */}
+            <motion.div
+              variants={musicButtonVariants}
+              initial="hidden"
+              animate="visible"
+              className="hidden md:flex items-center"
+            >
+              <Button
+                isIconOnly
+                variant="light"
+                className="bg-[#915EFF]/10 hover:bg-[#915EFF]/20 p-2 rounded-full border border-[#915EFF]/30"
+                onClick={toggleMusic}
+              >
+                {isPlaying ? (
+                  <FaPause className="w-5 h-5 text-white" />
+                ) : (
+                  <FaPlay className="w-5 h-5 text-white" />
+                )}
+              </Button>
+            </motion.div>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu - Only shown when isMobileMenuOpen is true */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -311,8 +261,6 @@ const Navbar = () => {
             animate="open"
             exit="closed"
             variants={mobileMenuVariants}
-            role="menu"
-            aria-orientation="vertical"
             className="md:hidden absolute top-full left-0 w-full bg-black/70 backdrop-blur-lg rounded-b-2xl border-t border-[#915EFF]/20 overflow-hidden shadow-[0_4px_15px_rgba(145,94,255,0.2)] z-40"
           >
             <div className="p-4 flex flex-col gap-3">
@@ -325,8 +273,6 @@ const Navbar = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  role="menuitem"
-                  tabIndex={0}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`block w-full text-center text-sm sm:text-base font-medium transition-all duration-300 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#915EFF]/50 ${
                     location.pathname === item.path
@@ -338,41 +284,20 @@ const Navbar = () => {
                 </Link>
               ))}
 
-              {/* Social Links in Mobile Menu */}
-              <div className="mt-4 flex justify-center gap-4">
-                {[
-                  {
-                    key: "github",
-                    href: "https://github.com/prateekraiger",
-                    icon: <FaGithub className="h-5 w-5 text-white" />,
-                  },
-                  {
-                    key: "linkedin",
-                    href: "https://linkedin.com/in/pratik-r1104/",
-                    icon: <FaLinkedinIn className="h-5 w-5 text-white" />,
-                  },
-                  {
-                    key: "twitter",
-                    href: "https://x.com/mrpratik753",
-                    icon: <FaTwitterSquare className="h-5 w-5 text-white" />,
-                  },
-                  {
-                    key: "instagram",
-                    href: "https://www.instagram.com/pratik.raiger/",
-                    icon: <FaInstagram className="h-5 w-5 text-white" />,
-                  },
-                ].map((item, idx) => (
-                  <a
-                    key={item.key}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 bg-[#915EFF]/10 hover:bg-[#915EFF]/20 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#915EFF]/50"
-                    aria-label={item.key}
-                  >
-                    {item.icon}
-                  </a>
-                ))}
+              {/* Music Control in Mobile Menu */}
+              <div className="mt-4 flex justify-center">
+                <Button
+                  isIconOnly
+                  variant="light"
+                  className="bg-[#915EFF]/10 hover:bg-[#915EFF]/20 p-3 rounded-full border border-[#915EFF]/30"
+                  onClick={toggleMusic}
+                >
+                  {isPlaying ? (
+                    <FaPause className="w-6 h-6 text-white" />
+                  ) : (
+                    <FaPlay className="w-6 h-6 text-white" />
+                  )}
+                </Button>
               </div>
             </div>
           </motion.div>

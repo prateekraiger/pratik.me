@@ -7,6 +7,7 @@ const Stairs = ({ isClosing }) => {
       {[...Array(8)].map((_, index) => {
         const isEven = index % 2 === 0;
         const direction = isEven ? -1 : 1;
+        const closingDirection = isEven ? 1 : -1;
 
         return (
           <motion.div
@@ -26,19 +27,12 @@ const Stairs = ({ isClosing }) => {
                 },
               },
               closing: {
-                y: [0, direction * 5, direction === 1 ? "100%" : "-100%"],
-                scaleY: [1, 0.99, 0],
-                opacity: [1, 1, 0],
+                scaleY: 1,
+                y: closingDirection === 1 ? "100%" : "-100%",
                 transition: {
                   duration: 0.8,
-                  times: [0, 0.3, 1],
-                  ease: [0.645, 0.045, 0.355, 1],
-                  delay: index * 0.02,
-                  opacity: {
-                    duration: 0.8,
-                    times: [0, 0.8, 1],
-                    ease: "easeInOut",
-                  },
+                  ease: [0.4, 0, 0.2, 1],
+                  delay: (7 - index) * 0.03,
                 },
               },
             }}

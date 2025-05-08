@@ -16,12 +16,12 @@ const StairsTransition = () => {
     // Start closing animation after opening completes
     const closingTimer = setTimeout(() => {
       setIsClosing(true);
-    }, 800); // Reduced from 1200 to 800 for faster transition
+    }, 1000); // Time for opening animation to complete
 
     // Hide after closing animation completes
     const hideTimer = setTimeout(() => {
       setIsVisible(false);
-    }, 1200); // Reduced from 1600 to 1200 for faster transition
+    }, 2000); // Total time for both opening and closing animations
 
     return () => {
       clearTimeout(closingTimer);
@@ -56,7 +56,7 @@ const StairsTransition = () => {
             animate={{
               opacity: isClosing ? 0 : 0.2,
               transition: {
-                delay: 0.05, // Reduced from 0.1 to 0.05
+                delay: 0.05,
                 duration: 0.2,
                 ease: "easeInOut",
               },

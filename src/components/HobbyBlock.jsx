@@ -27,17 +27,22 @@ const HobbyBlock = () => {
     top: 0,
     bottom: 0,
   });
+  const [isMobile, setIsMobile] = useState(false);
 
   // Function to update bounds based on container size
   const updateBounds = () => {
     if (containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
+      // Check if we're on mobile
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+
       // Adjust bounds to keep elements fully visible within container
       setBounds({
         left: 10, // Add some padding from the left edge
-        right: rect.width - 110, // Account for element width (~100px) + padding
+        right: rect.width - (mobile ? 80 : 110), // Smaller padding on mobile
         top: 10, // Add some padding from the top edge
-        bottom: rect.height - 50, // Account for element height (~40px) + padding
+        bottom: rect.height - (mobile ? 40 : 50), // Smaller padding on mobile
       });
     }
   };
@@ -69,27 +74,28 @@ const HobbyBlock = () => {
   };
 
   return (
-    <div className="col-span-12 md:col-span-8 bg-gradient-to-br from-zinc-800 to-zinc-900 p-6 rounded-xl shadow-lg relative overflow-hidden">
-      <div className="relative z-10">
+    <div className="col-span-12 md:col-span-12 w-full bg-gradient-to-br from-zinc-800 to-zinc-900 p-4 md:p-6 rounded-xl shadow-lg relative overflow-hidden">
+      <div className="relative z-10 h-full flex flex-col">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
           onLayoutComplete={updateBounds}
+          className="flex flex-col h-full w-full"
         >
-          <h3 className="text-xl font-bold mb-4 text-white font-cal-sans flex items-center">
+          <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-white font-cal-sans flex items-center">
             <Coffee className="mr-2 text-yellow-400" /> When I'm Not Coding
           </h3>
 
           <div
             ref={containerRef}
-            className="relative mt-2 min-h-48 border border-zinc-700/30 rounded-lg p-4 overflow-hidden bg-zinc-800/50 backdrop-blur-sm"
-            style={{ height: "220px" }}
+            className="relative w-full flex-grow border border-zinc-700/30 rounded-lg p-3 md:p-4 overflow-hidden bg-zinc-800/50 backdrop-blur-sm"
+            style={{ height: "150px" }}
           >
             {hobbies.map((hobby) => (
               <motion.span
                 key={hobby.id}
-                className={`inline-block px-4 py-2 rounded-lg text-sm cursor-grab active:cursor-grabbing ${hobby.color} m-1.5 shadow-lg hover:shadow-xl transition-shadow`}
+                className={`inline-block px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-xs md:text-sm cursor-grab active:cursor-grabbing ${hobby.color} m-1 md:m-1.5 shadow-lg hover:shadow-xl transition-shadow`}
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{
                   scale: 1,
@@ -105,7 +111,7 @@ const HobbyBlock = () => {
                   delay: Math.random() * 0.5,
                   y: { type: "spring", stiffness: 300, damping: 15 },
                 }}
-                drag
+                drag={!isMobile} // Only enable drag on non-mobile devices
                 dragConstraints={bounds}
                 dragElastic={0.1}
                 dragMomentum={false}
@@ -120,8 +126,10 @@ const HobbyBlock = () => {
             ))}
           </div>
 
-          <div className="mt-3 text-zinc-400 text-xs flex items-center justify-between">
-            <span className="text-purple-300">Click to see the effect</span>
+          <div className="mt-2 md:mt-3 text-zinc-400 text-xs flex items-center justify-between">
+            <span className="text-purple-300 text-[10px] md:text-xs">
+              {isMobile ? "Tap to see the effect" : "Click & drag to interact"}
+            </span>
           </div>
         </motion.div>
       </div>

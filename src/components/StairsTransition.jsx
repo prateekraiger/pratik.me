@@ -16,12 +16,12 @@ const StairsTransition = () => {
     // Start closing animation after opening completes
     const closingTimer = setTimeout(() => {
       setIsClosing(true);
-    }, 1000); // Adjusted for smoother transition
+    }, 800); // Reduced from 1200 to 800 for faster transition
 
     // Hide after closing animation completes
     const hideTimer = setTimeout(() => {
       setIsVisible(false);
-    }, 1800); // Total duration of 1.8s
+    }, 1200); // Reduced from 1600 to 1200 for faster transition
 
     return () => {
       clearTimeout(closingTimer);
@@ -38,14 +38,14 @@ const StairsTransition = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.25, ease: "easeInOut" }}
+          transition={{ duration: 0.2, ease: "easeInOut" }}
         >
           <motion.div
             className="h-screen w-screen fixed top-0 left-0 right-0 pointer-events-none z-40"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
           >
             <Stairs isClosing={isClosing} />
           </motion.div>
@@ -56,15 +56,15 @@ const StairsTransition = () => {
             animate={{
               opacity: isClosing ? 0 : 0.2,
               transition: {
-                delay: 0.05,
-                duration: 0.25,
+                delay: 0.05, // Reduced from 0.1 to 0.05
+                duration: 0.2,
                 ease: "easeInOut",
               },
             }}
             exit={{
               opacity: 0,
               transition: {
-                duration: 0.25,
+                duration: 0.2,
                 ease: "easeInOut",
               },
             }}

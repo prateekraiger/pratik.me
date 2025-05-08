@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { Coffee } from "lucide-react";
 
 const HobbyBlock = () => {
-  const hobbies = [
+  const [hobbies, setHobbies] = useState([
     { id: 1, name: "Problem Solving", color: "bg-red-900/30 text-red-300" },
     {
       id: 2,
@@ -17,96 +17,114 @@ const HobbyBlock = () => {
     },
     { id: 4, name: "Chess", color: "bg-yellow-900/30 text-yellow-300" },
     { id: 5, name: "Gaming", color: "bg-pink-900/30 text-pink-300" },
-  ];
+  ]);
 
+  const [activeId, setActiveId] = useState(null);
   const containerRef = useRef(null);
-  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
-  const pillRefs = useRef({});
-  const [pillSizes, setPillSizes] = useState({});
+  const [bounds, setBounds] = useState({
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+  });
 
-  // Update container and pill sizes when component mounts
+  // Function to update bounds based on container size
+  const updateBounds = () => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      // Adjust bounds to keep elements fully visible within container
+      setBounds({
+        left: 10, // Add some padding from the left edge
+        right: rect.width - 110, // Account for element width (~100px) + padding
+        top: 10, // Add some padding from the top edge
+        bottom: rect.height - 50, // Account for element height (~40px) + padding
+      });
+    }
+  };
+
   useEffect(() => {
-    const updateSizes = () => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect();
-        setContainerSize({ width: rect.width, height: rect.height });
+    // Initial bounds calculation
+    updateBounds();
 
-        // Update pill sizes
-        const newPillSizes = {};
-        hobbies.forEach((hobby) => {
-          if (pillRefs.current[hobby.id]) {
-            const pillRect = pillRefs.current[hobby.id].getBoundingClientRect();
-            newPillSizes[hobby.id] = {
-              width: pillRect.width,
-              height: pillRect.height,
-            };
-          }
-        });
-        setPillSizes(newPillSizes);
-      }
-    };
-
-    // Initial measurement
-    setTimeout(updateSizes, 200);
-
-    // Update on resize
-    window.addEventListener("resize", updateSizes);
-    return () => window.removeEventListener("resize", updateSizes);
+    // Update bounds when window resizes
+    window.addEventListener("resize", updateBounds);
+    return () => window.removeEventListener("resize", updateBounds);
   }, []);
 
-  return (
-    <div className="col-span-12 md:col-span-8 bg-gradient-to-br from-zinc-800 to-zinc-900 p-6 rounded-xl shadow-lg">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h3 className="text-xl font-bold mb-4 text-white flex items-center">
-          <Coffee className="mr-2 text-yellow-400" /> When I'm Not Coding
-        </h3>
+  // Recalculate bounds when component mounts and after render
+  useEffect(() => {
+    // Small delay to ensure container is fully rendered
+    const timer = setTimeout(updateBounds, 100);
+    return () => clearTimeout(timer);
+  }, [hobbies]);
 
-        <div
-          ref={containerRef}
-          className="relative mt-2 h-48 border border-zinc-700/30 rounded-lg p-4 overflow-hidden"
+  // Handle click on hobby block
+  const handleClick = (id) => {
+    setActiveId(id);
+
+    // Reset active ID after animation completes
+    setTimeout(() => {
+      setActiveId(null);
+    }, 500);
+  };
+
+  return (
+    <div className="col-span-12 md:col-span-8 bg-gradient-to-br from-zinc-800 to-zinc-900 p-6 rounded-xl shadow-lg relative overflow-hidden">
+      <div className="relative z-10">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          onLayoutComplete={updateBounds}
         >
-          <div className="flex flex-wrap gap-3">
+          <h3 className="text-xl font-bold mb-4 text-white font-cal-sans flex items-center">
+            <Coffee className="mr-2 text-yellow-400" /> When I'm Not Coding
+          </h3>
+
+          <div
+            ref={containerRef}
+            className="relative mt-2 min-h-48 border border-zinc-700/30 rounded-lg p-4 overflow-hidden bg-zinc-800/50 backdrop-blur-sm"
+            style={{ height: "220px" }}
+          >
             {hobbies.map((hobby) => (
-              <motion.div
+              <motion.span
                 key={hobby.id}
-                ref={(el) => (pillRefs.current[hobby.id] = el)}
-                className={`inline-block px-4 py-2 rounded-lg text-sm cursor-grab active:cursor-grabbing ${hobby.color}`}
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.3, delay: Math.random() * 0.3 }}
+                className={`inline-block px-4 py-2 rounded-lg text-sm cursor-grab active:cursor-grabbing ${hobby.color} m-1.5 shadow-lg hover:shadow-xl transition-shadow`}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{
+                  scale: 1,
+                  opacity: 1,
+                  y: activeId === hobby.id ? 10 : 0, // Move down when clicked
+                  boxShadow:
+                    activeId === hobby.id
+                      ? "0 10px 25px -5px rgba(0, 0, 0, 0.3)"
+                      : "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                }}
+                transition={{
+                  duration: 0.3,
+                  delay: Math.random() * 0.5,
+                  y: { type: "spring", stiffness: 300, damping: 15 },
+                }}
                 drag
-                dragConstraints={containerRef}
-                dragElastic={0}
+                dragConstraints={bounds}
+                dragElastic={0.1}
                 dragMomentum={false}
-                whileHover={{ scale: 1.05 }}
-                whileDrag={{
-                  zIndex: 10,
-                  transition: { duration: 0 },
-                }}
-                // Custom drag constraint logic
-                _dragX={(_valueX, { offset }) => {
-                  const id = hobby.id;
-                  if (!containerSize.width || !pillSizes[id]) return offset.x;
-                  const maxX = containerSize.width - pillSizes[id].width - 16; // 16px for padding
-                  return offset.x < 0 ? 0 : offset.x > maxX ? maxX : offset.x;
-                }}
-                _dragY={(_valueY, { offset }) => {
-                  const id = hobby.id;
-                  if (!containerSize.height || !pillSizes[id]) return offset.y;
-                  const maxY = containerSize.height - pillSizes[id].height - 16; // 16px for padding
-                  return offset.y < 0 ? 0 : offset.y > maxY ? maxY : offset.y;
-                }}
+                dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileDrag={{ scale: 1.1, zIndex: 10 }}
+                whileTap={{ scale: 0.95, y: 10 }} // Google-like press down effect
+                onClick={() => handleClick(hobby.id)}
               >
                 {hobby.name}
-              </motion.div>
+              </motion.span>
             ))}
           </div>
-        </div>
-      </motion.div>
+
+          <div className="mt-3 text-zinc-400 text-xs flex items-center justify-between">
+            <span className="text-purple-300">Click to see the effect</span>
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 };

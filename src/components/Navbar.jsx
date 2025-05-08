@@ -30,7 +30,7 @@ const Navbar = () => {
     const playPromise = audioRef.current.play();
     if (playPromise !== undefined) {
       playPromise.catch(() => {
-        console.log("Autoplay prevented");
+        // Autoplay prevented
       });
     }
 

@@ -1,0 +1,5 @@
+name = "pratik-me"
+compatibility_date = "2025-05-08"
+
+[site]
+basket = "dist"

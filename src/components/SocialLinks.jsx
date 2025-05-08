@@ -4,12 +4,16 @@ import { Icon } from "@iconify/react";
 
 export const SocialLinks = () => {
   return (
-    <section className="col-span-12 bg-gradient-to-br from-zinc-800 to-zinc-900 p-6 rounded-xl shadow-lg relative overflow-hidden">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <section className="w-full">
+      <h3 className="text-xl font-semibold text-center mb-6 text-purple-300">
+        Connect with me
+      </h3>
+      <div className="flex flex-col gap-4">
         <FlipLink
           href="https://github.com/prateekraiger"
           color="text-purple-300 hover:text-purple-400"
           icon="mdi:github"
+          bgColor="hover:bg-purple-900/30"
         >
           Github
         </FlipLink>
@@ -17,6 +21,7 @@ export const SocialLinks = () => {
           href="https://x.com/mrpratik753"
           color="text-blue-300 hover:text-blue-400"
           icon="mdi:twitter"
+          bgColor="hover:bg-blue-900/30"
         >
           Twitter
         </FlipLink>
@@ -24,6 +29,7 @@ export const SocialLinks = () => {
           href="https://www.linkedin.com/in/pratik-r1104/"
           color="text-green-300 hover:text-green-400"
           icon="mdi:linkedin"
+          bgColor="hover:bg-green-900/30"
         >
           Linkedin
         </FlipLink>
@@ -31,6 +37,7 @@ export const SocialLinks = () => {
           href="https://www.instagram.com/pratik.raiger/"
           color="text-pink-300 hover:text-pink-400"
           icon="mdi:instagram"
+          bgColor="hover:bg-pink-900/30"
         >
           Instagram
         </FlipLink>
@@ -42,7 +49,7 @@ export const SocialLinks = () => {
 const DURATION = 0.25;
 const STAGGER = 0.025;
 
-const FlipLink = ({ children, href, color, icon }) => {
+const FlipLink = ({ children, href, color, icon, bgColor }) => {
   return (
     <motion.a
       initial="initial"
@@ -50,22 +57,21 @@ const FlipLink = ({ children, href, color, icon }) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`relative block overflow-hidden whitespace-nowrap text-2xl md:text-3xl font-bold uppercase ${color} transition-colors duration-300`}
-      style={{
-        lineHeight: 0.75,
-      }}
+      className={`relative block overflow-hidden whitespace-nowrap text-2xl font-bold uppercase ${color} transition-all duration-300 p-4 rounded-xl border border-purple-700/30 ${bgColor} hover:scale-[1.02]`}
     >
-      <div className="flex items-center gap-2">
-        <Icon icon={icon} className="text-2xl" />
-        <div>
+      <div className="flex items-center gap-4">
+        <Icon icon={icon} className="text-3xl" />
+        <div className="flex-1">
           {children.split("").map((l, i) => (
             <motion.span
               variants={{
                 initial: {
                   y: 0,
+                  opacity: 1,
                 },
                 hovered: {
                   y: "-100%",
+                  opacity: 0,
                 },
               }}
               transition={{
@@ -81,17 +87,19 @@ const FlipLink = ({ children, href, color, icon }) => {
           ))}
         </div>
       </div>
-      <div className="absolute inset-0 flex items-center gap-2">
-        <Icon icon={icon} className="text-2xl" />
-        <div>
+      <div className="absolute inset-0 flex items-center gap-4 p-4">
+        <Icon icon={icon} className="text-3xl" />
+        <div className="flex-1">
           {children.split("").map((l, i) => (
             <motion.span
               variants={{
                 initial: {
                   y: "100%",
+                  opacity: 0,
                 },
                 hovered: {
                   y: 0,
+                  opacity: 1,
                 },
               }}
               transition={{

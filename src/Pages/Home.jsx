@@ -1,8 +1,7 @@
 import React from "react";
-import { SocialLinks } from "../components/SocialLinks";
 
 import Hero from "../components/Hero";
-
+import Project from "./Project";
 import About from "./About";
 import Contact from "./Contact";
 
@@ -13,6 +12,7 @@ const Home = () => {
         <div className="mt-12">
           <Hero />
           <About />
+          <Project />
           <Contact />
         </div>
       </div>

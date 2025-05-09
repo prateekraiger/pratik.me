@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
   OrbitControls,
@@ -10,46 +10,63 @@ import {
 
 import CanvasLoader from "./Loader";
 
+// Preload the model to avoid jank when it first appears
+useGLTF.preload("./desktop_pc/scene.gltf");
+
 const Computers = ({ isMobile }) => {
+  // Use draco compression if your model supports it
   const computer = useGLTF("./desktop_pc/scene.gltf");
+
+  // Optimize the scene when it loads
+  useEffect(() => {
+    if (computer.scene) {
+      // Reduce shadow quality for better performance
+      computer.scene.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = false;
+          child.receiveShadow = false;
+
+          // Simplify materials for better performance
+          if (child.material) {
+            child.material.envMapIntensity = 0.8;
+            child.material.needsUpdate = true;
+          }
+        }
+      });
+    }
+  }, [computer.scene]);
 
   return (
     <mesh>
-      {/* Ambient light for overall scene illumination */}
+      {/* Reduced lighting for better performance */}
       <ambientLight intensity={0.3} />
-
-      {/* Hemisphere light for natural outdoor-like lighting */}
       <hemisphereLight intensity={0.5} groundColor="black" color="#915EFF" />
 
-      {/* Main spotlight for dramatic lighting */}
+      {/* Simplified spotlight with no shadows */}
       <spotLight
         position={[-20, 50, 10]}
         angle={0.15}
         penumbra={1}
         intensity={1}
-        castShadow
-        shadow-mapSize={2048}
+        castShadow={false}
         color="#915EFF"
       />
 
-      {/* Additional point lights for better model definition */}
-      <pointLight position={[10, 10, 10]} intensity={0.3} color="#915EFF" />
-      <pointLight position={[-10, -10, -10]} intensity={0.2} color="#915EFF" />
-
-      {/* Contact shadows for better grounding */}
+      {/* Simplified shadows with lower resolution */}
       <ContactShadows
         position={[0, -4, 0]}
         opacity={0.3}
         scale={10}
         blur={2.5}
         far={4}
+        resolution={256} // Lower resolution for better performance
       />
 
-      {/* The 3D model */}
+      {/* The 3D model with optimized settings */}
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.5 : 0.65}
-        position={isMobile ? [0, -1, -1.5] : [0, -1.5, -1.5]}
+        scale={isMobile ? 0.4 : 0.65} // Smaller scale on mobile
+        position={isMobile ? [0, -1.5, -1.5] : [0, -1.5, -1.5]} // Adjusted position for mobile
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
@@ -58,23 +75,18 @@ const Computers = ({ isMobile }) => {
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     // Add a listener for changes to the screen size
     const mediaQuery = window.matchMedia("(max-width: 768px)");
-
-    // Set the initial value of the `isMobile` state variable
     setIsMobile(mediaQuery.matches);
 
-    // Define a callback function to handle changes to the media query
     const handleMediaQueryChange = (event) => {
       setIsMobile(event.matches);
     };
 
-    // Add the callback function as a listener for changes to the media query
     mediaQuery.addEventListener("change", handleMediaQueryChange);
-
-    // Remove the listener when the component is unmounted
     return () => {
       mediaQuery.removeEventListener("change", handleMediaQueryChange);
     };
@@ -82,19 +94,25 @@ const ComputersCanvas = () => {
 
   return (
     <Canvas
-      frameloop="demand"
-      shadows
-      dpr={[1, 2]}
+      ref={canvasRef}
+      frameloop="demand" // Only render when needed
+      shadows={false} // Disable shadows for performance
+      dpr={[1, 1.5]} // Reduced pixel ratio for better performance
       camera={{
-        position: isMobile ? [12, 1.5, 2.5] : [15, 2, 3],
-        fov: isMobile ? 35 : 30,
+        position: isMobile ? [10, 1.5, 2.5] : [15, 2, 3], // Different camera position for mobile
+        fov: isMobile ? 40 : 30, // Wider FOV on mobile for better visibility
+        near: 0.1,
+        far: 100,
       }}
       gl={{
         preserveDrawingBuffer: true,
-        antialias: true,
-        toneMappingExposure: 1.2,
-        outputEncoding: 3001, // sRGBEncoding
+        antialias: false, // Disable antialiasing for performance
+        powerPreference: "high-performance",
+        alpha: true, // Enable alpha for transparent background
+        depth: true,
+        stencil: false, // Disable stencil for performance
       }}
+      performance={{ min: 0.5 }} // Allow ThreeJS to reduce quality for performance
       className="w-full h-full"
     >
       <Suspense fallback={<CanvasLoader />}>
@@ -103,7 +121,8 @@ const ComputersCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
           autoRotate
-          autoRotateSpeed={0.5}
+          autoRotateSpeed={isMobile ? 0.3 : 0.5} // Slower rotation on mobile
+          enableDamping={false} // Disable damping for performance
         />
         <Computers isMobile={isMobile} />
         <Environment preset="city" />

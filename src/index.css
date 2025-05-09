@@ -84,7 +84,40 @@ body {
 /* Container styles */
 .container {
     width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
+}
+
+@media (min-width: 1536px) {
+    .container {
+        padding: 0 4rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 0 1rem;
+    }
+}
+
+/* Full width section styles */
+.section-full {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 0 2rem;
+}
+
+@media (min-width: 1536px) {
+    .section-full {
+        padding: 0 4rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .section-full {
+        padding: 0 1rem;
+    }
 }

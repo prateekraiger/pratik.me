@@ -28,7 +28,7 @@ const Computers = ({ isMobile }) => {
 
           // Simplify materials for better performance
           if (child.material) {
-            child.material.envMapIntensity = 0.8;
+            child.material.envMapIntensity = 0.5;
             child.material.needsUpdate = true;
           }
         }
@@ -39,15 +39,15 @@ const Computers = ({ isMobile }) => {
   return (
     <mesh>
       {/* Reduced lighting for better performance */}
-      <ambientLight intensity={0.3} />
-      <hemisphereLight intensity={0.5} groundColor="black" color="#915EFF" />
+      <ambientLight intensity={0.2} />
+      <hemisphereLight intensity={0.3} groundColor="black" color="#915EFF" />
 
       {/* Simplified spotlight with no shadows */}
       <spotLight
         position={[-20, 50, 10]}
         angle={0.15}
         penumbra={1}
-        intensity={1}
+        intensity={0.8}
         castShadow={false}
         color="#915EFF"
       />
@@ -55,18 +55,18 @@ const Computers = ({ isMobile }) => {
       {/* Simplified shadows with lower resolution */}
       <ContactShadows
         position={[0, -4, 0]}
-        opacity={0.3}
+        opacity={0.2}
         scale={10}
-        blur={2.5}
+        blur={2}
         far={4}
-        resolution={256} // Lower resolution for better performance
+        resolution={128}
       />
 
       {/* The 3D model with optimized settings */}
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.4 : 0.65} // Smaller scale on mobile
-        position={isMobile ? [0, -1.5, -1.5] : [0, -1.5, -1.5]} // Adjusted position for mobile
+        scale={isMobile ? 0.35 : 0.6}
+        position={isMobile ? [0, -1.5, -1.5] : [0, -1.5, -1.5]}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
@@ -97,10 +97,10 @@ const ComputersCanvas = () => {
       ref={canvasRef}
       frameloop="demand" // Only render when needed
       shadows={false} // Disable shadows for performance
-      dpr={[1, 1.5]} // Reduced pixel ratio for better performance
+      dpr={[1, 1.2]} // Reduced pixel ratio for better performance
       camera={{
         position: isMobile ? [10, 1.5, 2.5] : [15, 2, 3], // Different camera position for mobile
-        fov: isMobile ? 40 : 30, // Wider FOV on mobile for better visibility
+        fov: isMobile ? 35 : 25, // Wider FOV on mobile for better visibility
         near: 0.1,
         far: 100,
       }}
@@ -111,8 +111,9 @@ const ComputersCanvas = () => {
         alpha: true, // Enable alpha for transparent background
         depth: true,
         stencil: false, // Disable stencil for performance
+        failIfMajorPerformanceCaveat: true, // Added to fail gracefully on low-end devices
       }}
-      performance={{ min: 0.5 }} // Allow ThreeJS to reduce quality for performance
+      performance={{ min: 0.3 }} // Allow ThreeJS to reduce quality for performance
       className="w-full h-full"
     >
       <Suspense fallback={<CanvasLoader />}>
@@ -121,7 +122,7 @@ const ComputersCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
           autoRotate
-          autoRotateSpeed={isMobile ? 0.3 : 0.5} // Slower rotation on mobile
+          autoRotateSpeed={isMobile ? 0.2 : 0.3} // Slower rotation on mobile
           enableDamping={false} // Disable damping for performance
         />
         <Computers isMobile={isMobile} />

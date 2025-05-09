@@ -1,7 +1,7 @@
 "use client";
 
+import React, { useEffect, useRef, useMemo, useCallback } from "react";
 import { motion, useSpring } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
 
 const DefaultCursorSVG = () => {
   return (
@@ -65,109 +65,155 @@ const DefaultCursorSVG = () => {
   );
 };
 
+const MemoizedDefaultCursor = React.memo(DefaultCursorSVG);
+
 export function SmoothCursor({
-  cursor = <DefaultCursorSVG />,
-  springConfig = {
-    damping: 45,
-    stiffness: 400,
-    mass: 1,
-    restDelta: 0.001,
-  },
+  cursor = <MemoizedDefaultCursor />,
+  springConfig: customSpringConfig,
 }) {
-  const [isMoving, setIsMoving] = useState(false);
+  const springConfig = useMemo(
+    () => ({
+      damping: 35,
+      stiffness: 350,
+      mass: 0.8,
+      restDelta: 0.01,
+      ...customSpringConfig,
+    }),
+    [customSpringConfig]
+  );
+
   const lastMousePos = useRef({ x: 0, y: 0 });
   const velocity = useRef({ x: 0, y: 0 });
   const lastUpdateTime = useRef(Date.now());
   const previousAngle = useRef(0);
   const accumulatedRotation = useRef(0);
+  const timeoutRef = useRef(null);
+  const rafRef = useRef(null); // For requestAnimationFrame ID
 
   const cursorX = useSpring(0, springConfig);
   const cursorY = useSpring(0, springConfig);
   const rotation = useSpring(0, {
     ...springConfig,
-    damping: 60,
-    stiffness: 300,
+    damping: 50,
+    stiffness: 250,
   });
-  const scale = useSpring(1, {
-    ...springConfig,
-    stiffness: 500,
-    damping: 35,
-  });
+  const scale = useSpring(1, { ...springConfig, stiffness: 450, damping: 30 });
 
-  useEffect(() => {
-    const updateVelocity = (currentPos) => {
+  const cursorStyle = useMemo(
+    () => ({
+      willChange: "transform",
+      transform: "translateZ(0)",
+    }),
+    []
+  );
+
+  const updateCursorState = useCallback(
+    (currentPos) => {
       const currentTime = Date.now();
-      const deltaTime = currentTime - lastUpdateTime.current;
+      const deltaTime = Math.max(16, currentTime - lastUpdateTime.current);
 
-      if (deltaTime > 0) {
-        velocity.current = {
-          x: (currentPos.x - lastMousePos.current.x) / deltaTime,
-          y: (currentPos.y - lastMousePos.current.y) / deltaTime,
-        };
-      }
+      const newVelocityX = (currentPos.x - lastMousePos.current.x) / deltaTime;
+      const newVelocityY = (currentPos.y - lastMousePos.current.y) / deltaTime;
+
+      velocity.current = {
+        x: velocity.current.x * 0.7 + newVelocityX * 0.3,
+        y: velocity.current.y * 0.7 + newVelocityY * 0.3,
+      };
 
       lastUpdateTime.current = currentTime;
-      lastMousePos.current = currentPos;
-    };
+      lastMousePos.current = { ...currentPos }; // Ensure a new object for lastMousePos
 
-    const smoothMouseMove = (e) => {
-      const currentPos = { x: e.clientX, y: e.clientY };
-      updateVelocity(currentPos);
+      cursorX.set(currentPos.x);
+      cursorY.set(currentPos.y);
 
       const speed = Math.sqrt(
         Math.pow(velocity.current.x, 2) + Math.pow(velocity.current.y, 2)
       );
 
-      cursorX.set(currentPos.x);
-      cursorY.set(currentPos.y);
-
       if (speed > 0.1) {
         const currentAngle =
           Math.atan2(velocity.current.y, velocity.current.x) * (180 / Math.PI) +
           90;
-
         let angleDiff = currentAngle - previousAngle.current;
         if (angleDiff > 180) angleDiff -= 360;
         if (angleDiff < -180) angleDiff += 360;
-        accumulatedRotation.current += angleDiff;
+
+        const smoothedAngleDiff = angleDiff * 0.8;
+        accumulatedRotation.current += smoothedAngleDiff;
         rotation.set(accumulatedRotation.current);
         previousAngle.current = currentAngle;
 
         scale.set(0.95);
-        setIsMoving(true);
 
-        const timeout = setTimeout(() => {
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+        timeoutRef.current = setTimeout(() => {
           scale.set(1);
-          setIsMoving(false);
+          timeoutRef.current = null;
         }, 150);
-
-        return () => clearTimeout(timeout);
+      } else {
+        // Optionally, reset scale if speed is very low and no timeout is active
+        if (!timeoutRef.current) {
+          scale.set(1);
+        }
       }
-    };
+    },
+    [cursorX, cursorY, rotation, scale]
+  ); // Added dependencies
 
-    let rafId;
-    const throttledMouseMove = (e) => {
-      if (rafId) return;
+  useEffect(() => {
+    let lastProcessedTime = 0;
+    const minProcessInterval = 8; // ~120fps
 
-      rafId = requestAnimationFrame(() => {
-        smoothMouseMove(e);
-        rafId = 0;
-      });
+    const handleMouseMove = (e) => {
+      const currentPos = { x: e.clientX, y: e.clientY };
+      // Update lastMousePos immediately for responsiveness if needed outside RAF
+      // lastMousePos.current = currentPos;
+
+      const now = performance.now();
+      if (rafRef.current !== null) return; // Already scheduled
+
+      if (now - lastProcessedTime < minProcessInterval) {
+        rafRef.current = requestAnimationFrame(() => {
+          rafRef.current = null;
+          lastProcessedTime = performance.now();
+          updateCursorState({ x: e.clientX, y: e.clientY }); // Use latest event data
+        });
+        return;
+      }
+
+      lastProcessedTime = now;
+      updateCursorState(currentPos);
     };
 
     document.body.style.cursor = "none";
-    window.addEventListener("mousemove", throttledMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+
+    // Set initial position if mouse is already on screen
+    // This helps if the component mounts after the first mousemove
+    if (lastMousePos.current.x !== 0 || lastMousePos.current.y !== 0) {
+      cursorX.set(lastMousePos.current.x);
+      cursorY.set(lastMousePos.current.y);
+    }
 
     return () => {
-      window.removeEventListener("mousemove", throttledMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
       document.body.style.cursor = "auto";
-      if (rafId) cancelAnimationFrame(rafId);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
     };
-  }, [cursorX, cursorY, rotation, scale]);
+  }, [updateCursorState, cursorX, cursorY]); // Added cursorX, cursorY to dependencies
 
   return (
     <motion.div
-      className="fixed pointer-events-none z-[100] will-change-transform hidden md:block" // Hide on mobile
+      className="fixed pointer-events-none z-[100] will-change-transform hidden md:block"
       style={{
         left: cursorX,
         top: cursorY,
@@ -175,13 +221,15 @@ export function SmoothCursor({
         translateY: "-50%",
         rotate: rotation,
         scale: scale,
+        ...cursorStyle,
       }}
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
+      initial={{ scale: 0, opacity: 0 }} // Added opacity for smoother initial animation
+      animate={{ scale: 1, opacity: 1 }} // Added opacity
       transition={{
         type: "spring",
         stiffness: 400,
         damping: 30,
+        // delay: 0.1, // Optional: slight delay for entry animation
       }}
     >
       {cursor}

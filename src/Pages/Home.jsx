@@ -8,7 +8,8 @@ import Contact from "./Contact";
 const Home = () => {
   return (
     <div className="min-h-screen text-white p-4 md:p-8">
-      <div className="max-w-7xl mx-auto">
+      {/* Removed max-w-7xl and mx-auto from this div */}
+      <div>
         <div className="mt-12">
           <Hero />
           <About />

@@ -11,7 +11,7 @@ import {
 } from "@heroui/react";
 import { FaTimes, FaBars, FaPlay, FaPause } from "react-icons/fa";
 import logo from "../assets/logo.png";
-import playMusic from "../assets/loop.mp3";
+import playMusic from "/loop.mp3";
 
 const Navbar = () => {
   const location = useLocation();

@@ -11,15 +11,16 @@ const Tech = () => {
 
   // Toggle category expansion
   const toggleCategory = (category) => {
-    setExpandedCategories(prev => ({
+    setExpandedCategories((prev) => ({
       ...prev,
-      [category]: !prev[category]
+      [category]: !prev[category],
     }));
   };
 
   return (
     <section className="py-12 sm:py-16 lg:py-20">
-      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      {/* Removed max-w-7xl from this div, kept padding (px-4, sm:px-6, lg:px-8) */}
+      <div className="px-4 mx-auto sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl xl:text-5xl">
             My Skills
@@ -51,7 +52,9 @@ const Tech = () => {
                     </h3>
 
                     <motion.div
-                      animate={{ rotate: expandedCategories[category] ? 180 : 0 }}
+                      animate={{
+                        rotate: expandedCategories[category] ? 180 : 0,
+                      }}
                       transition={{ duration: 0.3 }}
                       className="w-8 h-8 flex items-center justify-center rounded-full bg-[#915EFF]/10 hover:bg-[#915EFF]/20 transition-colors duration-300"
                     >
@@ -66,7 +69,7 @@ const Tech = () => {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       >
-                        <path d="m6 9 6 6 6-6"/>
+                        <path d="m6 9 6 6 6-6" />
                       </svg>
                     </motion.div>
                   </motion.div>

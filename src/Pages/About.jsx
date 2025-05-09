@@ -9,14 +9,14 @@ import Tech from "../components/Tech";
 
 export const About = () => {
   return (
-    <div className="min-h-screen bg-zinc-900 px-4 py-8 md:py-12 text-zinc-50">
+    <div className="min-h-screen bg-zinc-900 px-4 py-8 md:py-12 text-zinc-50 w-full">
       <motion.div
         initial="initial"
         animate="animate"
         transition={{
           staggerChildren: 0.1,
         }}
-        className="mx-auto grid max-w-7xl grid-flow-dense grid-cols-12 gap-4 md:gap-8"
+        className="mx-auto grid grid-flow-dense grid-cols-12 gap-4 md:gap-8" // Removed max-w-7xl
       >
         <ProfileBlock />
         <IntroBlock />
@@ -30,7 +30,7 @@ export const About = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="mx-auto max-w-7xl mt-12"
+        className="mx-auto mt-12" // Removed max-w-7xl
       >
         <SocialLinks />
       </motion.div>
@@ -40,7 +40,7 @@ export const About = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7 }}
-        className="mx-auto max-w-7xl mt-12"
+        className="mx-auto mt-12" // Removed max-w-7xl
       >
         <Tech />
       </motion.div>

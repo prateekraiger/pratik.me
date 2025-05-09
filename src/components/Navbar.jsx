@@ -23,7 +23,7 @@ const Navbar = () => {
     // Initialize audio
     audioRef.current = new Audio(playMusic);
     audioRef.current.loop = true;
-    audioRef.current.volume = 0.5;
+    audioRef.current.volume = 0.3;
     audioRef.current.muted = true;
 
     // Try to play muted on mount

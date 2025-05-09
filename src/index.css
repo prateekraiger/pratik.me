@@ -4,10 +4,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom selection color */
+::selection {
+    background-color: #915EFF;
+    color: white;
+}
+
+/* For Firefox */
+::-moz-selection {
+    background-color: #915EFF;
+    color: white;
+}
+
+/* For Safari and older browsers */
+* {
+    -webkit-tap-highlight-color: #915EFF;
+}
+
 :root {
-    --primary: #4f46e5;
-    --primary-dark: #4338ca;
-    --secondary: #0ea5e9;
+    --primary: #915EFF;
+    --primary-dark: #7b4ed9;
+    --secondary: #4285F4;
     --background: #0a0a0a;
     --foreground: #f8fafc;
     --card-shadow: 0px 20px 100px -10px rgba(66, 71, 91, 0.1);
@@ -29,7 +46,6 @@ h4,
 h5,
 h6 {
     font-family: "Cal Sans", sans-serif;
-    /* Font for headings and subheadings */
 }
 
 html {
@@ -49,7 +65,7 @@ body {
 /* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
-    background-color: var(--primary-dark);
+    background-color: var(--background);
 }
 
 ::-webkit-scrollbar-track {
@@ -62,7 +78,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary);
+    background: var(--primary-dark);
 }
 
 /* Container styles */

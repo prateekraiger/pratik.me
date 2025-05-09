@@ -1,9 +1,7 @@
-"use client";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 
-import React, { useEffect, useRef, useMemo, useCallback } from "react";
-import { motion, useSpring } from "framer-motion";
-
-const DefaultCursorSVG = () => {
+// Optimized cursor SVG with React.memo
+const DefaultCursorSVG = React.memo(() => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -63,178 +61,196 @@ const DefaultCursorSVG = () => {
       </defs>
     </svg>
   );
-};
+});
 
-const MemoizedDefaultCursor = React.memo(DefaultCursorSVG);
+DefaultCursorSVG.displayName = "DefaultCursorSVG";
 
-export function SmoothCursor({
-  cursor = <MemoizedDefaultCursor />,
-  springConfig: customSpringConfig,
-}) {
-  const springConfig = useMemo(
-    () => ({
-      damping: 35,
-      stiffness: 350,
-      mass: 0.8,
-      restDelta: 0.01,
-      ...customSpringConfig,
-    }),
-    [customSpringConfig]
-  );
+const SmoothCursor = React.memo(
+  ({ cursor = <DefaultCursorSVG />, springConfig }) => {
+    // DOM refs for direct manipulation (no React state for position)
+    const cursorRef = useRef(null);
+    const isInitialized = useRef(false);
+    const isAnimating = useRef(false);
+    const mousePosition = useRef({ x: 0, y: 0 });
+    const cursorPosition = useRef({ x: 0, y: 0 });
+    const velocity = useRef({ x: 0, y: 0 });
+    const lastUpdateTime = useRef(0);
+    const previousAngle = useRef(0);
+    const rotation = useRef(0);
+    const scale = useRef(1);
+    const scaleTimeoutId = useRef(null);
+    const rafId = useRef(null);
 
-  const lastMousePos = useRef({ x: 0, y: 0 });
-  const velocity = useRef({ x: 0, y: 0 });
-  const lastUpdateTime = useRef(Date.now());
-  const previousAngle = useRef(0);
-  const accumulatedRotation = useRef(0);
-  const timeoutRef = useRef(null);
-  const rafRef = useRef(null); // For requestAnimationFrame ID
+    // Visibility state (need React state for this)
+    const [isVisible, setIsVisible] = useState(false);
 
-  const cursorX = useSpring(0, springConfig);
-  const cursorY = useSpring(0, springConfig);
-  const rotation = useSpring(0, {
-    ...springConfig,
-    damping: 50,
-    stiffness: 250,
-  });
-  const scale = useSpring(1, { ...springConfig, stiffness: 450, damping: 30 });
+    // Spring configuration
+    const config = {
+      stiffness: springConfig?.stiffness || 350,
+      damping: springConfig?.damping || 35,
+      mass: springConfig?.mass || 0.8,
+    };
 
-  const cursorStyle = useMemo(
-    () => ({
-      willChange: "transform",
-      transform: "translateZ(0)",
-    }),
-    []
-  );
+    // Update cursor position directly in the DOM for better performance
+    const updateCursorStyle = useCallback(() => {
+      if (!cursorRef.current) return;
 
-  const updateCursorState = useCallback(
-    (currentPos) => {
-      const currentTime = Date.now();
-      const deltaTime = Math.max(16, currentTime - lastUpdateTime.current);
+      const transform = `translate(${cursorPosition.current.x}px, ${cursorPosition.current.y}px) translate(-50%, -50%) rotate(${rotation.current}deg) scale(${scale.current})`;
 
-      const newVelocityX = (currentPos.x - lastMousePos.current.x) / deltaTime;
-      const newVelocityY = (currentPos.y - lastMousePos.current.y) / deltaTime;
+      cursorRef.current.style.transform = transform;
+      cursorRef.current.style.willChange = "transform";
+    }, []);
 
-      velocity.current = {
-        x: velocity.current.x * 0.7 + newVelocityX * 0.3,
-        y: velocity.current.y * 0.7 + newVelocityY * 0.3,
-      };
+    // Main animation loop using requestAnimationFrame
+    const animateFrame = useCallback(() => {
+      if (!isInitialized.current) return;
 
-      lastUpdateTime.current = currentTime;
-      lastMousePos.current = { ...currentPos }; // Ensure a new object for lastMousePos
+      const now = performance.now();
+      const deltaTime = Math.min((now - lastUpdateTime.current) / 1000, 0.03); // Cap at 30ms to avoid jumps
+      lastUpdateTime.current = now;
 
-      cursorX.set(currentPos.x);
-      cursorY.set(currentPos.y);
+      // Spring calculations for x and y
+      const dx = mousePosition.current.x - cursorPosition.current.x;
+      const dy = mousePosition.current.y - cursorPosition.current.y;
 
+      // Calculate acceleration using spring physics
+      const ax =
+        (dx * config.stiffness - velocity.current.x * config.damping) /
+        config.mass;
+      const ay =
+        (dy * config.stiffness - velocity.current.y * config.damping) /
+        config.mass;
+
+      // Update velocity
+      velocity.current.x += ax * deltaTime;
+      velocity.current.y += ay * deltaTime;
+
+      // Update position
+      cursorPosition.current.x += velocity.current.x * deltaTime;
+      cursorPosition.current.y += velocity.current.y * deltaTime;
+
+      // Calculate speed for effects
       const speed = Math.sqrt(
-        Math.pow(velocity.current.x, 2) + Math.pow(velocity.current.y, 2)
+        velocity.current.x ** 2 + velocity.current.y ** 2
       );
 
-      if (speed > 0.1) {
+      // Update rotation based on movement direction when moving fast enough
+      if (speed > 5) {
         const currentAngle =
           Math.atan2(velocity.current.y, velocity.current.x) * (180 / Math.PI) +
           90;
         let angleDiff = currentAngle - previousAngle.current;
+
+        // Normalize angle difference
         if (angleDiff > 180) angleDiff -= 360;
         if (angleDiff < -180) angleDiff += 360;
 
-        const smoothedAngleDiff = angleDiff * 0.8;
-        accumulatedRotation.current += smoothedAngleDiff;
-        rotation.set(accumulatedRotation.current);
+        // Smooth angle transition
+        rotation.current += angleDiff * 0.3;
         previousAngle.current = currentAngle;
 
-        scale.set(0.95);
+        // Scale effect on fast movement
+        scale.current = 0.95;
 
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current);
+        // Clear previous timeout
+        if (scaleTimeoutId.current) {
+          clearTimeout(scaleTimeoutId.current);
         }
-        timeoutRef.current = setTimeout(() => {
-          scale.set(1);
-          timeoutRef.current = null;
+
+        // Set timeout to reset scale
+        scaleTimeoutId.current = setTimeout(() => {
+          scale.current = 1;
+          updateCursorStyle();
         }, 150);
-      } else {
-        // Optionally, reset scale if speed is very low and no timeout is active
-        if (!timeoutRef.current) {
-          scale.set(1);
+      }
+
+      // Apply styles
+      updateCursorStyle();
+
+      // Continue animation loop
+      rafId.current = requestAnimationFrame(animateFrame);
+    }, [config.damping, config.mass, config.stiffness, updateCursorStyle]);
+
+    // Start animation loop if not already running
+    const startAnimation = useCallback(() => {
+      if (isAnimating.current) return;
+
+      isAnimating.current = true;
+      lastUpdateTime.current = performance.now();
+      rafId.current = requestAnimationFrame(animateFrame);
+    }, [animateFrame]);
+
+    // Stop animation loop
+    const stopAnimation = useCallback(() => {
+      isAnimating.current = false;
+
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current);
+        rafId.current = null;
+      }
+
+      if (scaleTimeoutId.current) {
+        clearTimeout(scaleTimeoutId.current);
+        scaleTimeoutId.current = null;
+      }
+    }, []);
+
+    // Handle mouse movement
+    const handleMouseMove = useCallback(
+      (e) => {
+        // Store current mouse position
+        mousePosition.current = { x: e.clientX, y: e.clientY };
+
+        // Initialize cursor position on first move
+        if (!isInitialized.current) {
+          isInitialized.current = true;
+          cursorPosition.current = { x: e.clientX, y: e.clientY };
+          setIsVisible(true);
+          updateCursorStyle();
         }
-      }
-    },
-    [cursorX, cursorY, rotation, scale]
-  ); // Added dependencies
 
-  useEffect(() => {
-    let lastProcessedTime = 0;
-    const minProcessInterval = 8; // ~120fps
+        // Ensure animation is running
+        startAnimation();
+      },
+      [startAnimation, updateCursorStyle]
+    );
 
-    const handleMouseMove = (e) => {
-      const currentPos = { x: e.clientX, y: e.clientY };
-      // Update lastMousePos immediately for responsiveness if needed outside RAF
-      // lastMousePos.current = currentPos;
+    // Set up and clean up
+    useEffect(() => {
+      // Hide default cursor
+      document.body.style.cursor = "none";
 
-      const now = performance.now();
-      if (rafRef.current !== null) return; // Already scheduled
+      // Add event listener with passive flag for better performance
+      window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
-      if (now - lastProcessedTime < minProcessInterval) {
-        rafRef.current = requestAnimationFrame(() => {
-          rafRef.current = null;
-          lastProcessedTime = performance.now();
-          updateCursorState({ x: e.clientX, y: e.clientY }); // Use latest event data
-        });
-        return;
-      }
+      // Clean up function
+      return () => {
+        document.body.style.cursor = "auto";
+        window.removeEventListener("mousemove", handleMouseMove);
+        stopAnimation();
+      };
+    }, [handleMouseMove, stopAnimation]);
 
-      lastProcessedTime = now;
-      updateCursorState(currentPos);
-    };
+    // Cursor component with entry animation
+    return (
+      <div
+        ref={cursorRef}
+        className="fixed pointer-events-none z-50 hidden md:block transition-opacity duration-300"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          left: 0,
+          top: 0,
+          transform: `translate(${cursorPosition.current.x}px, ${
+            cursorPosition.current.y
+          }px) translate(-50%, -50%) scale(${isVisible ? 1 : 0})`,
+        }}
+      >
+        {cursor}
+      </div>
+    );
+  }
+);
 
-    document.body.style.cursor = "none";
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-
-    // Set initial position if mouse is already on screen
-    // This helps if the component mounts after the first mousemove
-    if (lastMousePos.current.x !== 0 || lastMousePos.current.y !== 0) {
-      cursorX.set(lastMousePos.current.x);
-      cursorY.set(lastMousePos.current.y);
-    }
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      document.body.style.cursor = "auto";
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-        rafRef.current = null;
-      }
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = null;
-      }
-    };
-  }, [updateCursorState, cursorX, cursorY]); // Added cursorX, cursorY to dependencies
-
-  return (
-    <motion.div
-      className="fixed pointer-events-none z-[100] will-change-transform hidden md:block"
-      style={{
-        left: cursorX,
-        top: cursorY,
-        translateX: "-50%",
-        translateY: "-50%",
-        rotate: rotation,
-        scale: scale,
-        ...cursorStyle,
-      }}
-      initial={{ scale: 0, opacity: 0 }} // Added opacity for smoother initial animation
-      animate={{ scale: 1, opacity: 1 }} // Added opacity
-      transition={{
-        type: "spring",
-        stiffness: 400,
-        damping: 30,
-        // delay: 0.1, // Optional: slight delay for entry animation
-      }}
-    >
-      {cursor}
-    </motion.div>
-  );
-}
+SmoothCursor.displayName = "SmoothCursor";
 
 export default SmoothCursor;

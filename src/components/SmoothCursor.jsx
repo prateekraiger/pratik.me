@@ -6,9 +6,9 @@ const DefaultCursorSVG = React.memo(() => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={50}
-      height={54}
+      height={54}w
       viewBox="0 0 50 54"
-      fill="none"
+      fill="none"ww
       className="scale-50"
     >
       <g filter="url(#filter0_d_91_7928)">

@@ -226,13 +226,13 @@ const Hero = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <a
-              href="#contact"
+              href="contact"
               className="px-5 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 bg-[#915EFF] text-white rounded-lg hover:bg-[#7b4ed9] transition-colors duration-300 text-center text-sm sm:text-base"
             >
               Get in Touch
             </a>
             <a
-              href="#projects"
+              href="projects"
               className="px-5 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 border border-[#915EFF] text-[#915EFF] rounded-lg hover:bg-[#915EFF]/10 transition-colors duration-300 text-center text-sm sm:text-base"
             >
               View Projects

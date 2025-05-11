@@ -1,12 +1,50 @@
-# React + Vite
+# Pratik.Me - My Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the repository for my personal portfolio website, **Pratik.Me**! This website showcases my professional experience, projects, and skills while serving as an online representation of me.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- **Interactive Design**: A visually appealing and interactive user interface.
+- **Responsive Layout**: Optimized for different devices, including desktops, tablets, and mobile phones.
+- **Project Showcase**: Highlights my past and ongoing projects.
+- **Contact Section**: Provides multiple ways to connect with me, including email and social media links.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tech Stack
+
+This portfolio is built using the following technologies:
+
+- **JavaScript**: Core functionality and interactivity.
+- **CSS**: Styling and animations.
+- **HTML**: Structure and content of the website.
+
+---
+
+## 📂 Repository Structure
+
+- **`/src`**: Contains the source files for the website.
+- **`/public`**: Contains static assets such as images and icons.
+- **`README.md`**: This file, which provides an overview of the repository.
+
+---
+
+## 🌐 Deployment
+
+The website is hosted online and can be accessed at: [pratik.me](#)
+
+You can also clone and run it locally:
+
+```bash
+# Clone the repo
+git clone https://github.com/prateekraiger/pratik.me.git
+
+# Navigate into the project directory
+cd pratik.me
+
+```
+
+
+Thank you for visiting my portfolio repository! 🙌

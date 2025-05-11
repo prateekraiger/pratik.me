@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -7,6 +8,7 @@ const Hero = () => {
   const [hoveredQuote, setHoveredQuote] = useState(null);
   const [selectedQuote, setSelectedQuote] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate();
 
   // Memoize dev quotes to prevent unnecessary re-renders
   const devQuotes = useMemo(
@@ -283,6 +285,25 @@ const Hero = () => {
           </div>
         </motion.div>
       </div>
+      {/* ... existing code ... */}
+      <div className="z-20 flex flex-col items-center justify-center mt-12">
+        {/* ... any existing hero content ... */}
+        <div className="flex gap-4 mt-8">
+          <button
+            className="px-6 py-3 rounded-lg bg-[#915EFF] text-white font-bold shadow-lg hover:bg-[#7a4fdc] transition"
+            onClick={() => navigate("/contact")}
+          >
+            Get in Touch
+          </button>
+          <button
+            className="px-6 py-3 rounded-lg bg-white text-[#915EFF] font-bold shadow-lg hover:bg-gray-200 transition"
+            onClick={() => navigate("/projects")}
+          >
+            Projects
+          </button>
+        </div>
+      </div>
+      {/* ... existing code ... */}
     </section>
   );
 };

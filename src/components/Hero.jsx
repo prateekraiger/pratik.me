@@ -226,19 +226,19 @@ const Hero = () => {
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-4">
             Full Stack Developer & UI/UX Designer
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <a
-              href="contact"
-              className="px-5 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 bg-[#915EFF] text-white rounded-lg hover:bg-[#7b4ed9] transition-colors duration-300 text-center text-sm sm:text-base"
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full max-w-xs sm:max-w-none">
+            <button
+              className="px-6 py-3 rounded-lg bg-gradient-to-r from-[#915EFF] to-[#4285F4] text-white font-bold shadow-lg hover:from-[#7a4fdc] hover:to-[#357ae8] focus:outline-none focus:ring-2 focus:ring-[#915EFF] focus:ring-offset-2 transition-all duration-200 w-full sm:w-auto"
+              onClick={() => navigate("/contact")}
             >
               Get in Touch
-            </a>
-            <a
-              href="projects"
-              className="px-5 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 border border-[#915EFF] text-[#915EFF] rounded-lg hover:bg-[#915EFF]/10 transition-colors duration-300 text-center text-sm sm:text-base"
+            </button>
+            <button
+              className="px-6 py-3 rounded-lg bg-white text-[#915EFF] font-bold shadow-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#915EFF] focus:ring-offset-2 transition-all duration-200 w-full sm:w-auto"
+              onClick={() => navigate("/projects")}
             >
               View Projects
-            </a>
+            </button>
           </div>
         </motion.div>
         {/* Centered animated square */}
@@ -285,25 +285,6 @@ const Hero = () => {
           </div>
         </motion.div>
       </div>
-      {/* ... existing code ... */}
-      <div className="z-20 flex flex-col items-center justify-center mt-12">
-        {/* ... any existing hero content ... */}
-        <div className="flex gap-4 mt-8">
-          <button
-            className="px-6 py-3 rounded-lg bg-[#915EFF] text-white font-bold shadow-lg hover:bg-[#7a4fdc] transition"
-            onClick={() => navigate("/contact")}
-          >
-            Get in Touch
-          </button>
-          <button
-            className="px-6 py-3 rounded-lg bg-white text-[#915EFF] font-bold shadow-lg hover:bg-gray-200 transition"
-            onClick={() => navigate("/projects")}
-          >
-            Projects
-          </button>
-        </div>
-      </div>
-      {/* ... existing code ... */}
     </section>
   );
 };

@@ -87,7 +87,7 @@ const HobbyBlock = () => {
             <Coffee className="mr-2 text-yellow-400" /> When I'm Not Coding
           </h3>
 
-          <div
+          <div 
             ref={containerRef}
             className="relative w-full flex-grow border border-zinc-700/30 rounded-lg p-3 md:p-4 overflow-hidden bg-zinc-800/50 backdrop-blur-sm"
             style={{ height: "150px" }}

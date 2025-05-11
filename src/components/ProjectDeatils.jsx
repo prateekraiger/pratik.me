@@ -1,6 +1,7 @@
 import React from "react";
 import { FaTimes, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { Icon } from "@iconify/react";
 
 const ProjectDetails = ({
   title,
@@ -20,9 +21,9 @@ const ProjectDetails = ({
       >
         <button
           onClick={closeModal}
-          className="absolute p-2 rounded-full top-3 right-3 sm:top-4 sm:right-4 bg-midnight hover:bg-gray-500 z-10 transition-all duration-300"
+          className="absolute p-3 rounded-full top-3 right-3 sm:top-4 sm:right-4 bg-gray-700 hover:bg-gray-600 z-10 transition-all duration-300 shadow-lg border border-white"
         >
-          <FaTimes className="text-white text-lg sm:text-xl" />
+          <FaTimes className="text-white text-xl sm:text-2xl" />
         </button>
         <div className="w-full flex items-center justify-center p-4">
           <img
@@ -54,10 +55,9 @@ const ProjectDetails = ({
               {tags &&
                 tags.map((tag) => (
                   <div key={tag.id} className="flex flex-col items-center">
-                    <img
-                      src={tag.path}
-                      alt={tag.name}
-                      className="w-8 h-8 sm:w-10 sm:w-10 rounded-lg hover-animation"
+                    <Icon
+                      icon={tag.path}
+                      className="w-8 h-8 sm:w-10 sm:h-10 hover-animation"
                     />
                     <span className="text-xs sm:text-sm text-neutral-300 mt-1">
                       {tag.name}

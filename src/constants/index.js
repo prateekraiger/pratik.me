@@ -1,60 +1,3 @@
-// TODO:write ur skills
-
-// const experiences = [
-//   {
-//     title: "React.js Developer",
-//     company_name: "Starbucks",
-//     icon: starbucks,
-//     iconBg: "#383E56",
-//     date: "March 2020 - April 2021",
-//     points: [
-//       "Developing and maintaining web applications using React.js and other related technologies.",
-//       "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-//       "Implementing responsive design and ensuring cross-browser compatibility.",
-//       "Participating in code reviews and providing constructive feedback to other developers.",
-//     ],
-//   },
-//   {
-//     title: "React Native Developer",
-//     company_name: "Tesla",
-//     icon: tesla,
-//     iconBg: "#E6DEDD",
-//     date: "Jan 2021 - Feb 2022",
-//     points: [
-//       "Developing and maintaining web applications using React.js and other related technologies.",
-//       "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-//       "Implementing responsive design and ensuring cross-browser compatibility.",
-//       "Participating in code reviews and providing constructive feedback to other developers.",
-//     ],
-//   },
-//   {
-//     title: "Web Developer",
-//     company_name: "Shopify",
-//     icon: shopify,
-//     iconBg: "#383E56",
-//     date: "Jan 2022 - Jan 2023",
-//     points: [
-//       "Developing and maintaining web applications using React.js and other related technologies.",
-//       "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-//       "Implementing responsive design and ensuring cross-browser compatibility.",
-//       "Participating in code reviews and providing constructive feedback to other developers.",
-//     ],
-//   },
-//   {
-//     title: "Full stack Developer",
-//     company_name: "Meta",
-//     icon: meta,
-//     iconBg: "#E6DEDD",
-//     date: "Jan 2023 - Present",
-//     points: [
-//       "Developing and maintaining web applications using React.js and other related technologies.",
-//       "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-//       "Implementing responsive design and ensuring cross-browser compatibility.",
-//       "Participating in code reviews and providing constructive feedback to other developers.",
-//     ],
-//   },
-// ];
-
 export const myProjects = [
   {
     id: 1,
@@ -91,13 +34,14 @@ export const myProjects = [
       },
     ],
   },
+
   {
     id: 2,
     title: "1-Piece",
     description:
       "One Piece Gear 5 Experience - An interactive tribute to Luffy's legendary transformation into Joy Boy.",
     subDescription: [
-      "Immerse yourself in a visually dynamic experience with floating video effects and GSAP-powered animations.Built with React and Tailwind CSS, the site is fully responsive across devices.A bold call-to-action lets fans explore more about Gear 5's epic awakening.",
+      "Immerse yourself in a visually dynamic experience with floating video effects and GSAP-powered animations. Built with React and Tailwind CSS, the site is fully responsive across devices. A bold call-to-action lets fans explore more about Gear 5's epic awakening.",
     ],
     href: "https://1-piece.vercel.app/",
     logo: "",
@@ -121,6 +65,7 @@ export const myProjects = [
       },
     ],
   },
+
   {
     id: 3,
     title: "TIT Conference",
@@ -156,18 +101,19 @@ export const myProjects = [
       },
     ],
   },
+
   {
     id: 4,
     title: "Github portfolio",
     description:
-      "A lightweight C++ game engine designed for 2D and 3D game development.GitHub Devfolio – A sleek, responsive portfolio template that turns your GitHub profile into a dynamic developer showcase.",
+      "A lightweight C++ game engine designed for 2D and 3D game development. GitHub Devfolio – A sleek, responsive portfolio template that turns your GitHub profile into a dynamic developer showcase.",
     subDescription: [
-      "Built with Next.js and Tailwind CSS, it fetches real-time data from the GitHub API for a personalized display.Highlights include contribution heatmaps, top repo metrics, and detailed developer stats.Easily customizable via a config file, it's perfect for showcasing your coding journey with style.",
+      "Built with Next.js and Tailwind CSS, it fetches real-time data from the GitHub API for a personalized display. Highlights include contribution heatmaps, top repo metrics, and detailed developer stats. Easily customizable via a config file, it's perfect for showcasing your coding journey with style.",
     ],
     href: "https://prartik-git-port.vercel.app/",
     logo: "",
     image:
-      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746697243/prartik-git-port.vercel.app__oyun4f.png",
+      "https://res.cloudinary.com/dk3pg4zly/image/upload/v174669 7243/prartik-git-port.vercel.app__oyun4f.png",
     tags: [
       {
         id: 1,
@@ -191,6 +137,7 @@ export const myProjects = [
       },
     ],
   },
+
   {
     id: 5,
     title: "Grilli Restaurant",
@@ -221,11 +168,12 @@ export const myProjects = [
       },
     ],
   },
+
   {
     id: 6,
     title: "NextGadget Ecommerce Website",
     description:
-      "NextGadget is a modern e-commerce web application built with Next.js, React, and MongoDB",
+      "NextGadget is a modern e-commerce web application built with Next.js, React, and MongoDB.",
     subDescription: [
       "It features user authentication, product browsing, cart management, order placement, Stripe payments, and an admin login. The UI is styled with Tailwind CSS and enhanced with Framer Motion for smooth animations.",
     ],

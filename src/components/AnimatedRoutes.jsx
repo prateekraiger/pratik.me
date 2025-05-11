@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
-import Home from "../Pages/Home";
-import About from "../Pages/About";
-import Project from "../Pages/Project";
-import Contact from "../Pages/Contact";
+const Home = lazy(() => import("../Pages/Home"));
+const About = lazy(() => import("../Pages/About"));
+const Project = lazy(() => import("../Pages/Project"));
+const Contact = lazy(() => import("../Pages/Contact"));
 import StairsTransition from "./StairsTransition";
 
 const pageVariants = {
@@ -32,69 +32,72 @@ const pageTransition = {
 
 const AnimatedRoutes = () => {
   const location = useLocation();
-
   return (
     <>
       <StairsTransition />
       <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route
-            path="/"
-            element={
-              <motion.div
-                initial="initial"
-                animate="in"
-                exit="out"
-                variants={pageVariants}
-                transition={pageTransition}
-              >
-                <Home />
-              </motion.div>
-            }
-          />
-          <Route
-            path="/about"
-            element={
-              <motion.div
-                initial="initial"
-                animate="in"
-                exit="out"
-                variants={pageVariants}
-                transition={pageTransition}
-              >
-                <About />
-              </motion.div>
-            }
-          />
-          <Route
-            path="/projects"
-            element={
-              <motion.div
-                initial="initial"
-                animate="in"
-                exit="out"
-                variants={pageVariants}
-                transition={pageTransition}
-              >
-                <Project />
-              </motion.div>
-            }
-          />
-          <Route
-            path="/contact"
-            element={
-              <motion.div
-                initial="initial"
-                animate="in"
-                exit="out"
-                variants={pageVariants}
-                transition={pageTransition}
-              >
-                <Contact />
-              </motion.div>
-            }
-          />
-        </Routes>
+        <Suspense
+          fallback={<div className="text-center py-20">Loading...</div>}
+        >
+          <Routes location={location} key={location.pathname}>
+            <Route
+              path="/"
+              element={
+                <motion.div
+                  initial="initial"
+                  animate="in"
+                  exit="out"
+                  variants={pageVariants}
+                  transition={pageTransition}
+                >
+                  <Home />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <motion.div
+                  initial="initial"
+                  animate="in"
+                  exit="out"
+                  variants={pageVariants}
+                  transition={pageTransition}
+                >
+                  <About />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/projects"
+              element={
+                <motion.div
+                  initial="initial"
+                  animate="in"
+                  exit="out"
+                  variants={pageVariants}
+                  transition={pageTransition}
+                >
+                  <Project />
+                </motion.div>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <motion.div
+                  initial="initial"
+                  animate="in"
+                  exit="out"
+                  variants={pageVariants}
+                  transition={pageTransition}
+                >
+                  <Contact />
+                </motion.div>
+              }
+            />
+          </Routes>
+        </Suspense>
       </AnimatePresence>
     </>
   );

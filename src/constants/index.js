@@ -1,7 +1,7 @@
 export const myProjects = [
   {
     id: 1,
-    title: "StyleVerse Store",
+    title: "StyleVerse  Store ",
     description:
       "StyleVerse is a modern e-commerce platform built with React, offering customers a seamless shopping experience with a user-friendly interface and robust functionality.",
     subDescription: [

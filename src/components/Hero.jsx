@@ -110,7 +110,7 @@ const Hero = () => {
     <section className="relative w-full min-h-screen overflow-hidden pt-6 section-full flex flex-col items-center justify-center">
       {/* Background effects remain unchanged */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] to-[#0a0a0a]/95" />
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+      <div className="absolute inset-0 bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#915EFF]/10 via-transparent to-transparent" />
       {/* Particles remain unchanged */}
       <div className="absolute inset-0 overflow-hidden">
@@ -226,13 +226,13 @@ const Hero = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <a
-              href="#contact"
+              href="contact"
               className="px-5 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 bg-[#915EFF] text-white rounded-lg hover:bg-[#7b4ed9] transition-colors duration-300 text-center text-sm sm:text-base"
             >
               Get in Touch
             </a>
             <a
-              href="#projects"
+              href="projects"
               className="px-5 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 border border-[#915EFF] text-[#915EFF] rounded-lg hover:bg-[#915EFF]/10 transition-colors duration-300 text-center text-sm sm:text-base"
             >
               View Projects
@@ -247,7 +247,7 @@ const Hero = () => {
           className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] xl:h-[500px] w-[250px] sm:w-[300px] md:w-[350px] lg:w-[400px] xl:w-[500px] mx-auto flex items-center justify-center"
         >
           <div className="absolute inset-0 bg-gradient-to-b from-[#915EFF]/5 to-transparent rounded-2xl" />
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] rounded-2xl" />
+          <div className="absolute inset-0  bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] rounded-2xl" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#915EFF]/10 via-transparent to-transparent rounded-2xl" />
           <div className="absolute inset-0 border border-[#915EFF]/20 rounded-2xl" />
           <div className="absolute inset-0 shadow-[0_0_50px_rgba(145,94,255,0.1)] rounded-2xl" />

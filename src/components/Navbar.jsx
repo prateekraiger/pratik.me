@@ -119,7 +119,12 @@ const Navbar = () => {
   return (
     <NextNavbar className="py-2 sm:py-4 px-3 sm:px-8 fixed w-full top-0 z-50 bg-transparent">
       <div className="max-w-[1920px] w-full mx-auto">
-        <div className="relative rounded-full px-3 sm:px-6 py-2 sm:py-3 flex justify-between items-center">
+        <motion.div
+          className="relative rounded-full px-3 sm:px-6 py-2 sm:py-3 flex justify-between items-center"
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+        >
           {/* Purple Accent */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#915EFF_0%,transparent_50%)] opacity-30 rounded-full"></div>
 
@@ -250,18 +255,18 @@ const Navbar = () => {
               </Button>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            variants={mobileMenuVariants}
             initial="closed"
             animate="open"
             exit="closed"
-            variants={mobileMenuVariants}
-            className="md:hidden absolute top-full left-0 w-full bg-black/70 backdrop-blur-lg rounded-b-2xl border-t border-[#915EFF]/20 overflow-hidden shadow-[0_4px_15px_rgba(145,94,255,0.2)] z-40"
+            className="md:hidden w-full px-3 sm:px-6 mt-2"
           >
             <div className="p-4 flex flex-col gap-3">
               {[

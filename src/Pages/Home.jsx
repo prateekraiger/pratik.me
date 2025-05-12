@@ -11,40 +11,48 @@ const Home = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="min-h-screen text-white p-4 md:p-8"
+      className="min-h-screen text-white w-full overflow-x-hidden"
     >
-      <div className="relative">
+      <div className="relative w-full">
         <motion.div
           initial={{ y: 20 }}
           animate={{ y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-12"
+          className="w-full"
         >
           <Hero />
+
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8 }}
+            className="w-full"
           >
             <About />
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <Project />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <Contact />
-          </motion.div>
+
+          <div className="project-contact-wrapper w-full">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8 }}
+              className="w-full"
+            >
+              <Project />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8 }}
+              className="w-full"
+            >
+              <Contact />
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </motion.div>

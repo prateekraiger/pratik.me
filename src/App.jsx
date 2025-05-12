@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -17,11 +18,21 @@ const App = () => {
         <Navbar />
         <SmoothCursor />
         {/* Main Content with AnimatedRoutes */}
-        <main className="flex-grow w-full pt-20 md:pt-24 px-4 md:px-8 relative mb-20">
-          <div className="max-w-[1920px] mx-auto">
+        <motion.main
+          className="flex-grow w-full pt-20 md:pt-24 px-4 md:px-8 relative mb-20"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.div
+            className="max-w-[1920px] mx-auto"
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <AnimatedRoutes />
-          </div>
-        </main>
+          </motion.div>
+        </motion.main>
         <Footer />
       </div>
     </Router>

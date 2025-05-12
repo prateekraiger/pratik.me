@@ -1,6 +1,7 @@
 import ProjectDeatils from "./ProjectDeatils";
 import { FaArrowRight } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 const Procont = ({
   title,
@@ -12,6 +13,26 @@ const Procont = ({
   setPreview,
 }) => {
   const [isHidden, setIsHidden] = useState(false);
+
+  // Close modal when ESC key is pressed
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === "Escape") setIsHidden(false);
+    };
+    window.addEventListener("keydown", handleEsc);
+
+    // Prevent scrolling when modal is open
+    if (isHidden) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = "";
+    };
+  }, [isHidden]);
 
   return (
     <>
@@ -65,17 +86,20 @@ const Procont = ({
 
       <div className="bg-gradient-to-r from-transparent via-neutral-700 to-transparent h-[1px] w-full mb-8" />
 
-      {isHidden && (
-        <ProjectDeatils
-          title={title}
-          description={description}
-          subDescription={subDescription}
-          image={image}
-          tags={tags}
-          href={href}
-          closeModal={() => setIsHidden(false)}
-        />
-      )}
+      {/* Use React Portal to render modal at the root level */}
+      {isHidden &&
+        createPortal(
+          <ProjectDeatils
+            title={title}
+            description={description}
+            subDescription={subDescription}
+            image={image}
+            tags={tags}
+            href={href}
+            closeModal={() => setIsHidden(false)}
+          />,
+          document.body
+        )}
     </>
   );
 };

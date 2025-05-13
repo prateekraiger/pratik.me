@@ -113,7 +113,7 @@ export const myProjects = [
     href: "https://prartik-git-port.vercel.app/",
     logo: "",
     image:
-      "https://res.cloudinary.com/dk3pg4zly/image/upload/v174669 7243/prartik-git-port.vercel.app__oyun4f.png",
+      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746697243/prartik-git-port.vercel.app__oyun4f.png",
     tags: [
       {
         id: 1,

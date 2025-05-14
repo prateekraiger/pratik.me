@@ -121,3 +121,26 @@ body {
         padding: 0 1rem;
     }
 }
+
+/* Apply cursor: pointer to clickable elements */
+button,
+a,
+input[type="submit"],
+input[type="button"],
+[role="button"],
+[onclick] {
+    cursor: pointer;
+}
+
+/* Optional: Force pointer on hover for touch devices (if needed) */
+@media (hover: hover) and (pointer: fine) {
+
+    /* Only applies to devices that support hover (like desktops) */
+    button:hover,
+    a:hover,
+    input[type="submit"]:hover,
+    input[type="button"]:hover,
+    [role="button"]:hover {
+        cursor: pointer;
+    }
+}

@@ -103,6 +103,7 @@ const Navbar = () => {
     closed: {
       opacity: 0,
       height: 0,
+      y: 20, // Changed to positive value to make it animate from below
       transition: {
         duration: 0.3,
       },
@@ -110,6 +111,7 @@ const Navbar = () => {
     open: {
       opacity: 1,
       height: "auto",
+      y: 0,
       transition: {
         duration: 0.3,
       },
@@ -266,9 +268,9 @@ const Navbar = () => {
             initial="closed"
             animate="open"
             exit="closed"
-            className="md:hidden w-full px-3 sm:px-6 mt-2"
+            className="md:hidden w-full px-3 sm:px-6 mt-2 overflow-hidden fixed top-[60px] sm:top-[72px] left-0 z-40 bg-black/80 backdrop-blur-md border-t border-[#915EFF]/20"
           >
-            <div className="p-4 flex flex-col gap-3">
+            <div className="p-4 flex flex-col gap-3 max-w-[1920px] mx-auto">
               {[
                 { path: "/", label: "Home" },
                 { path: "/about", label: "About" },

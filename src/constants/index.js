@@ -271,6 +271,12 @@ export const categorizedSkills = {
       description:
         "I am experienced with SQL for managing and querying relational databases.",
     },
+    {
+      name: "PostgreSQL",
+      icon: "skill-icons:postgresql-dark",
+      description:
+        "I am experienced with PostgreSQL for managing and querying relational databases.",
+    },
   ],
   "DevOps & Tools": [
     {

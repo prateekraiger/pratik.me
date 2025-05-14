@@ -80,10 +80,36 @@ const SmoothCursor = React.memo(
     const previousAngle = useRef(0);
     const rotation = useRef(0);
     const scale = useRef(0.6); // Default scale set to 0.6
-    const scaleTimeoutId = useRef(null);
+      const scaleTimeoutId = useRef(null);
+
+    // Add state to track if device is mobile
+    const [isMobile, setIsMobile] = useState(false);
 
     // Visibility state (need React state for this)
     const [isVisible, setIsVisible] = useState(false);
+
+    // Check if device is mobile on component mount
+    useEffect(() => {
+      const checkIfMobile = () => {
+        const isTouchDevice = (
+          'ontouchstart' in window ||
+          navigator.maxTouchPoints > 0 ||
+          navigator.msMaxTouchPoints > 0
+        );
+        const isMobileViewport = window.innerWidth <= 768;
+        setIsMobile(isTouchDevice || isMobileViewport);
+      };
+
+      // Check initially
+      checkIfMobile();
+
+      // Also check on resize
+      window.addEventListener('resize', checkIfMobile);
+
+      return () => {
+        window.removeEventListener('resize', checkIfMobile);
+      };
+    }, []);
 
     // Spring configuration with performance-optimized defaults
     const config = useRef({
@@ -234,21 +260,22 @@ const SmoothCursor = React.memo(
     }, [handleMouseMove, animateFrame]);
 
     // Cursor component with always visible rendering
+    // Return null if on mobile device
+    if (isMobile) return null;
+
     return (
       <div
         ref={cursorRef}
-        className="fixed pointer-events-none z-50 transition-opacity duration-200"
+        className="cursor"
         style={{
-          opacity: isVisible ? 1 : 0,
+          position: "fixed",
           left: 0,
           top: 0,
+          zIndex: 9999,
+          pointerEvents: "none",
+          opacity: isVisible ? 1 : 0,
+          transition: "opacity 0.3s ease",
           willChange: "transform",
-          transform: `translate3d(${cursorPosition.current.x}px, ${
-            cursorPosition.current.y
-          }px, 0)
-                     translate3d(-50%, -50%, 0)
-                     scale(${isVisible ? scale.current : 0})`,
-          display: "block",
         }}
       >
         {cursor}

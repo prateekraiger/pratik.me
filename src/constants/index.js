@@ -77,7 +77,7 @@ export const myProjects = [
     href: "https://www.icacit2025titbpl.in/",
     logo: "",
     image:
-      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746698581/www.icacit2025titbpl.in_-min_qd2h4s.png",
+      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1747233626/icacit2025_l8uige.png",
     tags: [
       {
         id: 1,

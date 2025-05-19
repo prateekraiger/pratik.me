@@ -54,12 +54,12 @@ const ProfileBlock = () => (
       initial={{ scale: 0.8, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative mb-6 md:mb-8 flex justify-center"
+      className="relative mt-2 mb-2 flex justify-center"
     >
       <img
-        src="https://res.cloudinary.com/dk3pg4zly/image/upload/v1746615371/image_jj87l2.webp"
+        src="https://res.cloudinary.com/dk3pg4zly/image/upload/v1747668325/profile_s9n5qj.jpg"
         alt="Profile"
-        className="rounded-full w-32 h-32 md:w-48 md:h-48 object-cover border-4 border-zinc-700"
+        className="rounded-full w-48 h-48 object-cover object-top border-4 border-zinc-700"
       />
     </motion.div>
     <motion.h2

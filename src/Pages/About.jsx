@@ -6,17 +6,20 @@ import { Grid } from "../components/GridPattern";
 import HobbyBlock from "../components/HobbyBlock";
 import { SocialLinks } from "../components/SocialLinks";
 import Tech from "../components/Tech";
+import Title from "../components/Title";
 
 export const About = () => {
   return (
     <div className="min-h-screen bg-zinc-900 px-4 py-8 md:py-12 text-zinc-50 w-full">
+      <Title text1="About" text2="Me" />
+
       <motion.div
         initial="initial"
         animate="animate"
         transition={{
           staggerChildren: 0.1,
         }}
-        className="mx-auto grid grid-flow-dense grid-cols-12 gap-4 md:gap-8" // Removed max-w-7xl
+        className="mx-auto grid grid-flow-dense grid-cols-12 gap-4 md:gap-8"
       >
         <ProfileBlock />
         <IntroBlock />

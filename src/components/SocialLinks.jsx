@@ -1,13 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
+import Title from "./Title";
 
 export const SocialLinks = () => {
   return (
     <section className="w-full">
-      <h3 className="text-xl font-semibold text-center mb-6 text-purple-300">
-        Connect with me
-      </h3>
+      <Title text1="Connect" text2="with Me" />
       <div className="flex flex-col gap-4">
         <FlipLink
           href="https://github.com/prateekraiger"

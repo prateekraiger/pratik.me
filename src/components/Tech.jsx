@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { categorizedSkills } from "../constants/index";
+import Title from "./Title";
 
 const Tech = () => {
   // State to track which categories are expanded
@@ -21,10 +22,8 @@ const Tech = () => {
     <section className="py-12 sm:py-16 lg:py-20">
       {/* Removed max-w-7xl from this div, kept padding (px-4, sm:px-6, lg:px-8) */}
       <div className="px-4 mx-auto sm:px-6 lg:px-8">
+        <Title text1="My" text2="Skills" />
         <div className="text-center">
-          <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl xl:text-5xl">
-            My Skills
-          </h2>
           <p className="mt-4 text-base leading-7 text-gray-400 sm:mt-8">
             A collection of technologies and tools I'm proficient with.
           </p>

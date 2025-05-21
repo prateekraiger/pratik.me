@@ -2,6 +2,7 @@ import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import ContactSvg from "../components/ContactSvg";
+import Title from "../components/Title";
 
 const Contact = () => {
   const [success, setSuccess] = useState(false);
@@ -44,6 +45,12 @@ const Contact = () => {
 
       {/* Content with higher z-index */}
       <div className="relative z-10 w-full max-w-6xl mx-auto">
+        <Title text1="Contact" text2="Me" />
+        <p className="text-lg text-gray-300 max-w-2xl mx-auto text-center mb-8">
+          I'm passionate about creating exceptional digital experiences. Whether
+          you need a stunning website, a powerful web application, or technical
+          consultation, I'm here to help transform your vision into reality.
+        </p>
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}

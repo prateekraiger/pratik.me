@@ -71,7 +71,7 @@ const Footer = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="relative">
-        <div className="absolute -top-[70px] left-1/2 transform -translate-x-1/2">
+        <div className="absolute -top-[100px] sm:-top-[70px] left-1/2 transform -translate-x-1/2">
           <img
             src="/img.webp"
             alt="Decorative image"

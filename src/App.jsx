@@ -19,7 +19,7 @@ const App = () => {
         <SmoothCursor />
         {/* Main Content with AnimatedRoutes */}
         <motion.main
-          className="flex-grow w-full pt-20 md:pt-24 px-4 md:px-8 relative mb-20"
+          className="flex-grow w-full pt-20 md:pt-24 px-4 md:px-8 relative"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -33,6 +33,16 @@ const App = () => {
             <AnimatedRoutes />
           </motion.div>
         </motion.main>
+        <div className="relative">
+          <div className="absolute bottom-[-70px] left-1/2 transform -translate-x-1/2">
+            <img
+              src="/img.webp"
+              alt="Decorative image"
+              className="w-[174px] h-auto"
+              loading="eager"
+            />
+          </div>
+        </div>
         <Footer />
       </div>
     </Router>

@@ -70,6 +70,16 @@ const Footer = () => {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
+      <div className="relative">
+        <div className="absolute -top-[70px] left-1/2 transform -translate-x-1/2">
+          <img
+            src="/img.webp"
+            alt="Decorative image"
+            className="w-[120px] sm:w-[150px] md:w-[174px] h-auto"
+            loading="eager"
+          />
+        </div>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="flex flex-col md:flex-row justify-between items-center"

@@ -33,16 +33,6 @@ const App = () => {
             <AnimatedRoutes />
           </motion.div>
         </motion.main>
-        <div className="relative">
-          <div className="absolute bottom-[-70px] left-1/2 transform -translate-x-1/2">
-            <img
-              src="/img.webp"
-              alt="Decorative image"
-              className="w-[174px] h-auto"
-              loading="eager"
-            />
-          </div>
-        </div>
         <Footer />
       </div>
     </Router>

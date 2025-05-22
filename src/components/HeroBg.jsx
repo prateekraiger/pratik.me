@@ -230,128 +230,130 @@ const HeroBg = () => {
       </div>
 
       {/* CSS Animations */}
-      <style jsx>{`
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg) scale(1);
+      <style>
+        {`
+          @keyframes spin-slow {
+            from {
+              transform: rotate(0deg) scale(1);
+            }
+            to {
+              transform: rotate(360deg) scale(1.1);
+            }
           }
-          to {
-            transform: rotate(360deg) scale(1.1);
-          }
-        }
 
-        @keyframes bounce-slow {
-          0%,
-          100% {
-            transform: translateY(0px) scale(1);
+          @keyframes bounce-slow {
+            0%,
+            100% {
+              transform: translateY(0px) scale(1);
+            }
+            50% {
+              transform: translateY(-20px) scale(1.05);
+            }
           }
-          50% {
-            transform: translateY(-20px) scale(1.05);
-          }
-        }
 
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px) translateX(0px);
+          @keyframes float {
+            0%,
+            100% {
+              transform: translateY(0px) translateX(0px);
+            }
+            25% {
+              transform: translateY(-10px) translateX(5px);
+            }
+            50% {
+              transform: translateY(-5px) translateX(-5px);
+            }
+            75% {
+              transform: translateY(-15px) translateX(3px);
+            }
           }
-          25% {
-            transform: translateY(-10px) translateX(5px);
-          }
-          50% {
-            transform: translateY(-5px) translateX(-5px);
-          }
-          75% {
-            transform: translateY(-15px) translateX(3px);
-          }
-        }
 
-        @keyframes float-delayed {
-          0%,
-          100% {
-            transform: translateY(0px) translateX(0px);
+          @keyframes float-delayed {
+            0%,
+            100% {
+              transform: translateY(0px) translateX(0px);
+            }
+            33% {
+              transform: translateY(-8px) translateX(-4px);
+            }
+            66% {
+              transform: translateY(-12px) translateX(6px);
+            }
           }
-          33% {
-            transform: translateY(-8px) translateX(-4px);
-          }
-          66% {
-            transform: translateY(-12px) translateX(6px);
-          }
-        }
 
-        @keyframes matrix-rain {
-          0% {
-            transform: translateY(-100vh);
-            opacity: 0;
+          @keyframes matrix-rain {
+            0% {
+              transform: translateY(-100vh);
+              opacity: 0;
+            }
+            10% {
+              opacity: 1;
+            }
+            90% {
+              opacity: 1;
+            }
+            100% {
+              transform: translateY(100vh);
+              opacity: 0;
+            }
           }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(100vh);
-            opacity: 0;
-          }
-        }
 
-        @keyframes scan-vertical {
-          0% {
-            top: -2px;
-            opacity: 0;
+          @keyframes scan-vertical {
+            0% {
+              top: -2px;
+              opacity: 0;
+            }
+            50% {
+              opacity: 1;
+            }
+            100% {
+              top: 100%;
+              opacity: 0;
+            }
           }
-          50% {
-            opacity: 1;
+
+          @keyframes scan-horizontal {
+            0% {
+              left: -2px;
+              opacity: 0;
+            }
+            50% {
+              opacity: 1;
+            }
+            100% {
+              left: 100%;
+              opacity: 0;
+            }
           }
-          100% {
-            top: 100%;
-            opacity: 0;
+
+          .animate-spin-slow {
+            animation: spin-slow 20s linear infinite;
           }
-        }
 
-        @keyframes scan-horizontal {
-          0% {
-            left: -2px;
-            opacity: 0;
+          .animate-bounce-slow {
+            animation: bounce-slow 3s ease-in-out infinite;
           }
-          50% {
-            opacity: 1;
+
+          .animate-float {
+            animation: float 6s ease-in-out infinite;
           }
-          100% {
-            left: 100%;
-            opacity: 0;
+
+          .animate-float-delayed {
+            animation: float-delayed 8s ease-in-out infinite;
           }
-        }
 
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
+          .animate-matrix-rain {
+            animation: matrix-rain linear infinite;
+          }
 
-        .animate-bounce-slow {
-          animation: bounce-slow 3s ease-in-out infinite;
-        }
+          .animate-scan-vertical {
+            animation: scan-vertical 4s linear infinite;
+          }
 
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-
-        .animate-float-delayed {
-          animation: float-delayed 8s ease-in-out infinite;
-        }
-
-        .animate-matrix-rain {
-          animation: matrix-rain linear infinite;
-        }
-
-        .animate-scan-vertical {
-          animation: scan-vertical 4s linear infinite;
-        }
-
-        .animate-scan-horizontal {
-          animation: scan-horizontal 6s linear infinite;
-        }
-      `}</style>
+          .animate-scan-horizontal {
+            animation: scan-horizontal 6s linear infinite;
+          }
+        `}
+      </style>
     </div>
   );
 };

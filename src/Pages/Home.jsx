@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import Hero from "../components/Hero";
 import Project from "./Project";
-import About from "./About";
 import Contact from "./Contact";
 
 const Home = () => {
@@ -21,16 +20,6 @@ const Home = () => {
           className="w-full"
         >
           <Hero />
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8 }}
-            className="w-full"
-          >
-            <About />
-          </motion.div>
 
           <div className="project-contact-wrapper w-full">
             <motion.div

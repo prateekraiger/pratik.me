@@ -5,9 +5,9 @@ import Title from "./Title";
 
 export const SocialLinks = () => {
   return (
-    <section className="w-full">
+    <section className="w-full py-8">
       <Title text1="Connect" text2="with Me" />
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-6 mt-8">
         <FlipLink
           href="https://github.com/prateekraiger"
           color="text-purple-300 hover:text-purple-400"
@@ -56,10 +56,10 @@ const FlipLink = ({ children, href, color, icon, bgColor }) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`relative block overflow-hidden whitespace-nowrap text-2xl font-bold uppercase ${color} transition-all duration-300 p-4 rounded-xl border border-purple-700/30 ${bgColor} hover:scale-[1.02]`}
+      className={`relative block overflow-hidden whitespace-nowrap text-3xl font-bold uppercase ${color} transition-all duration-300 p-6 rounded-2xl border-2 border-purple-700/30 ${bgColor} hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/10 backdrop-blur-sm`}
     >
-      <div className="flex items-center gap-4">
-        <Icon icon={icon} className="text-3xl" />
+      <div className="flex items-center gap-6">
+        <Icon icon={icon} className="text-4xl" />
         <div className="flex-1">
           {children.split("").map((l, i) => (
             <motion.span
@@ -86,8 +86,8 @@ const FlipLink = ({ children, href, color, icon, bgColor }) => {
           ))}
         </div>
       </div>
-      <div className="absolute inset-0 flex items-center gap-4 p-4">
-        <Icon icon={icon} className="text-3xl" />
+      <div className="absolute inset-0 flex items-center gap-6 p-6">
+        <Icon icon={icon} className="text-4xl" />
         <div className="flex-1">
           {children.split("").map((l, i) => (
             <motion.span

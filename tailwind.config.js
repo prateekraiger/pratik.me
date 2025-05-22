@@ -1,9 +1,10 @@
-const {heroui} = require('@heroui/theme');
+const { heroui } = require("@heroui/theme");
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./src/**/*.{js,jsx}",
-    "./node_modules/@heroui/theme/dist/components/navbar.js"
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@heroui/theme/dist/components/navbar.js",
   ],
   mode: "jit",
   theme: {
@@ -22,8 +23,24 @@ export default {
       screens: {
         xs: "450px",
       },
-      backgroundImage: {
-        "hero-pattern": "url('/src/assets/herobg.png')", // Make sure this path is correct
+      animation: {
+        float: "float 6s ease-in-out infinite",
+        grid: "grid 20s linear infinite",
+        scan: "scan 8s linear infinite",
+      },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
+        grid: {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(4rem)" },
+        },
+        scan: {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(100%)" },
+        },
       },
     },
   },

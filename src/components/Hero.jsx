@@ -27,7 +27,7 @@ const Hero = () => {
               <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold">
                 <DecryptedText
                   text="PRATIK"
-                  speed={70}
+                  speed={50}
                   maxIterations={20}
                   sequential={false}
                   revealDirection="start"
@@ -44,7 +44,7 @@ const Hero = () => {
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
                 <DecryptedText
                   text="RAIGER"
-                  speed={80}
+                  speed={50}
                   maxIterations={20}
                   sequential={false}
                   revealDirection="start"

@@ -177,7 +177,7 @@ export const myProjects = [
     subDescription: [
       "It features user authentication, product browsing, cart management, order placement, Stripe payments, and an admin login. The UI is styled with Tailwind CSS and enhanced with Framer Motion for smooth animations.",
     ],
-    href: "https://next-gadget-five.vercel.app/",
+    href: "https://next-gadget-sigma.vercel.app/",
     logo: "",
     image:
       "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746698316/nextgadget_kabozx.png",

@@ -2,6 +2,7 @@ import ProjectDeatils from "./ProjectDeatils";
 import { FaArrowRight } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { AnimatePresence } from "framer-motion";
 
 const Procont = ({
   title,
@@ -33,6 +34,13 @@ const Procont = ({
       document.body.style.overflow = "";
     };
   }, [isHidden]);
+
+  // Handle click outside modal to close
+  const handleOutsideClick = (e) => {
+    if (e.target === e.currentTarget) {
+      setIsHidden(false);
+    }
+  };
 
   return (
     <>
@@ -86,20 +94,23 @@ const Procont = ({
 
       <div className="bg-gradient-to-r from-transparent via-neutral-700 to-transparent h-[1px] w-full mb-8" />
 
-      {/* Use React Portal to render modal at the root level */}
-      {isHidden &&
-        createPortal(
-          <ProjectDeatils
-            title={title}
-            description={description}
-            subDescription={subDescription}
-            image={image}
-            tags={tags}
-            href={href}
-            closeModal={() => setIsHidden(false)}
-          />,
-          document.body
-        )}
+      {/* Use React Portal with AnimatePresence for smooth exit animations */}
+      {createPortal(
+        <AnimatePresence>
+          {isHidden && (
+            <ProjectDeatils
+              title={title}
+              description={description}
+              subDescription={subDescription}
+              image={image}
+              tags={tags}
+              href={href}
+              closeModal={() => setIsHidden(false)}
+            />
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </>
   );
 };

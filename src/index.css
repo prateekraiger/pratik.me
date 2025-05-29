@@ -81,6 +81,26 @@ body {
     background: var(--primary-dark);
 }
 
+/* Custom scrollbar for project details modal */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
 /* Container styles */
 .container {
     width: 100%;

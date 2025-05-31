@@ -1,16 +1,16 @@
 export const myProjects = [
   {
     id: 1,
-    title: "StyleVerse  Store ",
+    title: "PromptEdge AI Project Generator",
     description:
-      "StyleVerse is a modern e-commerce platform built with React, offering customers a seamless shopping experience with a user-friendly interface and robust functionality.",
+      "A modern AI-powered web app to discover and generate innovative project ideas.",
     subDescription: [
-      "StyleVerse is a sleek and responsive e-commerce platform tailored for fashion lovers. Built with React, Vite, and Node.js, it offers dynamic product browsing, seamless cart and order management, and secure payments via Razorpay and Stripe. The platform also includes an admin dashboard for streamlined management and order tracking.",
+      "PromptEdge helps users find creative project ideas using AI, featuring a sleek, responsive interface built with React and Vite. With secure Clerk authentication, smooth animations, and interactive components from Radix and Shadcn UI, it offers a seamless user experience.",
     ],
-    href: "https://github.com/prateekraiger/StyleVerse",
+    href: "https://prompt-edge.vercel.app/",
     logo: "",
     image:
-      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746695958/styleverse_bqoqtm.png",
+      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1748681776/Screenshot_2025-05-31_142439-min_luv0lz.png",
     tags: [
       {
         id: 1,
@@ -19,18 +19,18 @@ export const myProjects = [
       },
       {
         id: 2,
-        name: "Express",
-        path: "skill-icons:expressjs-dark",
+        name: "Vite",
+        path: "logos:vitejs",
       },
       {
         id: 3,
-        name: "Node.js",
-        path: "skill-icons:nodejs-dark",
+        name: "TailwindCSS",
+        path: "skill-icons:tailwindcss-dark",
       },
       {
         id: 4,
-        name: "TailwindCSS",
-        path: "skill-icons:tailwindcss-dark",
+        name: "DaisyUI",
+        path: "skill-icons:daisyui-dark",
       },
     ],
   },
@@ -104,31 +104,31 @@ export const myProjects = [
 
   {
     id: 4,
-    title: "Github portfolio",
+    title: "Whisprr",
     description:
-      "A lightweight C++ game engine designed for 2D and 3D game development. GitHub Devfolio – A sleek, responsive portfolio template that turns your GitHub profile into a dynamic developer showcase.",
+      "A secure and modern messaging platform with end-to-end encryption.",
     subDescription: [
-      "Built with Next.js and Tailwind CSS, it fetches real-time data from the GitHub API for a personalized display. Highlights include contribution heatmaps, top repo metrics, and detailed developer stats. Easily customizable via a config file, it's perfect for showcasing your coding journey with style.",
+      "Whisprr ensures private and safe communication through end-to-end encryption. Built with React and Clerk, it offers real-time messaging, a sleek UI, responsive design, and cross-device support for seamless chatting.",
     ],
-    href: "https://prartik-git-port.vercel.app/",
+    href: "https://github.com/prateekraiger/Whisprr",
     logo: "",
     image:
-      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746697243/prartik-git-port.vercel.app__oyun4f.png",
+      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1748681509/Screenshot_2025-05-31_142009-min_szvtfc.png",
     tags: [
       {
         id: 1,
-        name: "NextJs",
-        path: "skill-icons:nextjs-dark",
-      },
-      {
-        id: 2,
         name: "React",
         path: "skill-icons:react-dark",
       },
       {
+        id: 2,
+        name: "Express",
+        path: "skill-icons:expressjs-dark",
+      },
+      {
         id: 3,
-        name: "Git",
-        path: "logos:git-icon",
+        name: "Clerk",
+        path: "logos:clerk",
       },
       {
         id: 4,
@@ -201,6 +201,109 @@ export const myProjects = [
         id: 4,
         name: "Clerk",
         path: "logos:clerk",
+      },
+    ],
+  },
+
+  {
+    id: 7,
+    title: "StyleVerse Store",
+    description:
+      "StyleVerse is a modern e-commerce platform built with React, offering customers a seamless shopping experience with a user-friendly interface and robust functionality.",
+    subDescription: [
+      "StyleVerse is a sleek and responsive e-commerce platform tailored for fashion lovers. Built with React, Vite, and Node.js, it offers dynamic product browsing, seamless cart and order management, and secure payments via Razorpay and Stripe. The platform also includes an admin dashboard for streamlined management and order tracking.",
+    ],
+    href: "https://github.com/prateekraiger/StyleVerse",
+    logo: "",
+    image:
+      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746695958/styleverse_bqoqtm.png",
+    tags: [
+      {
+        id: 1,
+        name: "React",
+        path: "skill-icons:react-dark",
+      },
+      {
+        id: 2,
+        name: "Express",
+        path: "skill-icons:expressjs-dark",
+      },
+      {
+        id: 3,
+        name: "Node.js",
+        path: "skill-icons:nodejs-dark",
+      },
+      {
+        id: 4,
+        name: "TailwindCSS",
+        path: "skill-icons:tailwindcss-dark",
+      },
+    ],
+  },
+
+  {
+    id: 8,
+    title: "Github Portfolio",
+    description:
+      "A lightweight C++ game engine designed for 2D and 3D game development. GitHub Devfolio – A sleek, responsive portfolio template that turns your GitHub profile into a dynamic developer showcase.",
+    subDescription: [
+      "Built with Next.js and Tailwind CSS, it fetches real-time data from the GitHub API for a personalized display. Highlights include contribution heatmaps, top repo metrics, and detailed developer stats. Easily customizable via a config file, it's perfect for showcasing your coding journey with style.",
+    ],
+    href: "https://prartik-git-port.vercel.app/",
+    logo: "",
+    image:
+      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746697243/prartik-git-port.vercel.app__oyun4f.png",
+    tags: [
+      {
+        id: 1,
+        name: "NextJs",
+        path: "skill-icons:nextjs-dark",
+      },
+      {
+        id: 2,
+        name: "React",
+        path: "skill-icons:react-dark",
+      },
+      {
+        id: 3,
+        name: "Git",
+        path: "logos:git-icon",
+      },
+      {
+        id: 4,
+        name: "TailwindCSS",
+        path: "skill-icons:tailwindcss-dark",
+      },
+    ],
+  },
+
+  {
+    id: 9,
+    title: "ClutchGround: Val Tournament",
+    description:
+      "An official tournament hub for CLG students to register, participate, and stay updated on Valorant matches.",
+    subDescription: [
+      "ClutchGround provides all the necessary details for the tournament including schedules, match formats, rules, and team participation. Stay informed and get ready to compete with the best from CLG.",
+    ],
+    href: "https://github.com/prateekraiger/valo-comp",
+    logo: "",
+    image:
+      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1748681185/Screenshot_2025-05-31_141423-min_bvwtbn.png",
+    tags: [
+      {
+        id: 1,
+        name: "React",
+        path: "skill-icons:react-dark",
+      },
+      {
+        id: 2,
+        name: "TailwindCSS",
+        path: "skill-icons:tailwindcss-dark",
+      },
+      {
+        id: 3,
+        name: "Framer Motion",
+        path: "skill-icons:framer-motion-dark",
       },
     ],
   },

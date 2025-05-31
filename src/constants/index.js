@@ -37,31 +37,36 @@ export const myProjects = [
 
   {
     id: 2,
-    title: "1-Piece",
+    title: "NextGadget Ecommerce Website",
     description:
-      "One Piece Gear 5 Experience - An interactive tribute to Luffy's legendary transformation into Joy Boy.",
+      "NextGadget is a modern e-commerce web application built with Next.js, React, and MongoDB.",
     subDescription: [
-      "Immerse yourself in a visually dynamic experience with floating video effects and GSAP-powered animations. Built with React and Tailwind CSS, the site is fully responsive across devices. A bold call-to-action lets fans explore more about Gear 5's epic awakening.",
+      "It features user authentication, product browsing, cart management, order placement, Stripe payments, and an admin login. The UI is styled with Tailwind CSS and enhanced with Framer Motion for smooth animations.",
     ],
-    href: "https://1-piece.vercel.app/",
-    logo: "",
+    href: "https://next-gadget-sigma.vercel.app/",
+    logo: null,
     image:
-      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746696959/1-piece-min_liwxfl.png",
+      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746698316/nextgadget_kabozx.png",
     tags: [
       {
         id: 1,
-        name: "React",
-        path: "skill-icons:react-dark",
+        name: "NextJs",
+        path: "skill-icons:nextjs-dark",
       },
       {
         id: 2,
-        name: "GSAP",
-        path: "logos:gsap",
+        name: "MongoDB",
+        path: "skill-icons:mongodb",
       },
       {
         id: 3,
         name: "TailwindCSS",
         path: "skill-icons:tailwindcss-dark",
+      },
+      {
+        id: 4,
+        name: "Clerk",
+        path: "logos:clerk",
       },
     ],
   },
@@ -140,47 +145,16 @@ export const myProjects = [
 
   {
     id: 5,
-    title: "Grilli Restaurant",
+    title: "Github Portfolio",
     description:
-      "Grilli - Responsive Web Design for Expertly Grilled Cuisine, Bringing Flavor to Life with a Modern Dining Experience.",
+      "A lightweight C++ game engine designed for 2D and 3D game development. GitHub Devfolio – A sleek, responsive portfolio template that turns your GitHub profile into a dynamic developer showcase.",
     subDescription: [
-      "Welcome to the Grilli Restaurant Website! This modern web application is designed to provide a seamless dining experience for customers. With features like menu management, a reservation system, and a contact form, we aim to create a user-friendly interface that makes it easy for customers to find and order their favorite dishes.",
+      "Built with Next.js and Tailwind CSS, it fetches real-time data from the GitHub API for a personalized display. Highlights include contribution heatmaps, top repo metrics, and detailed developer stats. Easily customizable via a config file, it's perfect for showcasing your coding journey with style.",
     ],
-    href: "https://grilli-50z.pages.dev/",
-    logo: "",
+    href: "https://prartik-git-port.vercel.app/",
+    logo: null,
     image:
-      "https://raw.githubusercontent.com/prateekraiger/Grilli/refs/heads/main/preview.png",
-    tags: [
-      {
-        id: 1,
-        name: "HTML5",
-        path: "skill-icons:html",
-      },
-      {
-        id: 2,
-        name: "CSS3",
-        path: "skill-icons:css",
-      },
-      {
-        id: 3,
-        name: "JavaScript",
-        path: "skill-icons:javascript",
-      },
-    ],
-  },
-
-  {
-    id: 6,
-    title: "NextGadget Ecommerce Website",
-    description:
-      "NextGadget is a modern e-commerce web application built with Next.js, React, and MongoDB.",
-    subDescription: [
-      "It features user authentication, product browsing, cart management, order placement, Stripe payments, and an admin login. The UI is styled with Tailwind CSS and enhanced with Framer Motion for smooth animations.",
-    ],
-    href: "https://next-gadget-sigma.vercel.app/",
-    logo: "",
-    image:
-      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746698316/nextgadget_kabozx.png",
+      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746697243/prartik-git-port.vercel.app__oyun4f.png",
     tags: [
       {
         id: 1,
@@ -189,18 +163,49 @@ export const myProjects = [
       },
       {
         id: 2,
-        name: "MongoDB",
-        path: "skill-icons:mongodb",
+        name: "React",
+        path: "skill-icons:react-dark",
+      },
+      {
+        id: 3,
+        name: "Git",
+        path: "logos:git-icon",
+      },
+      {
+        id: 4,
+        name: "TailwindCSS",
+        path: "skill-icons:tailwindcss-dark",
+      },
+    ],
+  },
+
+  {
+    id: 6,
+    title: "1-Piece",
+    description:
+      "One Piece Gear 5 Experience - An interactive tribute to Luffy's legendary transformation into Joy Boy.",
+    subDescription: [
+      "Immerse yourself in a visually dynamic experience with floating video effects and GSAP-powered animations. Built with React and Tailwind CSS, the site is fully responsive across devices. A bold call-to-action lets fans explore more about Gear 5's epic awakening.",
+    ],
+    href: "https://1-piece.vercel.app/",
+    logo: null,
+    image:
+      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746696959/1-piece-min_liwxfl.png",
+    tags: [
+      {
+        id: 1,
+        name: "React",
+        path: "skill-icons:react-dark",
+      },
+      {
+        id: 2,
+        name: "GSAP",
+        path: "logos:gsap",
       },
       {
         id: 3,
         name: "TailwindCSS",
         path: "skill-icons:tailwindcss-dark",
-      },
-      {
-        id: 4,
-        name: "Clerk",
-        path: "logos:clerk",
       },
     ],
   },
@@ -243,36 +248,31 @@ export const myProjects = [
 
   {
     id: 8,
-    title: "Github Portfolio",
+    title: "Grilli Restaurant",
     description:
-      "A lightweight C++ game engine designed for 2D and 3D game development. GitHub Devfolio – A sleek, responsive portfolio template that turns your GitHub profile into a dynamic developer showcase.",
+      "Grilli - Responsive Web Design for Expertly Grilled Cuisine, Bringing Flavor to Life with a Modern Dining Experience.",
     subDescription: [
-      "Built with Next.js and Tailwind CSS, it fetches real-time data from the GitHub API for a personalized display. Highlights include contribution heatmaps, top repo metrics, and detailed developer stats. Easily customizable via a config file, it's perfect for showcasing your coding journey with style.",
+      "Welcome to the Grilli Restaurant Website! This modern web application is designed to provide a seamless dining experience for customers. With features like menu management, a reservation system, and a contact form, we aim to create a user-friendly interface that makes it easy for customers to find and order their favorite dishes.",
     ],
-    href: "https://prartik-git-port.vercel.app/",
-    logo: "",
+    href: "https://grilli-50z.pages.dev/",
+    logo: null,
     image:
-      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746697243/prartik-git-port.vercel.app__oyun4f.png",
+      "https://raw.githubusercontent.com/prateekraiger/Grilli/refs/heads/main/preview.png",
     tags: [
       {
         id: 1,
-        name: "NextJs",
-        path: "skill-icons:nextjs-dark",
+        name: "HTML5",
+        path: "skill-icons:html",
       },
       {
         id: 2,
-        name: "React",
-        path: "skill-icons:react-dark",
+        name: "CSS3",
+        path: "skill-icons:css",
       },
       {
         id: 3,
-        name: "Git",
-        path: "logos:git-icon",
-      },
-      {
-        id: 4,
-        name: "TailwindCSS",
-        path: "skill-icons:tailwindcss-dark",
+        name: "JavaScript",
+        path: "skill-icons:javascript",
       },
     ],
   },

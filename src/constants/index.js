@@ -147,7 +147,7 @@ export const myProjects = [
     id: 5,
     title: "Github Portfolio",
     description:
-      "A lightweight C++ game engine designed for 2D and 3D game development. GitHub Devfolio – A sleek, responsive portfolio template that turns your GitHub profile into a dynamic developer showcase.",
+      "A modern, responsive portfolio template designed specifically for GitHub users to showcase their coding journey.",
     subDescription: [
       "Built with Next.js and Tailwind CSS, it fetches real-time data from the GitHub API for a personalized display. Highlights include contribution heatmaps, top repo metrics, and detailed developer stats. Easily customizable via a config file, it's perfect for showcasing your coding journey with style.",
     ],

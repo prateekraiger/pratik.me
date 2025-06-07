@@ -145,36 +145,36 @@ export const myProjects = [
 
   {
     id: 5,
-    title: "Github Portfolio",
+    title: "BioCraft",
     description:
-      "A modern, responsive portfolio template designed specifically for GitHub users to showcase their coding journey.",
+      "BioCraft helps you craft engaging, professional, and platform-optimized bios for Instagram, Twitter, LinkedIn, Facebook, WhatsApp, and more—instantly, with AI.",
     subDescription: [
-      "Built with Next.js and Tailwind CSS, it fetches real-time data from the GitHub API for a personalized display. Highlights include contribution heatmaps, top repo metrics, and detailed developer stats. Easily customizable via a config file, it's perfect for showcasing your coding journey with style.",
+      "An AI-powered web application that generates personalized bios using GPT-3.5. Features include multi-platform support, customization options, character limit awareness, multiple bio options, fallback mode, and one-click copy functionality. Built with React, TypeScript, and Tailwind CSS for a seamless user experience.",
     ],
-    href: "https://prartik-git-port.vercel.app/",
-    logo: null,
+    href: "https://bio-craft-swart.vercel.app/",
+    logo: "",
     image:
-      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746697243/prartik-git-port.vercel.app__oyun4f.png",
+      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1749285059/Screenshot_2025-06-07_140034_kzdfuk.png",
     tags: [
       {
         id: 1,
-        name: "NextJs",
-        path: "skill-icons:nextjs-dark",
-      },
-      {
-        id: 2,
         name: "React",
         path: "skill-icons:react-dark",
       },
       {
+        id: 2,
+        name: "TypeScript",
+        path: "skill-icons:typescript",
+      },
+      {
         id: 3,
-        name: "Git",
-        path: "logos:git-icon",
+        name: "TailwindCSS",
+        path: "skill-icons:tailwindcss-dark",
       },
       {
         id: 4,
-        name: "TailwindCSS",
-        path: "skill-icons:tailwindcss-dark",
+        name: "Vite",
+        path: "logos:vitejs",
       },
     ],
   },
@@ -279,31 +279,36 @@ export const myProjects = [
 
   {
     id: 9,
-    title: "ClutchGround: Val Tournament",
+    title: "Github Portfolio",
     description:
-      "An official tournament hub for CLG students to register, participate, and stay updated on Valorant matches.",
+      "A modern, responsive portfolio template designed specifically for GitHub users to showcase their coding journey.",
     subDescription: [
-      "ClutchGround provides all the necessary details for the tournament including schedules, match formats, rules, and team participation. Stay informed and get ready to compete with the best from CLG.",
+      "Built with Next.js and Tailwind CSS, it fetches real-time data from the GitHub API for a personalized display. Highlights include contribution heatmaps, top repo metrics, and detailed developer stats. Easily customizable via a config file, it's perfect for showcasing your coding journey with style.",
     ],
-    href: "https://github.com/prateekraiger/valo-comp",
-    logo: "",
+    href: "https://prartik-git-port.vercel.app/",
+    logo: null,
     image:
-      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1748681185/Screenshot_2025-05-31_141423-min_bvwtbn.png",
+      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746697243/prartik-git-port.vercel.app__oyun4f.png",
     tags: [
       {
         id: 1,
+        name: "NextJs",
+        path: "skill-icons:nextjs-dark",
+      },
+      {
+        id: 2,
         name: "React",
         path: "skill-icons:react-dark",
       },
       {
-        id: 2,
-        name: "TailwindCSS",
-        path: "skill-icons:tailwindcss-dark",
+        id: 3,
+        name: "Git",
+        path: "logos:git-icon",
       },
       {
-        id: 3,
-        name: "Framer Motion",
-        path: "skill-icons:framer-motion-dark",
+        id: 4,
+        name: "TailwindCSS",
+        path: "skill-icons:tailwindcss-dark",
       },
     ],
   },

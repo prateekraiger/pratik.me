@@ -164,7 +164,7 @@ const Loading = () => {
         </svg>
       </span>
 
-      <style jsx>{`
+      <style>{`
         @keyframes hideAndSeek {
           0% {
             transform: translateY(4rem);

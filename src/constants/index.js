@@ -360,6 +360,12 @@ export const categorizedSkills = {
         "I primarily work with React for building dynamic user interfaces.",
     },
     {
+      name: "Next.js",
+      icon: "skill-icons:nextjs-dark",
+      description:
+        "I have experience building server-side rendered and static web applications with Next.js.",
+    },
+    {
       name: "Node.js",
       icon: "skill-icons:nodejs-dark",
       description:
@@ -393,7 +399,12 @@ export const categorizedSkills = {
       description:
         "I manage my repositories and collaborate on projects using GitHub.",
     },
-
+    {
+      name: "Docker",
+      icon: "skill-icons:docker",
+      description:
+        "I use Docker for containerizing applications, ensuring consistency across different environments.",
+    },
     {
       name: "Vercel",
       icon: "skill-icons:vercel-dark",
@@ -405,12 +416,6 @@ export const categorizedSkills = {
       icon: "skill-icons:vscode-dark",
       description:
         "I use Visual Studio Code as my primary code editor for development.",
-    },
-    {
-      name: "Postman",
-      icon: "skill-icons:postman",
-      description:
-        "I test my APIs using Postman to ensure they function correctly.",
     },
   ],
 };

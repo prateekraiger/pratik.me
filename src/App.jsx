@@ -11,7 +11,7 @@ import Loader from "./components/Loader";
 const App = () => {
   const [loading, setLoading] = React.useState(true);
   React.useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1800); // Show loader for 1.8s
+    const timer = setTimeout(() => setLoading(false), 1900);
     return () => clearTimeout(timer);
   }, []);
   if (loading) return <Loader />;

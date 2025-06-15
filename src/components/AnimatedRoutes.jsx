@@ -1,12 +1,13 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useRef, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import Loader from "./Loader";
+import StairsTransition from "./StairsTransition";
 
 const Home = lazy(() => import("../Pages/Home"));
 const About = lazy(() => import("../Pages/About"));
 const Project = lazy(() => import("../Pages/Project"));
 const Contact = lazy(() => import("../Pages/Contact"));
-import StairsTransition from "./StairsTransition";
 
 const pageVariants = {
   initial: {
@@ -32,13 +33,15 @@ const pageTransition = {
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+  const isFirstLoad = useRef(true);
+  useEffect(() => {
+    isFirstLoad.current = false;
+  }, []);
   return (
     <>
-      <StairsTransition />
+      {!isFirstLoad.current && <StairsTransition />}
       <AnimatePresence mode="wait">
-        <Suspense
-          fallback={<div className="text-center py-20">Loading...</div>}
-        >
+        <Suspense fallback={<Loader />}>
           <Routes location={location} key={location.pathname}>
             <Route
               path="/"

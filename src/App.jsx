@@ -6,8 +6,15 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AnimatedRoutes from "./components/AnimatedRoutes";
 import SmoothCursor from "./components/SmoothCursor.jsx";
+import Loader from "./components/Loader";
 
 const App = () => {
+  const [loading, setLoading] = React.useState(true);
+  React.useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1800); // Show loader for 1.8s
+    return () => clearTimeout(timer);
+  }, []);
+  if (loading) return <Loader />;
   return (
     <Router>
       <div className="min-h-screen flex flex-col">

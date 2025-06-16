@@ -81,7 +81,9 @@ const Hero = () => {
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-[#915EFF]">100%</div>
-                <div className="text-sm text-gray-400">Client Satisfaction</div>
+                <div className="text-sm text-gray-400">
+                  Project Delivery Rate
+                </div>
               </div>
             </div>
 

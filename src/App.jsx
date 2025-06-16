@@ -10,11 +10,20 @@ import Loader from "./components/Loader";
 
 const App = () => {
   const [loading, setLoading] = React.useState(true);
+  const [showApp, setShowApp] = React.useState(false);
+
   React.useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1900);
-    return () => clearTimeout(timer);
-  }, []);
-  if (loading) return <Loader />;
+    if (!loading) {
+      // Wait for loader fade-out before showing app
+      const timer = setTimeout(() => setShowApp(true), 400);
+      return () => clearTimeout(timer);
+    }
+  }, [loading]);
+
+  if (!showApp) {
+    return <Loader onFinish={() => setLoading(false)} />;
+  }
+
   return (
     <Router>
       <div className="min-h-screen flex flex-col">
@@ -29,18 +38,24 @@ const App = () => {
           className="flex-grow w-full pt-20 md:pt-24 px-4 md:px-8 relative"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
         >
           <motion.div
             className="max-w-[1920px] mx-auto"
-            initial={{ y: 20 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
           >
             <AnimatedRoutes />
           </motion.div>
         </motion.main>
-        <Footer />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
+        >
+          <Footer />
+        </motion.div>
       </div>
     </Router>
   );

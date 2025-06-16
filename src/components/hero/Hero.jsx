@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 import CardSwap, { ProjectCard } from "./CardSwap";
 
 const Hero = () => {
-  // Sample project data - replace with your actual projects
   const projects = [
-    {
-      title: "SkyCanvas",
-      image:
-        "https://res.cloudinary.com/dk3pg4zly/image/upload/v1749980379/skycanvas_sbthc3.png",
-      link: "https://github.com/prateekraiger/skycanvas",
-    },
+    // {
+    //   title: "SkyCanvas",
+    //   image:
+    //     "https://res.cloudinary.com/dk3pg4zly/image/upload/v1749980379/skycanvas_sbthc3.png",
+    //   link: "https://github.com/prateekraiger/skycanvas",
+    // },
     {
       title: "PromptEdge AI Project Generator",
       image:

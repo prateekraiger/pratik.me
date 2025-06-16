@@ -4,10 +4,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import Loader from "./Loader";
 import StairsTransition from "./StairsTransition";
 
-const Home = lazy(() => import("../Pages/Home"));
-const About = lazy(() => import("../Pages/About"));
-const Project = lazy(() => import("../Pages/Project"));
-const Contact = lazy(() => import("../Pages/Contact"));
+const Home = lazy(() => import("../../Pages/Home"));
+const About = lazy(() => import("../../Pages/About"));
+const Project = lazy(() => import("../../Pages/Project"));
+const Contact = lazy(() => import("../../Pages/Contact"));
 
 const pageVariants = {
   initial: {

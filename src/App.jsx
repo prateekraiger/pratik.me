@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import AnimatedRoutes from "./components/AnimatedRoutes";
-import SmoothCursor from "./components/SmoothCursor.jsx";
-import Loader from "./components/Loader";
+import SmoothCursor from "./components/common/SmoothCursor.jsx";
+import AnimatedRoutes from "./components/Loaders/AnimatedRoutes";
+import Loader from "./components/Loaders/Loader";
 
 const App = () => {
   const [loading, setLoading] = React.useState(true);

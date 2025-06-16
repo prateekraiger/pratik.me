@@ -11,7 +11,6 @@ import {
 } from "@heroui/react";
 import { FaTimes, FaBars, FaPlay, FaPause } from "react-icons/fa";
 import logo from "../assets/logo.png";
-import playMusic from "/loop.mp3";
 
 const Navbar = () => {
   const location = useLocation();
@@ -21,7 +20,7 @@ const Navbar = () => {
 
   useEffect(() => {
     // Initialize audio
-    audioRef.current = new Audio(playMusic);
+    audioRef.current = new Audio("/loop.mp3");
     audioRef.current.loop = true;
     audioRef.current.volume = 0.3;
     audioRef.current.muted = true;

@@ -1,0 +1,177 @@
+import React from "react";
+import HeroBg from "./HeroBg";
+import { Link } from "react-router-dom";
+import CardSwap, { ProjectCard } from "./CardSwap";
+
+const Hero = () => {
+  // Sample project data - replace with your actual projects
+  const projects = [
+    {
+      title: "SkyCanvas",
+      image:
+        "https://res.cloudinary.com/dk3pg4zly/image/upload/v1749980379/skycanvas_sbthc3.png",
+      link: "https://github.com/prateekraiger/skycanvas",
+    },
+    {
+      title: "PromptEdge AI Project Generator",
+      image:
+        "https://res.cloudinary.com/dk3pg4zly/image/upload/v1748681776/Screenshot_2025-05-31_142439-min_luv0lz.png",
+      link: "https://prompt-edge.vercel.app/",
+    },
+    {
+      title: "1-Piece Website",
+      image:
+        "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746696959/1-piece-min_liwxfl.png",
+      link: "https://1-piece.vercel.app/",
+    },
+    {
+      title: "TIT Conference Website",
+      image:
+        "https://res.cloudinary.com/dk3pg4zly/image/upload/v1747233626/icacit2025_l8uige.png",
+      link: "https://www.icacit2025titbpl.in/",
+    },
+  ];
+
+  return (
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
+      {/* Animated Background */}
+      <HeroBg />
+
+      {/* Content Container */}
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between min-h-[85vh] gap-12">
+          {/* Left Side: Intro */}
+          <div className="flex-1 flex flex-col items-start justify-center text-left max-w-2xl lg:pr-8">
+            {/* Welcome Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#915EFF]/10 border border-[#915EFF]/20 backdrop-blur-sm mb-6">
+              <div className="w-2 h-2 rounded-full bg-[#915EFF] animate-pulse"></div>
+              <span className="text-[#915EFF] font-medium text-sm">
+                Welcome to my digital space
+              </span>
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
+              Hi, I'm{" "}
+              <span className="bg-gradient-to-r from-[#915EFF] to-[#7C3AED] bg-clip-text text-transparent">
+                Prateek Raiger
+              </span>
+            </h1>
+
+            {/* Description */}
+            <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed max-w-xl">
+              A passionate{" "}
+              <span className="text-[#915EFF] font-semibold bg-[#915EFF]/10 px-2 py-1 rounded">
+                Full Stack Developer
+              </span>{" "}
+              crafting beautiful and functional web experiences. I specialize in
+              building interactive, modern UIs and seamless user journeys that
+              leave lasting impressions.
+            </p>
+
+            {/* Stats */}
+            <div className="flex flex-wrap gap-6 mb-8">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-[#915EFF]">30+</div>
+                <div className="text-sm text-gray-400">Projects</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-[#915EFF]">1.5+</div>
+                <div className="text-sm text-gray-400">Years Experience</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-[#915EFF]">100%</div>
+                <div className="text-sm text-gray-400">Client Satisfaction</div>
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-4">
+              <Link to="/contact">
+                <button className="group relative inline-flex h-14 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-[#915EFF] focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300 hover:scale-105">
+                  <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#915EFF_25%,#7C3AED_50%,#915EFF_75%,#E2CBFF_100%)]" />
+                  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-gray-900 px-8 py-1 text-base font-semibold text-white backdrop-blur-3xl group-hover:bg-gray-800 transition-colors">
+                    Get in Touch
+                    <svg
+                      className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </Link>
+
+              <Link to="/projects">
+                <button className="relative inline-flex h-14 items-center justify-center rounded-full border-2 border-[#915EFF]/30 bg-transparent px-8 py-1 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-[#915EFF] hover:bg-[#915EFF]/10 hover:scale-105">
+                  View All Projects
+                  <svg
+                    className="ml-2 w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Side: Featured Projects Cards */}
+          <div className="flex-1 flex flex-col items-center justify-center w-full lg:w-auto">
+            {/* Cards Container */}
+            <div
+              className="relative w-full max-w-md mx-auto"
+              style={{ height: "500px" }}
+            >
+              <CardSwap
+                width={380}
+                height={480}
+                cardDistance={35}
+                verticalDistance={45}
+                delay={5000}
+                pauseOnHover={true}
+                skewAmount={3}
+                easing="elastic"
+                onCardClick={(index) => {
+                  console.log(`Clicked project: ${projects[index].title}`);
+                  // Add navigation logic here
+                }}
+              >
+                {projects.map((project, index) => (
+                  <ProjectCard
+                    key={index}
+                    title={project.title}
+                    image={project.image}
+                    description={project.description}
+                    tech={project.tech}
+                    link={project.link}
+                  />
+                ))}
+              </CardSwap>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute top-20 left-10 w-32 h-32 bg-[#915EFF]/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-[#7C3AED]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+    </div>
+  );
+};
+
+export default Hero;

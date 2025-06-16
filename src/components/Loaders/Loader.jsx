@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Loading from "./Loading";
-import duckvd from "../assets/duck.mp4";
+import duckvd from "../../assets/duck.mp4";
 
 const Loader = ({ onFinish }) => {
   const [visible, setVisible] = useState(true);

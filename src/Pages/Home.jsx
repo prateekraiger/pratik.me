@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Hero from "../components/Hero";
+import Hero from "../components/hero/Hero";
 import Project from "./Project";
 import Contact from "./Contact";
 

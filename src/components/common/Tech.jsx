@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion, AnimatePresence } from "framer-motion";
-import { categorizedSkills } from "../constants/index";
+import { categorizedSkills } from "../../constants/index";
 import Title from "./Title";
 
 const Tech = () => {

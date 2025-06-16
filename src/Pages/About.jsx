@@ -2,11 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { FiBookOpen } from "react-icons/fi";
-import { Grid } from "../components/GridPattern";
+import { Grid } from "../components/common/GridPattern";
 import HobbyBlock from "../components/HobbyBlock";
-import { SocialLinks } from "../components/SocialLinks";
-import Tech from "../components/Tech";
-import Title from "../components/Title";
+import { SocialLinks } from "../components/common/SocialLinks";
+import Tech from "../components/common/Tech";
+import Title from "../components/common/Title";
 
 export const About = () => {
   return (

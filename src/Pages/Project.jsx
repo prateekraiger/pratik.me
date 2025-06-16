@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useMotionValue } from "framer-motion";
 import { useSpring } from "framer-motion";
 import { useState } from "react";
-import Title from "../components/Title";
+import Title from "../components/common/Title";
 
 const Project = () => {
   const x = useMotionValue(0);

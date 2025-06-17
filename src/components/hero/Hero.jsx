@@ -33,34 +33,34 @@ const Hero = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
-      {/* Animated Background */}
+      {/* Animated Background with reduced complexity */}
       <HeroBg />
 
-      {/* Content Container */}
-      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between min-h-[85vh] gap-12">
+      {/* Content Container with improved responsiveness */}
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between min-h-[85vh] gap-8 lg:gap-12">
           {/* Left Side: Intro */}
-          <div className="flex-1 flex flex-col items-start justify-center text-left max-w-2xl lg:pr-8">
+          <div className="flex-1 flex flex-col items-start justify-center text-left max-w-2xl lg:pr-8 w-full">
             {/* Welcome Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#915EFF]/10 border border-[#915EFF]/20 backdrop-blur-sm mb-6">
-              <div className="w-2 h-2 rounded-full bg-[#915EFF] animate-pulse"></div>
-              <span className="text-[#915EFF] font-medium text-sm">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#915EFF]/10 border border-[#915EFF]/20 backdrop-blur-sm mb-4 sm:mb-6 transform-gpu">
+              <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#915EFF] animate-pulse"></div>
+              <span className="text-[#915EFF] font-medium text-xs sm:text-sm">
                 Welcome to my digital space
               </span>
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight tracking-tight">
               Hi, I'm{" "}
-              <span className="bg-gradient-to-r from-[#915EFF] to-[#7C3AED] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#915EFF] to-[#7C3AED] bg-clip-text text-transparent inline-block">
                 Prateek Raiger
               </span>
             </h1>
 
             {/* Description */}
-            <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed max-w-xl">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed max-w-xl transform-gpu">
               A passionate{" "}
-              <span className="text-[#915EFF] font-semibold bg-[#915EFF]/10 px-2 py-1 rounded">
+              <span className="text-[#915EFF] font-semibold bg-[#915EFF]/10 px-2 py-1 rounded inline-block transform-gpu hover:scale-105 transition-transform duration-300">
                 Full Stack Developer
               </span>{" "}
               crafting beautiful and functional web experiences. I specialize in
@@ -68,33 +68,41 @@ const Hero = () => {
               leave lasting impressions.
             </p>
 
-            {/* Stats */}
-            <div className="flex flex-wrap gap-6 mb-8">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-[#915EFF]">30+</div>
-                <div className="text-sm text-gray-400">Projects</div>
+            {/* Stats with improved responsiveness and animations */}
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-4 sm:gap-6 mb-6 sm:mb-8 w-full sm:w-auto">
+              <div className="text-center p-3 rounded-lg bg-[#915EFF]/5 backdrop-blur-sm border border-[#915EFF]/10 transform-gpu hover:scale-105 transition-all duration-300">
+                <div className="text-xl sm:text-2xl font-bold text-[#915EFF]">
+                  30+
+                </div>
+                <div className="text-xs sm:text-sm text-gray-400">Projects</div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-[#915EFF]">1.5+</div>
-                <div className="text-sm text-gray-400">Years Experience</div>
+              <div className="text-center p-3 rounded-lg bg-[#915EFF]/5 backdrop-blur-sm border border-[#915EFF]/10 transform-gpu hover:scale-105 transition-all duration-300">
+                <div className="text-xl sm:text-2xl font-bold text-[#915EFF]">
+                  1.5+
+                </div>
+                <div className="text-xs sm:text-sm text-gray-400">
+                  Years Experience
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-[#915EFF]">100%</div>
-                <div className="text-sm text-gray-400">
+              <div className="text-center p-3 rounded-lg bg-[#915EFF]/5 backdrop-blur-sm border border-[#915EFF]/10 transform-gpu hover:scale-105 transition-all duration-300 col-span-2 sm:col-span-1">
+                <div className="text-xl sm:text-2xl font-bold text-[#915EFF]">
+                  100%
+                </div>
+                <div className="text-xs sm:text-sm text-gray-400">
                   Project Delivery Rate
                 </div>
               </div>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4">
-              <Link to="/contact">
-                <button className="group relative inline-flex h-14 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-[#915EFF] focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300 hover:scale-105">
-                  <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#915EFF_25%,#7C3AED_50%,#915EFF_75%,#E2CBFF_100%)]" />
-                  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-gray-900 px-8 py-1 text-base font-semibold text-white backdrop-blur-3xl group-hover:bg-gray-800 transition-colors">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+              <Link to="/contact" className="w-full sm:w-auto">
+                <button className="group relative inline-flex h-12 sm:h-14 w-full sm:w-auto overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-[#915EFF] focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300 transform-gpu hover:scale-[1.02] active:scale-[0.98]">
+                  <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#915EFF_25%,#7C3AED_50%,#915EFF_75%,#E2CBFF_100%)] transform-gpu" />
+                  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-gray-900 px-6 sm:px-8 py-1 text-sm sm:text-base font-semibold text-white backdrop-blur-3xl group-hover:bg-gray-800 transition-colors">
                     Get in Touch
                     <svg
-                      className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1"
+                      className="ml-2 w-3.5 sm:w-4 h-3.5 sm:h-4 transition-transform group-hover:translate-x-1 transform-gpu"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -110,11 +118,11 @@ const Hero = () => {
                 </button>
               </Link>
 
-              <Link to="/projects">
-                <button className="relative inline-flex h-14 items-center justify-center rounded-full border-2 border-[#915EFF]/30 bg-transparent px-8 py-1 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-[#915EFF] hover:bg-[#915EFF]/10 hover:scale-105">
+              <Link to="/projects" className="w-full sm:w-auto">
+                <button className="relative inline-flex h-12 sm:h-14 w-full sm:w-auto items-center justify-center rounded-full border-2 border-[#915EFF]/30 bg-transparent px-6 sm:px-8 py-1 text-sm sm:text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 transform-gpu hover:border-[#915EFF] hover:bg-[#915EFF]/10 hover:scale-[1.02] active:scale-[0.98]">
                   View All Projects
                   <svg
-                    className="ml-2 w-4 h-4"
+                    className="ml-2 w-3.5 sm:w-4 h-3.5 sm:h-4 transition-transform group-hover:translate-x-1 transform-gpu"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

@@ -85,15 +85,15 @@ const placeNow = (el, slot, skew) =>
   });
 
 const CardSwap = ({
-  width = 1000,
-  height = 450,
-  cardDistance = 80, // Reduced for better stacking
-  verticalDistance = 60, // Reduced for better visibility
-  delay = 4000, // Slower for better viewing
+  width = 280,
+  height = 380,
+  cardDistance = 25,
+  verticalDistance = 35,
+  delay = 4000,
   pauseOnHover = true,
   onCardClick,
-  skewAmount = 5, // Reduced skew for cleaner look
-  easing = "smooth",
+  skewAmount = 2,
+  easing = "power2.out",
   children,
 }) => {
   // Smoother animation configuration

@@ -60,7 +60,7 @@ const ProfileBlock = () => (
       className="relative mt-2 mb-2 flex justify-center"
     >
       <img
-        src="https://res.cloudinary.com/dk3pg4zly/image/upload/v1747668325/profile_s9n5qj.jpg"
+        src="https://res.cloudinary.com/dk3pg4zly/image/upload/v1750703204/pratik_z9nbpf.jpg"
         alt="Profile"
         className="rounded-full w-48 h-48 object-cover object-top border-4 border-zinc-700"
       />

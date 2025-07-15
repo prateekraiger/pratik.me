@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { gsap } from "gsap";
 import {
   Navbar as NextNavbar,
   NavbarBrand,
@@ -11,6 +12,7 @@ import {
 } from "@heroui/react";
 import { FaTimes, FaBars, FaPlay, FaPause } from "react-icons/fa";
 import logo from "../assets/logo.png";
+import MagneticButton from "./common/MagneticButton";
 
 const Navbar = () => {
   const location = useLocation();
@@ -199,36 +201,33 @@ const Navbar = () => {
                   { path: "/projects", label: "Projects" },
                   { path: "/contact", label: "Contact" },
                 ].map((item) => (
-                  <motion.div
-                    key={item.path}
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
+                  <motion.div key={item.path} variants={itemVariants}>
                     <NavbarItem isActive={location.pathname === item.path}>
-                      <NextLink
-                        as={Link}
-                        to={item.path}
-                        className={`text-base md:text-lg font-medium transition-all duration-300 relative group px-4 py-2 rounded-full ${
-                          location.pathname === item.path
-                            ? "text-white"
-                            : "text-gray-400 hover:text-white"
-                        }`}
-                      >
-                        {item.label}
-                        {location.pathname === item.path && (
-                          <motion.div
-                            layoutId="activeNav"
-                            className="absolute inset-0 bg-[#915EFF]/20 rounded-full -z-10"
-                            transition={{
-                              type: "spring",
-                              bounce: 0.2,
-                              duration: 0.6,
-                            }}
-                          />
-                        )}
-                        <motion.div className="absolute inset-0 bg-[#915EFF]/10 rounded-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      </NextLink>
+                      <MagneticButton strength={0.15} scale={1.02}>
+                        <NextLink
+                          as={Link}
+                          to={item.path}
+                          className={`text-base md:text-lg font-medium transition-all duration-300 relative group px-4 py-2 rounded-full ${
+                            location.pathname === item.path
+                              ? "text-white"
+                              : "text-gray-400 hover:text-white"
+                          }`}
+                        >
+                          {item.label}
+                          {location.pathname === item.path && (
+                            <motion.div
+                              layoutId="activeNav"
+                              className="absolute inset-0 bg-[#915EFF]/20 rounded-full -z-10"
+                              transition={{
+                                type: "spring",
+                                bounce: 0.2,
+                                duration: 0.6,
+                              }}
+                            />
+                          )}
+                          <motion.div className="absolute inset-0 bg-[#915EFF]/10 rounded-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        </NextLink>
+                      </MagneticButton>
                     </NavbarItem>
                   </motion.div>
                 ))}
@@ -242,18 +241,20 @@ const Navbar = () => {
               animate="visible"
               className="hidden md:flex items-center"
             >
-              <Button
-                isIconOnly
-                variant="light"
-                className="bg-[#915EFF]/10 hover:bg-[#915EFF]/20 p-2 rounded-full border border-[#915EFF]/30"
-                onClick={toggleMusic}
-              >
-                {isPlaying ? (
-                  <FaPause className="w-5 h-5 text-white" />
-                ) : (
-                  <FaPlay className="w-5 h-5 text-white" />
-                )}
-              </Button>
+              <MagneticButton strength={0.2} scale={1.1}>
+                <Button
+                  isIconOnly
+                  variant="light"
+                  className="bg-[#915EFF]/10 hover:bg-[#915EFF]/20 p-2 rounded-full border border-[#915EFF]/30 transition-all duration-300"
+                  onClick={toggleMusic}
+                >
+                  {isPlaying ? (
+                    <FaPause className="w-5 h-5 text-white" />
+                  ) : (
+                    <FaPlay className="w-5 h-5 text-white" />
+                  )}
+                </Button>
+              </MagneticButton>
             </motion.div>
           </div>
         </motion.div>

@@ -39,6 +39,38 @@
     scroll-behavior: smooth;
 }
 
+/* Performance optimizations */
+*,
+*::before,
+*::after {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+}
+
+/* Hardware acceleration for animations */
+.transform-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+a,
+[role="button"] {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced focus states */
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    transition: outline-offset 0.2s ease;
+}
+
 h1,
 h2,
 h3,
@@ -162,5 +194,147 @@ input[type="button"],
     input[type="button"]:hover,
     [role="button"]:hover {
         cursor: pointer;
+    }
+}
+
+/* Animation utilities */
+.animated-char {
+    display: inline-block;
+    transform-origin: center bottom;
+}
+
+.magnetic-button {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.magnetic-content {
+    display: inline-block;
+    will-change: transform;
+}
+
+/* Smooth scroll enhancements */
+.smooth-scroll-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.smooth-scroll-content {
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Enhanced loading states */
+.loading-skeleton {
+    background: linear-gradient(90deg,
+            rgba(145, 94, 255, 0.1) 25%,
+            rgba(145, 94, 255, 0.2) 50%,
+            rgba(145, 94, 255, 0.1) 75%);
+    background-size: 200% 100%;
+    animation: loading-shimmer 2s infinite;
+}
+
+@keyframes loading-shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Improved button hover effects */
+.btn-glow {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(145, 94, 255, 0.4),
+            transparent);
+    transition: left 0.5s;
+}
+
+.btn-glow:hover::before {
+    left: 100%;
+}
+
+/* Text glow effect */
+.text-glow {
+    text-shadow: 0 0 10px rgba(145, 94, 255, 0.5);
+}
+
+/* Card hover effects */
+.card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(145, 94, 255, 0.2);
+}
+
+/* Parallax elements */
+.parallax-element {
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .animated-char {
+        animation: none !important;
+    }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .transform-gpu {
+        transform: none;
+        will-change: auto;
+    }
+
+    /* Disable complex animations on mobile for better performance */
+    .magnetic-button {
+        pointer-events: auto;
+    }
+
+    .parallax-element {
+        transform: none !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --primary: #a855f7;
+        --primary-dark: #9333ea;
+    }
+
+    .text-glow {
+        text-shadow: none;
     }
 }

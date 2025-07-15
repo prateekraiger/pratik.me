@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Hero from "../components/hero/Hero";
 import Project from "./Project";
 import Contact from "./Contact";
+import ScrollReveal from "../components/common/ScrollReveal";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
+  const homeRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Add subtle parallax effect to background elements
+      gsap.to(".bg-gradient", {
+        yPercent: -50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: homeRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+    }, homeRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <motion.div
+      ref={homeRef}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -22,25 +48,13 @@ const Home = () => {
           <Hero />
 
           <div className="project-contact-wrapper w-full">
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8 }}
-              className="w-full"
-            >
+            <ScrollReveal animation="fadeUp" threshold={0.2}>
               <Project />
-            </motion.div>
+            </ScrollReveal>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8 }}
-              className="w-full"
-            >
+            <ScrollReveal animation="fadeUp" threshold={0.2} delay={0.2}>
               <Contact />
-            </motion.div>
+            </ScrollReveal>
           </div>
         </motion.div>
       </div>

@@ -9,26 +9,32 @@ const About = lazy(() => import("../../Pages/About"));
 const Project = lazy(() => import("../../Pages/Project"));
 const Contact = lazy(() => import("../../Pages/Contact"));
 
+// Enhanced page variants with smoother animations
 const pageVariants = {
   initial: {
     opacity: 0,
-    x: 20,
+    y: 20,
+    scale: 0.98,
   },
   in: {
     opacity: 1,
-    x: 0,
+    y: 0,
+    scale: 1,
   },
   out: {
     opacity: 0,
-    x: -20,
+    y: -20,
+    scale: 1.02,
   },
 };
 
+// Smoother transition configuration
 const pageTransition = {
-  type: "tween",
-  ease: "anticipate",
-  duration: 0.4,
-  delay: 0.5,
+  type: "spring",
+  stiffness: 300,
+  damping: 30,
+  mass: 0.8,
+  delay: 0.1,
 };
 
 const AnimatedRoutes = () => {

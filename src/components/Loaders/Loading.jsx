@@ -2,9 +2,9 @@ import React from "react";
 
 const Loading = () => {
   return (
-    <div className="flex flex-row justify-center items-center overflow-hidden p-0 m-0">
+    <div className="flex flex-row justify-center items-center overflow-hidden p-4 m-0 gap-1">
       <span
-        className="p-0 m-0 -tracking-[5rem] transform translate-y-16 animate-bounce"
+        className="p-0 m-0 transform translate-y-16 animate-bounce"
         style={{
           animation:
             "hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
@@ -27,7 +27,7 @@ const Loading = () => {
       </span>
 
       <span
-        className="p-0 m-0 -tracking-[5rem] transform translate-y-16 animate-bounce"
+        className="p-0 m-0 transform translate-y-16 animate-bounce"
         style={{
           animation:
             "hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
@@ -50,7 +50,7 @@ const Loading = () => {
       </span>
 
       <span
-        className="p-0 m-0 -tracking-[5rem] transform translate-y-16 animate-bounce"
+        className="p-0 m-0 transform translate-y-16 animate-bounce"
         style={{
           animation:
             "hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
@@ -73,7 +73,7 @@ const Loading = () => {
       </span>
 
       <span
-        className="p-0 m-0 -tracking-[5rem] transform translate-y-16 animate-bounce"
+        className="p-0 m-0 transform translate-y-16 animate-bounce"
         style={{
           animation:
             "hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
@@ -96,7 +96,7 @@ const Loading = () => {
       </span>
 
       <span
-        className="p-0 m-0 -tracking-[5rem] transform translate-y-16 animate-bounce mx-1"
+        className="p-0 m-0 transform translate-y-16 animate-bounce mx-1"
         style={{
           animation:
             "hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
@@ -119,7 +119,7 @@ const Loading = () => {
       </span>
 
       <span
-        className="p-0 m-0 -tracking-[5rem] transform translate-y-16 animate-bounce"
+        className="p-0 m-0 transform translate-y-16 animate-bounce"
         style={{
           animation:
             "hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
@@ -142,7 +142,7 @@ const Loading = () => {
       </span>
 
       <span
-        className="p-0 m-0 -tracking-[5rem] transform translate-y-16 animate-bounce"
+        className="p-0 m-0 transform translate-y-16 animate-bounce"
         style={{
           animation:
             "hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",

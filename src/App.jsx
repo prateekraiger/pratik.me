@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SmoothCursor from "./components/common/SmoothCursor.jsx";
 import AnimatedRoutes from "./components/Loaders/AnimatedRoutes";
 import Loader from "./components/Loaders/Loader";
+import PerformanceMonitor from "./components/common/PerformanceMonitor";
+import { initSmoothScroll } from "./utils/animations";
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
 const App = () => {
   const [loading, setLoading] = React.useState(true);
@@ -20,15 +27,33 @@ const App = () => {
     }
   }, [loading]);
 
+  // Initialize smooth scroll and animations
+  useEffect(() => {
+    if (showApp) {
+      initSmoothScroll();
+
+      // Refresh ScrollTrigger on route changes
+      const refreshScrollTrigger = () => {
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+        }, 100);
+      };
+
+      window.addEventListener("popstate", refreshScrollTrigger);
+      return () => window.removeEventListener("popstate", refreshScrollTrigger);
+    }
+  }, [showApp]);
+
   if (!showApp) {
     return <Loader onFinish={() => setLoading(false)} />;
   }
 
   return (
     <Router>
+      <PerformanceMonitor />
       <div className="min-h-screen flex flex-col">
         {/* Main background gradient */}
-        <div className="fixed inset-0 bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a]"></div>
+        <div className="fixed inset-0 bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a] bg-gradient"></div>
         <div className="fixed inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:6rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
         <div className="fixed inset-0 bg-[radial-gradient(circle_at_top_right,#915EFF_0%,transparent_50%)] opacity-20"></div>
         <Navbar />

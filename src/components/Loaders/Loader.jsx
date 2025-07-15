@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { gsap } from "gsap";
 import Loading from "./Loading";
 import duckvd from "../../assets/duck.mp4";
 

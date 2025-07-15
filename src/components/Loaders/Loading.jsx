@@ -2,12 +2,12 @@ import React from "react";
 
 const Loading = () => {
   return (
-    <div className="flex flex-row justify-center items-center overflow-hidden p-4 m-0 gap-1">
+    <div className="flex flex-row justify-center items-center overflow-visible p-8 m-0 gap-3">
       <span
-        className="p-0 m-0 transform translate-y-16 animate-bounce"
+        className="inline-block transform animate-bounce"
         style={{
           animation:
-            "hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
+            "hideAndSeek 1.2s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
           animationDelay: "0ms",
         }}
       >
@@ -27,11 +27,11 @@ const Loading = () => {
       </span>
 
       <span
-        className="p-0 m-0 transform translate-y-16 animate-bounce"
+        className="inline-block transform animate-bounce"
         style={{
           animation:
-            "hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
-          animationDelay: "70ms",
+            "hideAndSeek 1.2s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
+          animationDelay: "100ms",
         }}
       >
         <svg
@@ -50,11 +50,11 @@ const Loading = () => {
       </span>
 
       <span
-        className="p-0 m-0 transform translate-y-16 animate-bounce"
+        className="inline-block transform animate-bounce"
         style={{
           animation:
-            "hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
-          animationDelay: "140ms",
+            "hideAndSeek 1.2s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
+          animationDelay: "200ms",
         }}
       >
         <svg
@@ -73,11 +73,11 @@ const Loading = () => {
       </span>
 
       <span
-        className="p-0 m-0 transform translate-y-16 animate-bounce"
+        className="inline-block transform animate-bounce"
         style={{
           animation:
-            "hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
-          animationDelay: "210ms",
+            "hideAndSeek 1.2s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
+          animationDelay: "300ms",
         }}
       >
         <svg
@@ -96,11 +96,11 @@ const Loading = () => {
       </span>
 
       <span
-        className="p-0 m-0 transform translate-y-16 animate-bounce mx-1"
+        className="inline-block transform animate-bounce"
         style={{
           animation:
-            "hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
-          animationDelay: "280ms",
+            "hideAndSeek 1.2s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
+          animationDelay: "400ms",
         }}
       >
         <svg
@@ -119,11 +119,11 @@ const Loading = () => {
       </span>
 
       <span
-        className="p-0 m-0 transform translate-y-16 animate-bounce"
+        className="inline-block transform animate-bounce"
         style={{
           animation:
-            "hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
-          animationDelay: "350ms",
+            "hideAndSeek 1.2s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
+          animationDelay: "500ms",
         }}
       >
         <svg
@@ -142,11 +142,11 @@ const Loading = () => {
       </span>
 
       <span
-        className="p-0 m-0 transform translate-y-16 animate-bounce"
+        className="inline-block transform animate-bounce"
         style={{
           animation:
-            "hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
-          animationDelay: "420ms",
+            "hideAndSeek 1.2s alternate infinite cubic-bezier(0.86, 0, 0.07, 1)",
+          animationDelay: "600ms",
         }}
       >
         <svg
@@ -167,10 +167,12 @@ const Loading = () => {
       <style>{`
         @keyframes hideAndSeek {
           0% {
-            transform: translateY(4rem);
+            transform: translateY(2rem);
+            opacity: 0.3;
           }
           100% {
             transform: translateY(0rem);
+            opacity: 1;
           }
         }
       `}</style>

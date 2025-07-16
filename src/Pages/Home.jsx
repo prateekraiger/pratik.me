@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ApplePratikEffect } from "../components/ui/apple-hello-effect";
-import { DotLoader } from "../components/ui/dot-loader";
+import { DotLoaderDemo } from "../components/ui/dot-loader";
 import { HomeBg, GlobalStylesAndKeyframes } from "../components/ui/HomeBg";
 import { useThreeD } from "../contexts/ThreeDContext";
 import Silk from "../components/ui/Silk";
@@ -133,59 +133,17 @@ const Home = () => {
               </motion.div>
 
               {/* Right Side - Conditional Content */}
-              <div className="hidden lg:block">
+              <div className="lg:block">
                 {!is3DEnabled ? (
                   /* 2D Mode - Show DotLoader Animation */
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="w-full h-96 flex flex-col items-center justify-center space-y-6"
+                    className="w-full h-64 sm:h-80 lg:h-96 flex items-center justify-center mt-8 lg:mt-0"
                   >
-                    <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 shadow-2xl">
-                      <div className="flex flex-col items-center justify-between h-full min-h-[300px]">
-                        {/* Heading at Top */}
-                        <h3 className="text-xl font-semibold text-white text-center">
-                          Interactive Demo
-                        </h3>
-
-                        {/* DotLoader in Center */}
-                        <div className="flex-1 flex items-center justify-center">
-                          <DotLoader
-                            frames={[
-                              [24], // Center dot
-                              [17, 24, 31], // Cross pattern
-                              [10, 17, 24, 31, 38], // Expanding cross
-                              [3, 10, 17, 24, 31, 38, 45], // Full cross
-                              [2, 3, 4, 10, 17, 24, 31, 38, 44, 45, 46], // Diamond shape
-                              [
-                                1, 2, 3, 4, 5, 9, 10, 11, 17, 31, 37, 38, 39,
-                                43, 44, 45, 46, 47,
-                              ], // Large diamond
-                              [
-                                0, 1, 2, 3, 4, 5, 6, 7, 14, 21, 28, 35, 42, 43,
-                                44, 45, 46, 47, 48,
-                              ], // Border
-                              [7, 14, 21, 28, 35, 42], // Vertical line
-                              [21, 22, 23, 24, 25, 26, 27], // Horizontal line
-                              [24], // Back to center
-                              [], // Empty
-                              [24], // Pulse
-                              [], // Empty
-                              [24], // Pulse
-                            ]}
-                            className="gap-1.5 scale-[2]"
-                            dotClassName="bg-gray-600/40 [&.active]:bg-[#915EFF] [&.active]:shadow-lg [&.active]:shadow-[#915EFF]/50 size-3 transition-all duration-200"
-                            duration={300}
-                            repeatCount={-1}
-                          />
-                        </div>
-
-                        {/* Subheading at Bottom */}
-                        <p className="text-sm text-gray-400 text-center">
-                          Creative animations in action
-                        </p>
-                      </div>
+                    <div className="scale-[1.5] sm:scale-[1.75] lg:scale-[2]">
+                      <DotLoaderDemo />
                     </div>
                   </motion.div>
                 ) : (

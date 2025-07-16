@@ -21,18 +21,18 @@ const Stairs = ({ isClosing }) => {
                 scaleY: 1,
                 y: "0%",
                 transition: {
-                  duration: 0.8,
-                  ease: [0.4, 0, 0.2, 1],
-                  delay: index * 0.03,
+                  duration: 0.5,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  delay: index * 0.04,
                 },
               },
               closing: {
                 scaleY: 1,
                 y: closingDirection === 1 ? "100%" : "-100%",
                 transition: {
-                  duration: 0.8,
-                  ease: [0.4, 0, 0.2, 1],
-                  delay: (7 - index) * 0.03,
+                  duration: 0.5,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  delay: (7 - index) * 0.04,
                 },
               },
             }}

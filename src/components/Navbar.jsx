@@ -2,20 +2,15 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
-import {
-  Navbar as NextNavbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Link as NextLink,
-  Button,
-} from "@heroui/react";
+// Removed Hero UI imports - using standard HTML elements instead
 import { FaTimes, FaBars, FaPlay, FaPause } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import MagneticButton from "./common/MagneticButton";
+import { useThreeD } from "../contexts/ThreeDContext";
 
 const Navbar = () => {
   const location = useLocation();
+  const { is3DEnabled } = useThreeD();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
@@ -119,8 +114,13 @@ const Navbar = () => {
     },
   };
 
+  // Hide navbar when 3D mode is enabled
+  if (is3DEnabled) {
+    return null;
+  }
+
   return (
-    <NextNavbar className="py-2 sm:py-4 px-3 sm:px-8 fixed w-full top-0 z-50 bg-transparent">
+    <nav className="py-2 sm:py-4 px-3 sm:px-8 fixed w-full top-0 z-50 bg-transparent">
       <div className="max-w-[1920px] w-full mx-auto">
         <motion.div
           className="relative rounded-full px-3 sm:px-6 py-2 sm:py-3 flex justify-between items-center"
@@ -143,7 +143,7 @@ const Navbar = () => {
               animate="visible"
               className="flex items-center"
             >
-              <NavbarBrand className="gap-1 sm:gap-2 md:gap-4">
+              <div className="flex items-center gap-1 sm:gap-2 md:gap-4">
                 <Link to="/">
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
@@ -168,15 +168,13 @@ const Navbar = () => {
                     Pratik<span className="text-[#915EFF]">.dev</span>
                   </motion.p>
                 </Link>
-              </NavbarBrand>
+              </div>
             </motion.div>
 
             {/* Mobile Menu Button */}
-            <NavbarItem className="md:hidden">
-              <Button
-                isIconOnly
-                variant="light"
-                className="bg-transparent hover:bg-[#915EFF]/20 p-1.5 sm:p-2 rounded-full border border-[#915EFF]/30"
+            <div className="md:hidden">
+              <button
+                className="bg-transparent hover:bg-[#915EFF]/20 p-1.5 sm:p-2 rounded-full border border-[#915EFF]/30 transition-colors duration-200"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
                 {isMobileMenuOpen ? (
@@ -184,8 +182,8 @@ const Navbar = () => {
                 ) : (
                   <FaBars className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 )}
-              </Button>
-            </NavbarItem>
+              </button>
+            </div>
 
             {/* Desktop Navigation */}
             <motion.div
@@ -202,10 +200,13 @@ const Navbar = () => {
                   { path: "/contact", label: "Contact" },
                 ].map((item) => (
                   <motion.div key={item.path} variants={itemVariants}>
-                    <NavbarItem isActive={location.pathname === item.path}>
+                    <div
+                      className={
+                        location.pathname === item.path ? "active" : ""
+                      }
+                    >
                       <MagneticButton strength={0.15} scale={1.02}>
-                        <NextLink
-                          as={Link}
+                        <Link
                           to={item.path}
                           className={`text-base md:text-lg font-medium transition-all duration-300 relative group px-4 py-2 rounded-full ${
                             location.pathname === item.path
@@ -226,9 +227,9 @@ const Navbar = () => {
                             />
                           )}
                           <motion.div className="absolute inset-0 bg-[#915EFF]/10 rounded-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        </NextLink>
+                        </Link>
                       </MagneticButton>
-                    </NavbarItem>
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -242,9 +243,7 @@ const Navbar = () => {
               className="hidden md:flex items-center"
             >
               <MagneticButton strength={0.2} scale={1.1}>
-                <Button
-                  isIconOnly
-                  variant="light"
+                <button
                   className="bg-[#915EFF]/10 hover:bg-[#915EFF]/20 p-2 rounded-full border border-[#915EFF]/30 transition-all duration-300"
                   onClick={toggleMusic}
                 >
@@ -253,7 +252,7 @@ const Navbar = () => {
                   ) : (
                     <FaPlay className="w-5 h-5 text-white" />
                   )}
-                </Button>
+                </button>
               </MagneticButton>
             </motion.div>
           </div>
@@ -293,10 +292,8 @@ const Navbar = () => {
 
               {/* Music Control in Mobile Menu */}
               <div className="mt-4 flex justify-center">
-                <Button
-                  isIconOnly
-                  variant="light"
-                  className="bg-[#915EFF]/10 hover:bg-[#915EFF]/20 p-3 rounded-full border border-[#915EFF]/30"
+                <button
+                  className="bg-[#915EFF]/10 hover:bg-[#915EFF]/20 p-3 rounded-full border border-[#915EFF]/30 transition-colors duration-200"
                   onClick={toggleMusic}
                 >
                   {isPlaying ? (
@@ -304,13 +301,13 @@ const Navbar = () => {
                   ) : (
                     <FaPlay className="w-6 h-6 text-white" />
                   )}
-                </Button>
+                </button>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </NextNavbar>
+    </nav>
   );
 };
 

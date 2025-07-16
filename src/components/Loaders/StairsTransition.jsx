@@ -16,12 +16,12 @@ const StairsTransition = () => {
     // Start closing animation after opening completes
     const closingTimer = setTimeout(() => {
       setIsClosing(true);
-    }, 1000); // Time for opening animation to complete
+    }, 500); // Balanced timing for smooth opening
 
     // Hide after closing animation completes
     const hideTimer = setTimeout(() => {
       setIsVisible(false);
-    }, 2000); // Total time for both opening and closing animations
+    }, 1000); // Balanced total animation time
 
     return () => {
       clearTimeout(closingTimer);

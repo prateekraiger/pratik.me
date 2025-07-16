@@ -13,8 +13,8 @@ const Contact = lazy(() => import("../../Pages/Contact"));
 const pageVariants = {
   initial: {
     opacity: 0,
-    y: 20,
-    scale: 0.98,
+    y: 15,
+    scale: 0.99,
   },
   in: {
     opacity: 1,
@@ -23,18 +23,18 @@ const pageVariants = {
   },
   out: {
     opacity: 0,
-    y: -20,
-    scale: 1.02,
+    y: -15,
+    scale: 1.01,
   },
 };
 
-// Smoother transition configuration
+// Smoother transition configuration with no delay
 const pageTransition = {
   type: "spring",
-  stiffness: 300,
-  damping: 30,
-  mass: 0.8,
-  delay: 0.1,
+  stiffness: 400,
+  damping: 25,
+  mass: 0.6,
+  duration: 0.3,
 };
 
 const AnimatedRoutes = () => {

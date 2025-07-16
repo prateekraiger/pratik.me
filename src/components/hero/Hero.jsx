@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,13 +8,17 @@ import CardSwap, { ProjectCard } from "./CardSwap";
 import AnimatedText from "../common/AnimatedText";
 import ScrollReveal from "../common/ScrollReveal";
 import MagneticButton from "../common/MagneticButton";
+import { ApplePratikEffect } from "../ui/apple-hello-effect";
+import { useThreeD } from "../../contexts/ThreeDContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
+  const { is3DEnabled } = useThreeD();
   const heroRef = useRef(null);
   const titleRef = useRef(null);
   const statsRef = useRef(null);
+  const [showAppleEffect, setShowAppleEffect] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -55,7 +59,15 @@ const Hero = () => {
       });
     }, heroRef);
 
-    return () => ctx.revert();
+    // Trigger Apple effect after initial load
+    const timer = setTimeout(() => {
+      setShowAppleEffect(true);
+    }, 1500);
+
+    return () => {
+      ctx.revert();
+      clearTimeout(timer);
+    };
   }, []);
 
   const projects = [
@@ -107,18 +119,51 @@ const Hero = () => {
             </div>
 
             {/* Main Heading */}
-            <motion.h1
-              ref={titleRef}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight tracking-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            >
-              Hi, I'm{" "}
-              <span className="bg-gradient-to-r from-[#915EFF] to-[#7C3AED] bg-clip-text text-transparent inline-block">
-                Prateek Raiger
-              </span>
-            </motion.h1>
+            <div className="mb-4 sm:mb-6">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight"
+              >
+                Hi, I'm
+              </motion.div>
+
+              {/* Apple Hello Effect for name */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{
+                  opacity: showAppleEffect ? 1 : 0,
+                  scale: showAppleEffect ? 1 : 0.9,
+                }}
+                transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                className="mt-2"
+              >
+                {showAppleEffect && (
+                  <ApplePratikEffect
+                    speed={is3DEnabled ? 1.2 : 1.0}
+                    className="text-[#915EFF] h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-full max-w-4xl"
+                    onAnimationComplete={() => {
+                      // Optional: Add any completion logic here
+                    }}
+                  />
+                )}
+              </motion.div>
+
+              {/* Fallback text if Apple effect hasn't loaded yet */}
+              {!showAppleEffect && (
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: showAppleEffect ? 0 : 1 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight"
+                >
+                  <span className="bg-gradient-to-r from-[#915EFF] to-[#7C3AED] bg-clip-text text-transparent inline-block">
+                    Prateek Raiger
+                  </span>
+                </motion.div>
+              )}
+            </div>
 
             {/* Description */}
             <ScrollReveal animation="fadeUp" delay={0.7}>

@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { FloatingPathsBg } from "../components/ui/floating-paths-bg";
-import {
-  ApplePratikEffect,
-  AppleRaigerEffect,
-} from "../components/ui/apple-hello-effect";
+import { ApplePratikEffect } from "../components/ui/apple-hello-effect";
 import { DotLoader } from "../components/ui/dot-loader";
 import { HomeBg, GlobalStylesAndKeyframes } from "../components/ui/HomeBg";
 import { useThreeD } from "../contexts/ThreeDContext";
@@ -63,13 +60,9 @@ const Home = () => {
                     Hi, I'm
                   </h1>
 
-                  {/* Apple Hello Effect - Pratik Raiger */}
+                  {/* Apple Hello Effect - Pratik only */}
                   <div className="w-full flex flex-row items-center -mt-2 -space-x-4">
                     <ApplePratikEffect
-                      className="text-white opacity-90 hover:opacity-100 transition-opacity duration-300 scale-75 md:scale-90 lg:scale-100 origin-left"
-                      speed={0.8}
-                    />
-                    <AppleRaigerEffect
                       className="text-white opacity-90 hover:opacity-100 transition-opacity duration-300 scale-75 md:scale-90 lg:scale-100 origin-left"
                       speed={0.8}
                     />

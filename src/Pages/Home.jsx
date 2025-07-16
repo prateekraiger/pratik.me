@@ -6,6 +6,8 @@ import { DotLoaderDemo } from "../components/ui/dot-loader";
 import { HomeBg, GlobalStylesAndKeyframes } from "../components/ui/HomeBg";
 import { useThreeD } from "../contexts/ThreeDContext";
 import Silk from "../components/ui/Silk";
+import MusicPlayer from "../components/music/MusicPlayer";
+import { MusicProvider } from "../components/music/MusicContext";
 
 const Home = () => {
   const { setPage, is3DEnabled } = useThreeD();
@@ -66,70 +68,160 @@ const Home = () => {
                     : ""
                 }`}
               >
-                {/* Main Heading */}
+                {/* Main Heading - Different for 3D */}
                 <div className="space-y-4">
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-                    Hi, I'm
-                  </h1>
-
-                  {/* Apple Hello Effect - Pratik only */}
-                  <div className="w-full flex flex-row items-center -mt-2 -space-x-4">
-                    <ApplePratikEffect
-                      className="text-white opacity-90 hover:opacity-100 transition-opacity duration-300 scale-75 md:scale-90 lg:scale-100 origin-left"
-                      speed={0.8}
-                    />
-                  </div>
-
-                  <p className="text-xl md:text-2xl text-gray-300 font-light mt-4">
-                    Full Stack Developer & UI/UX Designer
-                  </p>
+                  {is3DEnabled ? (
+                    <>
+                      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent leading-tight">
+                        Welcome to
+                      </h1>
+                      <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                        The Future
+                      </h2>
+                      <p className="text-xl md:text-2xl bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent font-light mt-4">
+                        Immersive Digital Experiences
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                        Hi, I'm
+                      </h1>
+                      {/* Apple Hello Effect - Pratik only */}
+                      <div className="w-full flex flex-row items-center -mt-2 -space-x-4">
+                        <ApplePratikEffect
+                          className="text-white opacity-90 hover:opacity-100 transition-opacity duration-300 scale-75 md:scale-90 lg:scale-100 origin-left"
+                          speed={0.8}
+                        />
+                      </div>
+                      <p className="text-xl md:text-2xl text-gray-300 font-light mt-4">
+                        Full Stack Developer & UI/UX Designer
+                      </p>
+                    </>
+                  )}
                 </div>
 
-                {/* Description */}
+                {/* Description - Different for 3D */}
                 <p className="text-lg text-gray-400 leading-relaxed max-w-lg">
-                  I create beautiful, functional, and user-centered digital
-                  experiences. Passionate about turning ideas into reality
-                  through clean code and thoughtful design.
+                  {is3DEnabled
+                    ? "Step into a world where creativity meets technology. Experience interactive design, immersive visuals, and cutting-edge development in a whole new dimension."
+                    : "I create beautiful, functional, and user-centered digital experiences. Passionate about turning ideas into reality through clean code and thoughtful design."}
                 </p>
 
-                {/* CTA Buttons */}
+                {/* CTA Buttons - Different for 3D */}
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <button
-                    onClick={handleViewWork}
-                    className="px-8 py-4 bg-[#915EFF] text-white font-semibold rounded-lg hover:bg-[#7b4ed9] transition-colors duration-200 shadow-lg hover:shadow-[#915EFF]/25 hover:scale-105 transform cursor-pointer"
-                  >
-                    View My Work
-                  </button>
+                  {is3DEnabled ? (
+                    <>
+                      <button
+                        onClick={handleViewWork}
+                        className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold rounded-lg hover:from-cyan-400 hover:to-purple-400 transition-all duration-200 shadow-lg hover:shadow-cyan-400/25 hover:scale-105 transform cursor-pointer"
+                      >
+                        Explore Portfolio
+                      </button>
 
-                  <button
-                    onClick={handleGetInTouch}
-                    className="px-8 py-4 border-2 border-[#915EFF] text-[#915EFF] font-semibold rounded-lg hover:bg-[#915EFF] hover:text-white transition-all duration-200 hover:scale-105 transform cursor-pointer"
-                  >
-                    Get In Touch
-                  </button>
+                      <button
+                        onClick={handleGetInTouch}
+                        className="px-8 py-4 border-2 border-gradient-to-r from-cyan-400 to-purple-400 bg-gradient-to-r from-cyan-400/10 to-purple-400/10 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 font-semibold rounded-lg hover:bg-gradient-to-r hover:from-cyan-400/20 hover:to-purple-400/20 transition-all duration-200 hover:scale-105 transform cursor-pointer border-cyan-400"
+                      >
+                        Connect
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        onClick={handleViewWork}
+                        className="px-8 py-4 bg-[#915EFF] text-white font-semibold rounded-lg hover:bg-[#7b4ed9] transition-colors duration-200 shadow-lg hover:shadow-[#915EFF]/25 hover:scale-105 transform cursor-pointer"
+                      >
+                        View My Work
+                      </button>
+
+                      <button
+                        onClick={handleGetInTouch}
+                        className="px-8 py-4 border-2 border-[#915EFF] text-[#915EFF] font-semibold rounded-lg hover:bg-[#915EFF] hover:text-white transition-all duration-200 hover:scale-105 transform cursor-pointer"
+                      >
+                        Get In Touch
+                      </button>
+                    </>
+                  )}
                 </div>
 
-                {/* Stats or Skills */}
-                <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-800">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-[#915EFF]">3+</div>
-                    <div className="text-sm text-gray-400">
-                      Years Experience
+                {/* Stats or Skills - Different for 3D */}
+                {!is3DEnabled ? (
+                  <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-800">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-[#915EFF]">
+                        3+
+                      </div>
+                      <div className="text-sm text-gray-400">
+                        Years Experience
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-[#915EFF]">
+                        50+
+                      </div>
+                      <div className="text-sm text-gray-400">Projects Done</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-[#915EFF]">
+                        100%
+                      </div>
+                      <div className="text-sm text-gray-400">
+                        Client Satisfaction
+                      </div>
                     </div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-[#915EFF]">50+</div>
-                    <div className="text-sm text-gray-400">Projects Done</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-[#915EFF]">
-                      100%
+                ) : (
+                  <div className="pt-8 space-y-6">
+                    {/* Futuristic Tech Stack */}
+                    <div className="border-t border-gradient-to-r from-cyan-400/20 via-purple-400/20 to-pink-400/20 pt-6">
+                      <h3 className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-4">
+                        Technology Stack
+                      </h3>
+                      <div className="flex flex-wrap gap-3">
+                        {[
+                          "React",
+                          "Next.js",
+                          "Three.js",
+                          "Node.js",
+                          "TypeScript",
+                          "WebGL",
+                        ].map((tech, index) => (
+                          <div
+                            key={tech}
+                            className="px-4 py-2 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 backdrop-blur-sm border border-cyan-400/30 rounded-full text-sm text-cyan-300 hover:from-cyan-500/20 hover:to-purple-500/20 transition-all duration-300 hover:scale-105 cursor-default"
+                            style={{
+                              animationDelay: `${index * 0.1}s`,
+                              animation: "fadeInUp 0.6s ease-out forwards",
+                            }}
+                          >
+                            {tech}
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className="text-sm text-gray-400">
-                      Client Satisfaction
+
+                    {/* Interactive Elements */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-gradient-to-br from-cyan-500/10 to-purple-500/10 backdrop-blur-sm border border-cyan-400/20 rounded-xl p-4 hover:from-cyan-500/20 hover:to-purple-500/20 transition-all duration-300 hover:scale-105 cursor-default">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
+                          <span className="text-sm text-gray-300">
+                            System Online
+                          </span>
+                        </div>
+                      </div>
+                      <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-purple-400/20 rounded-xl p-4 hover:from-purple-500/20 hover:to-pink-500/20 transition-all duration-300 hover:scale-105 cursor-default">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-3 h-3 bg-cyan-400 rounded-full animate-ping shadow-lg shadow-cyan-400/50"></div>
+                          <span className="text-sm text-gray-300">
+                            Ready to Code
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </motion.div>
 
               {/* Right Side - Conditional Content */}
@@ -147,41 +239,18 @@ const Home = () => {
                     </div>
                   </motion.div>
                 ) : (
-                  /* 3D Mode - Glass Effect Interactive Card */
+                  /* 3D Mode - Music Player */
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="w-full h-96 flex flex-col items-center justify-center space-y-6"
+                    className="w-full flex items-center justify-center mt-8 lg:mt-0"
                   >
-                    <div className="bg-black/20 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl shadow-black/50 w-full">
-                      <div className="flex flex-col items-center justify-between h-full min-h-[300px]">
-                        {/* Heading at Top */}
-                        <h3 className="text-xl font-semibold text-white text-center">
-                          3D Experience
-                        </h3>
-
-                        {/* Interactive Visual Element */}
-                        <div className="flex-1 flex items-center justify-center">
-                          <div className="relative">
-                            {/* Animated rings */}
-                            <div className="w-32 h-32 relative">
-                              <div className="absolute inset-0 border-2 border-[#915EFF]/30 rounded-full animate-pulse"></div>
-                              <div className="absolute inset-2 border-2 border-[#7B7481]/40 rounded-full animate-ping"></div>
-                              <div className="absolute inset-4 border-2 border-white/20 rounded-full animate-spin"></div>
-                              <div className="absolute inset-8 bg-gradient-to-br from-[#915EFF]/20 to-[#7B7481]/20 rounded-full flex items-center justify-center">
-                                <div className="w-8 h-8 bg-[#915EFF] rounded-full animate-bounce shadow-lg shadow-[#915EFF]/50"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Subheading at Bottom */}
-                        <p className="text-sm text-gray-300 text-center">
-                          Immersive visual experience
-                        </p>
+                    <MusicProvider audioSrc="/loop.mp3">
+                      <div className="scale-75 sm:scale-90 lg:scale-100">
+                        <MusicPlayer />
                       </div>
-                    </div>
+                    </MusicProvider>
                   </motion.div>
                 )}
               </div>

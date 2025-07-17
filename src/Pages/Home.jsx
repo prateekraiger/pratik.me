@@ -55,15 +55,15 @@ const Home = () => {
         {/* Main Content */}
         <div className="relative z-10 h-full flex items-center">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
               {/* Left Side - Text Content */}
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 className={`space-y-8 ${
                   is3DEnabled
-                    ? "bg-black/20 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl shadow-black/50"
+                    ? "bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-10 shadow-2xl"
                     : ""
                 }`}
               >
@@ -72,13 +72,13 @@ const Home = () => {
                   {is3DEnabled ? (
                     <>
                       <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent leading-tight">
-                        Welcome to
+                        Crafting Digital
                       </h1>
                       <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                        The Future
+                        Masterpieces
                       </h2>
                       <p className="text-xl md:text-2xl bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent font-light mt-4">
-                        Immersive Digital Experiences
+                        Where Innovation Meets Artistry
                       </p>
                     </>
                   ) : (
@@ -103,7 +103,7 @@ const Home = () => {
                 {/* Description - Different for 3D */}
                 <p className="text-lg text-gray-400 leading-relaxed max-w-lg">
                   {is3DEnabled
-                    ? "Step into a world where creativity meets technology. Experience interactive design, immersive visuals, and cutting-edge development in a whole new dimension."
+                    ? "Transforming ideas into immersive digital realities. I blend cutting-edge technology with creative vision to build experiences that captivate, inspire, and push the boundaries of what's possible on the web."
                     : "I create beautiful, functional, and user-centered digital experiences. Passionate about turning ideas into reality through clean code and thoughtful design."}
                 </p>
 
@@ -113,16 +113,46 @@ const Home = () => {
                     <>
                       <button
                         onClick={handleViewWork}
-                        className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold rounded-lg hover:from-cyan-400 hover:to-purple-400 transition-all duration-200 shadow-lg hover:shadow-cyan-400/25 hover:scale-105 transform cursor-pointer"
+                        className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold rounded-xl hover:from-cyan-400 hover:to-purple-400 transition-all duration-300 shadow-lg hover:shadow-cyan-400/25 hover:scale-105 transform cursor-pointer relative overflow-hidden group"
                       >
-                        Explore Portfolio
+                        <span className="relative z-10 flex items-center justify-center gap-2">
+                          <span>Launch Experience</span>
+                          <svg
+                            className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M13 7l5 5m0 0l-5 5m5-5H6"
+                            />
+                          </svg>
+                        </span>
                       </button>
 
                       <button
                         onClick={handleGetInTouch}
-                        className="px-8 py-4 border-2 border-gradient-to-r from-cyan-400 to-purple-400 bg-gradient-to-r from-cyan-400/10 to-purple-400/10 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 font-semibold rounded-lg hover:bg-gradient-to-r hover:from-cyan-400/20 hover:to-purple-400/20 transition-all duration-200 hover:scale-105 transform cursor-pointer border-cyan-400"
+                        className="px-8 py-4 border-2 border-cyan-400/50 bg-cyan-400/10 text-cyan-300 font-semibold rounded-xl hover:bg-cyan-400/20 hover:border-cyan-400 transition-all duration-300 hover:scale-105 transform cursor-pointer relative overflow-hidden group"
                       >
-                        Connect
+                        <span className="relative z-10 flex items-center justify-center gap-2">
+                          <span>Start Collaboration</span>
+                          <svg
+                            className="w-4 h-4 transition-transform group-hover:scale-110"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                            />
+                          </svg>
+                        </span>
                       </button>
                     </>
                   ) : (
@@ -144,7 +174,7 @@ const Home = () => {
                   )}
                 </div>
 
-                {/* Stats or Skills - Different for 3D */}
+                {/* Simple Skills Section */}
                 {!is3DEnabled ? (
                   <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-800">
                     <div className="text-center">
@@ -171,53 +201,29 @@ const Home = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="pt-8 space-y-6">
-                    {/* Futuristic Tech Stack */}
-                    <div className="border-t border-gradient-to-r from-cyan-400/20 via-purple-400/20 to-pink-400/20 pt-6">
-                      <h3 className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-4">
-                        Technology Stack
-                      </h3>
-                      <div className="flex flex-wrap gap-3">
-                        {[
-                          "React",
-                          "Next.js",
-                          "Three.js",
-                          "Node.js",
-                          "TypeScript",
-                          "WebGL",
-                        ].map((tech, index) => (
-                          <div
-                            key={tech}
-                            className="px-4 py-2 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 backdrop-blur-sm border border-cyan-400/30 rounded-full text-sm text-cyan-300 hover:from-cyan-500/20 hover:to-purple-500/20 transition-all duration-300 hover:scale-105 cursor-default"
-                            style={{
-                              animationDelay: `${index * 0.1}s`,
-                              animation: "fadeInUp 0.6s ease-out forwards",
-                            }}
-                          >
-                            {tech}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Interactive Elements */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-gradient-to-br from-cyan-500/10 to-purple-500/10 backdrop-blur-sm border border-cyan-400/20 rounded-xl p-4 hover:from-cyan-500/20 hover:to-purple-500/20 transition-all duration-300 hover:scale-105 cursor-default">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
-                          <span className="text-sm text-gray-300">
-                            System Online
-                          </span>
-                        </div>
-                      </div>
-                      <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-purple-400/20 rounded-xl p-4 hover:from-purple-500/20 hover:to-pink-500/20 transition-all duration-300 hover:scale-105 cursor-default">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-3 h-3 bg-cyan-400 rounded-full animate-ping shadow-lg shadow-cyan-400/50"></div>
-                          <span className="text-sm text-gray-300">
-                            Ready to Code
-                          </span>
-                        </div>
-                      </div>
+                  <div className="pt-6 border-t border-white/10">
+                    <div className="flex flex-wrap gap-3">
+                      {[
+                        "React",
+                        "Next.js",
+                        "Three.js",
+                        "Node.js",
+                        "TypeScript",
+                        "WebGL",
+                      ].map((tech, index) => (
+                        <motion.span
+                          key={tech}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{
+                            duration: 0.3,
+                            delay: index * 0.1 + 0.8,
+                          }}
+                          className="px-4 py-2 bg-white/10 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/20 transition-all duration-200"
+                        >
+                          {tech}
+                        </motion.span>
+                      ))}
                     </div>
                   </div>
                 )}
@@ -238,62 +244,29 @@ const Home = () => {
                   </motion.div>
                 ) : (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
-                    animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                    transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-                    className="w-full max-w-[800px] h-[600px] flex items-center justify-center mt-8 lg:mt-0 mx-auto relative"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="w-full h-[600px] bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-10 shadow-2xl flex items-center justify-center"
                   >
-                    {/* Holographic frame effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl animate-pulse"></div>
-                    <div className="absolute inset-2 bg-gradient-to-br from-cyan-400/10 via-purple-400/10 to-pink-400/10 rounded-2xl backdrop-blur-xl border border-gradient-to-r from-cyan-400/30 via-purple-400/30 to-pink-400/30 shadow-2xl shadow-cyan-500/20">
-                      {/* Corner accents */}
-                      <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-cyan-400 rounded-tl-lg"></div>
-                      <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-purple-400 rounded-tr-lg"></div>
-                      <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-purple-400 rounded-bl-lg"></div>
-                      <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-pink-400 rounded-br-lg"></div>
-
-                      {/* Status indicators */}
-                      <div className="absolute top-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
-                        <div className="w-2 h-2 bg-cyan-400 rounded-full animate-ping shadow-lg shadow-cyan-400/50"></div>
-                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse shadow-lg shadow-purple-400/50"></div>
-                      </div>
-
-                      {/* Model viewer container */}
-                      <div className="w-full h-full flex items-center justify-center p-4">
-                        <ModelViewer
-                          url="/public/laptop.glb"
-                          width={750}
-                          height={550}
-                          defaultZoom={1.5}
-                          minZoomDistance={0.8}
-                          maxZoomDistance={8}
-                          modelScale={3.5}
-                          autoRotate={true}
-                          autoRotateSpeed={0.3}
-                          environmentPreset="city"
-                          ambientIntensity={0.4}
-                          keyLightIntensity={1.2}
-                          fillLightIntensity={0.7}
-                          rimLightIntensity={1.0}
-                          fadeIn={true}
-                        />
-                      </div>
-
-                      {/* Interactive UI elements */}
-                      <div className="absolute bottom-6 left-6 right-6 flex justify-between items-center">
-                        <div className="flex space-x-4">
-                          <div className="px-3 py-1 bg-cyan-500/20 border border-cyan-400/30 rounded-full text-xs text-cyan-300 backdrop-blur-sm">
-                            3D Model
-                          </div>
-                          <div className="px-3 py-1 bg-purple-500/20 border border-purple-400/30 rounded-full text-xs text-purple-300 backdrop-blur-sm">
-                            Interactive
-                          </div>
-                        </div>
-                        <div className="text-xs text-gray-400 font-mono">
-                          WebGL 2.0
-                        </div>
-                      </div>
+                    <div className="w-full h-full flex items-center justify-center">
+                      <ModelViewer
+                        url="/public/laptop.glb"
+                        width={480}
+                        height={480}
+                        defaultZoom={2.5}
+                        minZoomDistance={1.5}
+                        maxZoomDistance={6}
+                        modelScale={2.5}
+                        autoRotate={true}
+                        autoRotateSpeed={0.2}
+                        environmentPreset="city"
+                        ambientIntensity={0.6}
+                        keyLightIntensity={1.0}
+                        fillLightIntensity={0.8}
+                        rimLightIntensity={0.9}
+                        fadeIn={true}
+                      />
                     </div>
                   </motion.div>
                 )}

@@ -97,11 +97,11 @@ const SilkPlane = forwardRef(function SilkPlane({ uniforms }, ref) {
 SilkPlane.displayName = "SilkPlane";
 
 const Silk = ({
-  speed = 5,
-  scale = 1,
+  speed = 8,
+  scale = 2,
   color = "#7B7481",
-  noiseIntensity = 1.5,
-  rotation = 0,
+  noiseIntensity = 2.5,
+  rotation = 0.5,
 }) => {
   const meshRef = useRef();
 

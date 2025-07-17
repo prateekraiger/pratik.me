@@ -3,10 +3,14 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import ContactSvg from "../components/ContactSvg";
 import Title from "../components/common/Title";
+import { useThreeD } from "../contexts/ThreeDContext";
 
 const Contact = () => {
+  const { is3DEnabled } = useThreeD();
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [form2D, setForm2D] = useState({ name: "", email: "", message: "" });
+  const [focus, setFocus] = useState({});
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -33,6 +37,59 @@ const Contact = () => {
           setError(true);
         }
       );
+  };
+
+  // Handlers for 2D form
+  const handleChange2D = (e) => {
+    setForm2D({ ...form2D, [e.target.name]: e.target.value });
+  };
+
+  const handleFocus = (field) => setFocus({ ...focus, [field]: true });
+  const handleBlur = (field) => setFocus({ ...focus, [field]: false });
+
+  const handleSubmit2D = (e) => {
+    e.preventDefault();
+    setSuccess(false);
+    setError(false);
+
+    // Create a temporary form element for EmailJS
+    const tempForm = document.createElement("form");
+    tempForm.innerHTML = `
+      <input name="name" value="${form2D.name}" />
+      <input name="email" value="${form2D.email}" />
+      <input name="message" value="${form2D.message}" />
+    `;
+
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
+        tempForm,
+        {
+          publicKey: import.meta.env.VITE_PUBLIC_KEY,
+        }
+      )
+      .then(
+        () => {
+          setSuccess(true);
+          setForm2D({ name: "", email: "", message: "" });
+        },
+        (error) => {
+          console.log("EMAILJS ERROR:", error);
+          setError(true);
+        }
+      );
+  };
+
+  // Animation variants for 2D version
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  const inputVariants = {
+    focus: { scale: 1.03, boxShadow: "0 0 0 2px #6366f1" },
+    rest: { scale: 1, boxShadow: "0 0 0 0px #6366f1" },
   };
 
   return (

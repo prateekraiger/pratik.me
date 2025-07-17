@@ -6,8 +6,6 @@ import { DotLoaderDemo } from "../components/ui/dot-loader";
 import { HomeBg, GlobalStylesAndKeyframes } from "../components/ui/HomeBg";
 import { useThreeD } from "../contexts/ThreeDContext";
 import Silk from "../components/ui/Silk";
-import MusicPlayer from "../components/music/MusicPlayer";
-import { MusicProvider } from "../components/music/MusicContext";
 
 const Home = () => {
   const { setPage, is3DEnabled } = useThreeD();
@@ -226,33 +224,17 @@ const Home = () => {
 
               {/* Right Side - Conditional Content */}
               <div className="lg:block">
-                {!is3DEnabled ? (
-                  /* 2D Mode - Show DotLoader Animation */
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="w-full h-64 sm:h-80 lg:h-96 flex items-center justify-center mt-8 lg:mt-0"
-                  >
-                    <div className="scale-[1.5] sm:scale-[1.75] lg:scale-[2]">
-                      <DotLoaderDemo />
-                    </div>
-                  </motion.div>
-                ) : (
-                  /* 3D Mode - Music Player */
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="w-full flex items-center justify-center mt-8 lg:mt-0"
-                  >
-                    <MusicProvider audioSrc="/loop.mp3">
-                      <div className="scale-75 sm:scale-90 lg:scale-100">
-                        <MusicPlayer />
-                      </div>
-                    </MusicProvider>
-                  </motion.div>
-                )}
+                {/* Only show 2D Mode - DotLoader Animation for now */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="w-full h-64 sm:h-80 lg:h-96 flex items-center justify-center mt-8 lg:mt-0"
+                >
+                  <div className="scale-[1.5] sm:scale-[1.75] lg:scale-[2]">
+                    <DotLoaderDemo />
+                  </div>
+                </motion.div>
               </div>
             </div>
           </div>

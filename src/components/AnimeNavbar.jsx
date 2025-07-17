@@ -167,7 +167,7 @@ const AnimeNavbar = () => {
                         filter: "drop-shadow(0 0 20px rgba(145, 94, 255, 0.8))",
                       }}
                       whileTap={{ scale: 0.95 }}
-                      className="relative cursor-pointer"
+                      className="relative cursor-pointer -ml-1"
                       animate={{
                         y: [0, -2, 0],
                         filter: [

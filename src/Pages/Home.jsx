@@ -238,23 +238,62 @@ const Home = () => {
                   </motion.div>
                 ) : (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="w-[950px] h-[950px] flex items-center justify-center mt-8 lg:mt-0 mx-auto"
+                    initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
+                    animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                    transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+                    className="w-full max-w-[800px] h-[600px] flex items-center justify-center mt-8 lg:mt-0 mx-auto relative"
                   >
-                    <div className="w-full h-full bg-black/10 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden flex items-center justify-center">
-                      <ModelViewer
-                        url="/public/laptop.glb"
-                        width={900}
-                        height={900}
-                        defaultZoom={1.3}
-                        minZoomDistance={0.5}
-                        maxZoomDistance={10}
-                        modelScale={3}
-                        autoRotate={true}
-                        autoRotateSpeed={0.5}
-                      />
+                    {/* Holographic frame effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-xl animate-pulse"></div>
+                    <div className="absolute inset-2 bg-gradient-to-br from-cyan-400/10 via-purple-400/10 to-pink-400/10 rounded-2xl backdrop-blur-xl border border-gradient-to-r from-cyan-400/30 via-purple-400/30 to-pink-400/30 shadow-2xl shadow-cyan-500/20">
+                      {/* Corner accents */}
+                      <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-cyan-400 rounded-tl-lg"></div>
+                      <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-purple-400 rounded-tr-lg"></div>
+                      <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-purple-400 rounded-bl-lg"></div>
+                      <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-pink-400 rounded-br-lg"></div>
+
+                      {/* Status indicators */}
+                      <div className="absolute top-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
+                        <div className="w-2 h-2 bg-cyan-400 rounded-full animate-ping shadow-lg shadow-cyan-400/50"></div>
+                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse shadow-lg shadow-purple-400/50"></div>
+                      </div>
+
+                      {/* Model viewer container */}
+                      <div className="w-full h-full flex items-center justify-center p-4">
+                        <ModelViewer
+                          url="/public/laptop.glb"
+                          width={750}
+                          height={550}
+                          defaultZoom={1.5}
+                          minZoomDistance={0.8}
+                          maxZoomDistance={8}
+                          modelScale={3.5}
+                          autoRotate={true}
+                          autoRotateSpeed={0.3}
+                          environmentPreset="city"
+                          ambientIntensity={0.4}
+                          keyLightIntensity={1.2}
+                          fillLightIntensity={0.7}
+                          rimLightIntensity={1.0}
+                          fadeIn={true}
+                        />
+                      </div>
+
+                      {/* Interactive UI elements */}
+                      <div className="absolute bottom-6 left-6 right-6 flex justify-between items-center">
+                        <div className="flex space-x-4">
+                          <div className="px-3 py-1 bg-cyan-500/20 border border-cyan-400/30 rounded-full text-xs text-cyan-300 backdrop-blur-sm">
+                            3D Model
+                          </div>
+                          <div className="px-3 py-1 bg-purple-500/20 border border-purple-400/30 rounded-full text-xs text-purple-300 backdrop-blur-sm">
+                            Interactive
+                          </div>
+                        </div>
+                        <div className="text-xs text-gray-400 font-mono">
+                          WebGL 2.0
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 )}

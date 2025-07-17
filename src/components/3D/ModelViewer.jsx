@@ -418,16 +418,37 @@ const ModelViewer = ({
           <Environment preset={environmentPreset} background={false} />
         )}
         <ambientLight intensity={ambientIntensity} />
+
+        {/* Enhanced lighting setup */}
         <directionalLight
           position={[5, 5, 5]}
           intensity={keyLightIntensity}
           castShadow
+          shadow-mapSize-width={2048}
+          shadow-mapSize-height={2048}
         />
         <directionalLight
           position={[-5, 2, 5]}
           intensity={fillLightIntensity}
+          color="#4f46e5"
         />
-        <directionalLight position={[0, 4, -5]} intensity={rimLightIntensity} />
+        <directionalLight
+          position={[0, 4, -5]}
+          intensity={rimLightIntensity}
+          color="#915EFF"
+        />
+
+        {/* Additional atmospheric lighting */}
+        <pointLight position={[10, 10, 10]} intensity={0.5} color="#00ffff" />
+        <pointLight position={[-10, -10, 5]} intensity={0.3} color="#ff00ff" />
+        <spotLight
+          position={[0, 10, 0]}
+          angle={0.3}
+          penumbra={1}
+          intensity={0.5}
+          color="#915EFF"
+          castShadow
+        />
         <ContactShadows
           ref={contactRef}
           position={[0, -0.5, 0]}

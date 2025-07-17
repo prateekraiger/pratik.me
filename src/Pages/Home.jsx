@@ -6,6 +6,7 @@ import { DotLoaderDemo } from "../components/ui/dot-loader";
 import { HomeBg, GlobalStylesAndKeyframes } from "../components/ui/HomeBg";
 import { useThreeD } from "../contexts/ThreeDContext";
 import Silk from "../components/ui/Silk";
+import ModelViewer from "../components/3D/ModelViewer";
 
 const Home = () => {
   const { setPage, is3DEnabled } = useThreeD();
@@ -224,17 +225,39 @@ const Home = () => {
 
               {/* Right Side - Conditional Content */}
               <div className="lg:block">
-                {/* Only show 2D Mode - DotLoader Animation for now */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="w-full h-64 sm:h-80 lg:h-96 flex items-center justify-center mt-8 lg:mt-0"
-                >
-                  <div className="scale-[1.5] sm:scale-[1.75] lg:scale-[2]">
-                    <DotLoaderDemo />
-                  </div>
-                </motion.div>
+                {!is3DEnabled ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="w-full h-64 sm:h-80 lg:h-96 flex items-center justify-center mt-8 lg:mt-0"
+                  >
+                    <div className="scale-[1.5] sm:scale-[1.75] lg:scale-[2]">
+                      <DotLoaderDemo />
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="w-[950px] h-[950px] flex items-center justify-center mt-8 lg:mt-0 mx-auto"
+                  >
+                    <div className="w-full h-full bg-black/10 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden flex items-center justify-center">
+                      <ModelViewer
+                        url="/public/laptop.glb"
+                        width={900}
+                        height={900}
+                        defaultZoom={1.3}
+                        minZoomDistance={0.5}
+                        maxZoomDistance={10}
+                        modelScale={3}
+                        autoRotate={true}
+                        autoRotateSpeed={0.5}
+                      />
+                    </div>
+                  </motion.div>
+                )}
               </div>
             </div>
           </div>

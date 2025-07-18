@@ -250,23 +250,40 @@ const Home = () => {
                     className="w-full h-[600px] bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-10 shadow-2xl flex items-center justify-center"
                   >
                     <div className="w-full h-full flex items-center justify-center">
-                      <ModelViewer
-                        url="/laptop.glb"
-                        width={600}
-                        height={600}
-                        defaultZoom={2.2}
-                        minZoomDistance={1.0}
-                        maxZoomDistance={6}
-                        modelScale={0.765}
-                        autoRotate={true}
-                        autoRotateSpeed={0.2}
-                        environmentPreset="city"
-                        ambientIntensity={0.6}
-                        keyLightIntensity={1.0}
-                        fillLightIntensity={0.8}
-                        rimLightIntensity={0.9}
-                        fadeIn={true}
-                      />
+                      <div
+                        style={{
+                          position: "relative",
+                          width: "100%",
+                          height: "100%",
+                        }}
+                      >
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: 20,
+                            left: 0,
+                            right: 0,
+                          }}
+                        >
+                          <ModelViewer
+                            url="/laptop.glb"
+                            width={600}
+                            height={600}
+                            defaultZoom={2.2}
+                            minZoomDistance={1.0}
+                            maxZoomDistance={6}
+                            modelScale={0.765}
+                            autoRotate={true}
+                            autoRotateSpeed={0.2}
+                            environmentPreset="city"
+                            ambientIntensity={0.6}
+                            keyLightIntensity={1.0}
+                            fillLightIntensity={0.8}
+                            rimLightIntensity={0.9}
+                            fadeIn={true}
+                          />
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 )}

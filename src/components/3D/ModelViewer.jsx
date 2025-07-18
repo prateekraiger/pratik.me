@@ -108,8 +108,8 @@ const ModelInner = ({
     // Center the model in all axes
     g.position.set(-sphere.center.x, -sphere.center.y, -sphere.center.z);
     // Fine-tune y centering so the laptop is perfectly centered
-    g.position.y += 0.1 * sphere.radius;
-    g.scale.setScalar(s * modelScale);
+    g.position.y = 0;
+    g.scale.setScalar(s * modelScale || 2);
     g.traverse((o) => {
       if (o.isMesh) {
         o.castShadow = true;
@@ -292,37 +292,14 @@ const ModelInner = ({
   }, [enableMouseParallax, enableHoverRotation]);
 
   useFrame((_, dt) => {
-    let need = false;
-    cPar.current.x += (tPar.current.x - cPar.current.x) * PARALLAX_EASE;
-    cPar.current.y += (tPar.current.y - cPar.current.y) * PARALLAX_EASE;
-    const phx = cHov.current.x,
-      phy = cHov.current.y;
-    cHov.current.x += (tHov.current.x - cHov.current.x) * HOVER_EASE;
-    cHov.current.y += (tHov.current.y - cHov.current.y) * HOVER_EASE;
-    const ndc = pivotW.current.clone().project(camera);
-    ndc.x += xOff + cPar.current.x;
-    ndc.y += yOff + cPar.current.y;
-    outer.current.position.copy(ndc.unproject(camera));
-    outer.current.rotation.x += cHov.current.x - phx;
-    outer.current.rotation.y += cHov.current.y - phy;
-    if (autoRotate) {
+    // Only rotate left/right (Y axis), keep X/Z axis fixed
+    if (autoRotate && outer.current) {
       outer.current.rotation.y += autoRotateSpeed * dt;
-      need = true;
+      outer.current.rotation.x = 0;
+      outer.current.rotation.z = 0;
+      outer.current.position.x = 0;
+      outer.current.position.z = 0;
     }
-    outer.current.rotation.y += vel.current.x;
-    outer.current.rotation.x += vel.current.y;
-    vel.current.x *= INERTIA;
-    vel.current.y *= INERTIA;
-    if (Math.abs(vel.current.x) > 1e-4 || Math.abs(vel.current.y) > 1e-4)
-      need = true;
-    if (
-      Math.abs(cPar.current.x - tPar.current.x) > 1e-4 ||
-      Math.abs(cPar.current.y - tPar.current.y) > 1e-4 ||
-      Math.abs(cHov.current.x - tHov.current.x) > 1e-4 ||
-      Math.abs(cHov.current.y - tHov.current.y) > 1e-4
-    )
-      need = true;
-    if (need) invalidate();
   });
 
   if (!content) return null;

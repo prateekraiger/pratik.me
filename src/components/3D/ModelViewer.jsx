@@ -53,19 +53,8 @@ const Loader = ({ placeholderSrc }) => {
 };
 
 const DesktopControls = ({ pivot, min, max, zoomEnabled }) => {
-  const ref = useRef(null);
-  useFrame(() => ref.current?.target.copy(pivot));
-  return (
-    <OrbitControls
-      ref={ref}
-      makeDefault
-      enablePan={false}
-      enableRotate={false}
-      enableZoom={zoomEnabled}
-      minDistance={min}
-      maxDistance={max}
-    />
-  );
+  // Remove OrbitControls for this usage
+  return null;
 };
 
 const ModelInner = ({
@@ -77,16 +66,16 @@ const ModelInner = ({
   initPitch,
   minZoom,
   maxZoom,
-  enableMouseParallax,
-  enableManualRotation,
-  enableHoverRotation,
-  enableManualZoom,
+  enableMouseParallax = false,
+  enableManualRotation = false,
+  enableHoverRotation = false,
+  enableManualZoom = false,
   autoFrame,
   fadeIn,
   autoRotate,
   autoRotateSpeed,
   onLoaded,
-  modelScale = 4,
+  modelScale = 1,
 }) => {
   const outer = useRef(null);
   const inner = useRef(null);

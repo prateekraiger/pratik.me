@@ -251,13 +251,13 @@ const Home = () => {
                   >
                     <div className="w-full h-full flex items-center justify-center">
                       <ModelViewer
-                        url="/public/laptop.glb"
-                        width={480}
-                        height={480}
-                        defaultZoom={2.5}
-                        minZoomDistance={1.5}
+                        url="/laptop.glb"
+                        width={600}
+                        height={600}
+                        defaultZoom={2.2}
+                        minZoomDistance={1.0}
                         maxZoomDistance={6}
-                        modelScale={2.5}
+                        modelScale={0.8}
                         autoRotate={true}
                         autoRotateSpeed={0.2}
                         environmentPreset="city"

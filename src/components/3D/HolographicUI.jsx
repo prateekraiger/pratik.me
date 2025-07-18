@@ -39,7 +39,6 @@ const HolographicPanel = ({ position, rotation, text, color = "#00ffff" }) => {
         color={color}
         anchorX="center"
         anchorY="middle"
-        font="/fonts/inter-bold.woff"
       >
         {text}
       </Text>

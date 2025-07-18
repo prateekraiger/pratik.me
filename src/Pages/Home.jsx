@@ -257,7 +257,7 @@ const Home = () => {
                         defaultZoom={2.2}
                         minZoomDistance={1.0}
                         maxZoomDistance={6}
-                        modelScale={0.6}
+                        modelScale={0.765}
                         autoRotate={true}
                         autoRotateSpeed={0.2}
                         environmentPreset="city"

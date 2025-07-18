@@ -108,7 +108,7 @@ const ModelInner = ({
     // Center the model in all axes
     g.position.set(-sphere.center.x, -sphere.center.y, -sphere.center.z);
     // Fine-tune y centering so the laptop is perfectly centered
-    g.position.y += 0.3 * sphere.radius;
+    g.position.y += 0.1 * sphere.radius;
     g.scale.setScalar(s * modelScale);
     g.traverse((o) => {
       if (o.isMesh) {

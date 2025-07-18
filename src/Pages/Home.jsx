@@ -254,10 +254,10 @@ const Home = () => {
                         url="/laptop.glb"
                         width={600}
                         height={600}
-                        defaultZoom={2.2}
+                        defaultZoom={2.8}
                         minZoomDistance={1.0}
                         maxZoomDistance={6}
-                        modelScale={0.8}
+                        modelScale={0.5}
                         autoRotate={true}
                         autoRotateSpeed={0.2}
                         environmentPreset="city"

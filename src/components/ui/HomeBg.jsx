@@ -98,7 +98,7 @@ const HomeBg = () => {
 };
 
 const GlobalStylesAndKeyframes = () => (
-  <style jsx global>{`
+  <style>{`
     @keyframes gradientShift {
       0% {
         filter: hue-rotate(0deg);

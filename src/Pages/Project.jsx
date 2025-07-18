@@ -11,7 +11,6 @@ import ScrollStack, { ScrollStackItem } from "../components/common/ScrollStack";
 import { useThreeD } from "../contexts/ThreeDContext";
 import DarkViel from "../components/DarkViel";
 import ProjectDeatils from "../components/ProjectDeatils";
-import RippleGrid from "../components/RippleGrid";
 
 const Project = () => {
   const { is3DEnabled } = useThreeD();

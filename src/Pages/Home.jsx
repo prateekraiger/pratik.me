@@ -252,12 +252,12 @@ const Home = () => {
                     <div className="w-full h-full flex items-center justify-center">
                       <ModelViewer
                         url="/laptop.glb"
-                        width={400}
-                        height={400}
-                        defaultZoom={2.8}
+                        width={600}
+                        height={600}
+                        defaultZoom={2.2}
                         minZoomDistance={1.0}
                         maxZoomDistance={6}
-                        modelScale={1.0}
+                        modelScale={1.5}
                         autoRotate={true}
                         autoRotateSpeed={0.2}
                         environmentPreset="city"
@@ -266,7 +266,6 @@ const Home = () => {
                         fillLightIntensity={0.8}
                         rimLightIntensity={0.9}
                         fadeIn={true}
-                        style={{ display: "block", margin: "0 auto" }}
                       />
                     </div>
                   </motion.div>

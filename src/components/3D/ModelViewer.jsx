@@ -350,12 +350,24 @@ const ModelViewer = ({
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
 
-  const initYaw = deg2rad(defaultRotationX);
-  const initPitch = deg2rad(defaultRotationY);
+  // Improved camera angle for hero view
+  const initYaw = deg2rad(-25); // slight tilt for hero shot
+  const initPitch = deg2rad(20);
   const camZ = Math.min(
     Math.max(defaultZoom, minZoomDistance),
     maxZoomDistance
   );
+
+  // Left-right animation for the laptop
+  const Floating = ({ children }) => {
+    useFrame(({ clock }) => {
+      const t = clock.getElapsedTime();
+      if (sceneRef.current) {
+        sceneRef.current.position.x = Math.sin(t * 1.2) * 0.12;
+      }
+    });
+    return children;
+  };
 
   return (
     <div
@@ -377,72 +389,83 @@ const ModelViewer = ({
           gl.toneMapping = THREE.ACESFilmicToneMapping;
           gl.outputColorSpace = THREE.SRGBColorSpace;
         }}
-        camera={{ fov: 50, position: [0, 0, camZ], near: 0.01, far: 100 }}
+        // Lower camera Y and tilt to show more keyboard
+        camera={{
+          fov: 45,
+          position: [0.2, -0.18, camZ + 0.35],
+          near: 0.01,
+          far: 100,
+        }}
         style={{ touchAction: "pan-y pinch-zoom" }}
       >
+        {/* Realistic HDR environment */}
         {environmentPreset !== "none" && (
-          <Environment preset={environmentPreset} background={false} />
+          <Environment
+            preset={environmentPreset}
+            background={false}
+            blur={0.6}
+          />
         )}
-        <ambientLight intensity={ambientIntensity} />
-
-        {/* Enhanced lighting setup */}
+        <ambientLight intensity={ambientIntensity + 0.2} />
+        {/* Key light for highlights */}
         <directionalLight
-          position={[5, 5, 5]}
-          intensity={keyLightIntensity}
+          position={[3, 8, 6]}
+          intensity={keyLightIntensity + 0.3}
           castShadow
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
+          shadow-mapSize-width={4096}
+          shadow-mapSize-height={4096}
+          shadow-bias={-0.0005}
         />
+        {/* Rim light for edge glow */}
         <directionalLight
-          position={[-5, 2, 5]}
-          intensity={fillLightIntensity}
-          color="#4f46e5"
+          position={[-4, 6, -6]}
+          intensity={rimLightIntensity + 0.2}
+          color="#a5b4fc"
         />
+        {/* Fill light for soft shadows */}
         <directionalLight
-          position={[0, 4, -5]}
-          intensity={rimLightIntensity}
-          color="#915EFF"
+          position={[0, 2, 8]}
+          intensity={fillLightIntensity + 0.2}
+          color="#c7d2fe"
         />
-
-        {/* Additional atmospheric lighting */}
-        <pointLight position={[10, 10, 10]} intensity={0.5} color="#00ffff" />
-        <pointLight position={[-10, -10, 5]} intensity={0.3} color="#ff00ff" />
-        <spotLight
-          position={[0, 10, 0]}
-          angle={0.3}
-          penumbra={1}
-          intensity={0.5}
-          color="#915EFF"
-          castShadow
-        />
+        {/* Subtle colored accent lights */}
+        <pointLight position={[6, 2, 6]} intensity={0.25} color="#60a5fa" />
+        <pointLight position={[-6, 2, 6]} intensity={0.18} color="#f472b6" />
+        {/* Soft contact shadow */}
         <ContactShadows
           ref={contactRef}
           position={[0, -0.5, 0]}
-          opacity={0.35}
-          scale={10}
-          blur={2}
+          opacity={0.45}
+          scale={8}
+          blur={3.2}
         />
+        {/* Bloom effect for glow */}
+        {/* Drei's EffectComposer can be added for bloom if installed, else skip */}
         <Suspense fallback={<Loader placeholderSrc={placeholderSrc} />}>
-          <ModelInner
-            url={url}
-            xOff={modelXOffset}
-            yOff={modelYOffset}
-            pivot={pivot}
-            initYaw={initYaw}
-            initPitch={initPitch}
-            minZoom={minZoomDistance}
-            maxZoom={maxZoomDistance}
-            enableMouseParallax={enableMouseParallax}
-            enableManualRotation={enableManualRotation}
-            enableHoverRotation={enableHoverRotation}
-            enableManualZoom={enableManualZoom}
-            autoFrame={autoFrame}
-            fadeIn={fadeIn}
-            autoRotate={autoRotate}
-            autoRotateSpeed={autoRotateSpeed}
-            onLoaded={onModelLoaded}
-            modelScale={modelScale}
-          />
+          <Floating>
+            <group position={[0, -0.22, 0]}>
+              <ModelInner
+                url={url}
+                xOff={modelXOffset}
+                yOff={modelYOffset}
+                pivot={pivot}
+                initYaw={initYaw}
+                initPitch={initPitch}
+                minZoom={minZoomDistance}
+                maxZoom={maxZoomDistance}
+                enableMouseParallax={enableMouseParallax}
+                enableManualRotation={enableManualRotation}
+                enableHoverRotation={enableHoverRotation}
+                enableManualZoom={enableManualZoom}
+                autoFrame={autoFrame}
+                fadeIn={fadeIn}
+                autoRotate={autoRotate}
+                autoRotateSpeed={autoRotateSpeed}
+                onLoaded={onModelLoaded}
+                modelScale={modelScale}
+              />
+            </group>
+          </Floating>
         </Suspense>
         {!isTouch && (
           <DesktopControls

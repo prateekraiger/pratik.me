@@ -9,7 +9,9 @@ import { createPortal } from "react-dom";
 import Title from "../components/common/Title";
 import ScrollStack, { ScrollStackItem } from "../components/common/ScrollStack";
 import { useThreeD } from "../contexts/ThreeDContext";
+import DarkViel from "../components/DarkViel";
 import ProjectDeatils from "../components/ProjectDeatils";
+import RippleGrid from "../components/RippleGrid";
 
 const Project = () => {
   const { is3DEnabled } = useThreeD();
@@ -109,7 +111,32 @@ const Project = () => {
 
   return (
     <section className="relative min-h-screen w-full">
-      <div className="px-5 py-10">
+      {/* 3D DarkViel background only in 3D mode */}
+      {is3DEnabled && (
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: 0,
+            pointerEvents: "none",
+          }}
+        >
+          <DarkViel
+            hueShift={330} // blue-purple, on-theme
+            noiseIntensity={0.04} // subtle
+            scanlineIntensity={0.09} // gentle
+            scanlineFrequency={0.07} // soft
+            speed={0.5} // smooth
+            warpAmount={0.09} // soft
+            resolutionScale={1.2} // crisp
+          />
+        </div>
+      )}
+
+      <div className="px-5 py-10 relative z-10">
         <Title text1="My" text2="Projects" />
       </div>
 
@@ -122,7 +149,7 @@ const Project = () => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
             onMouseMove={handleMouseMove}
-            className="px-5 pb-10"
+            className="px-5 pb-10 relative z-10"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {myProjects.map((project) => (

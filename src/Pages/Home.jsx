@@ -244,46 +244,66 @@ const Home = () => {
                   </motion.div>
                 ) : (
                   <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="w-full h-[600px] bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-10 shadow-2xl flex items-center justify-center"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.2, ease: "easeOut" }}
+                    className="w-full flex items-center justify-center"
                   >
-                    <div className="w-full h-full flex items-center justify-center">
+                    <div
+                      className="relative mx-auto"
+                      style={{
+                        width: "100%",
+                        maxWidth: 600,
+                        height: "60vh",
+                        minHeight: 350,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        background: "rgba(20,20,30,0.7)",
+                        borderRadius: "2rem",
+                        boxShadow: "0 8px 32px 0 rgba(0,0,0,0.25)",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                        backdropFilter: "blur(12px)",
+                        overflow: "hidden",
+                        position: "relative",
+                      }}
+                    >
+                      <ModelViewer
+                        url="/laptop.glb"
+                        width={"100%"}
+                        height={"100%"}
+                        defaultZoom={2.2}
+                        minZoomDistance={1.2}
+                        maxZoomDistance={5.5}
+                        modelScale={0.8}
+                        autoRotate={true}
+                        autoRotateSpeed={0.25}
+                        environmentPreset="city"
+                        ambientIntensity={0.7}
+                        keyLightIntensity={1.2}
+                        fillLightIntensity={1.0}
+                        rimLightIntensity={1.0}
+                        fadeIn={true}
+                        enableControls={true}
+                        shadow={true}
+                        reflection={true}
+                        style={{ width: "100%", height: "100%" }}
+                      />
+                      {/* Subtle shadow under model for anchoring */}
                       <div
                         style={{
-                          position: "relative",
-                          width: "100%",
-                          height: "100%",
+                          position: "absolute",
+                          bottom: 32,
+                          left: "50%",
+                          transform: "translateX(-50%)",
+                          width: "60%",
+                          height: 32,
+                          background:
+                            "radial-gradient(ellipse at center, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.01) 80%)",
+                          filter: "blur(6px)",
+                          zIndex: 1,
                         }}
-                      >
-                        <div
-                          style={{
-                            position: "absolute",
-                            top: 20,
-                            left: 0,
-                            right: 0,
-                          }}
-                        >
-                          <ModelViewer
-                            url="/laptop.glb"
-                            width={600}
-                            height={600}
-                            defaultZoom={2.2}
-                            minZoomDistance={1.0}
-                            maxZoomDistance={6}
-                            modelScale={0.765}
-                            autoRotate={true}
-                            autoRotateSpeed={0.2}
-                            environmentPreset="city"
-                            ambientIntensity={0.6}
-                            keyLightIntensity={1.0}
-                            fillLightIntensity={0.8}
-                            rimLightIntensity={0.9}
-                            fadeIn={true}
-                          />
-                        </div>
-                      </div>
+                      />
                     </div>
                   </motion.div>
                 )}

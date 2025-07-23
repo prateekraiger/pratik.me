@@ -40,15 +40,17 @@ const Home = () => {
           // 2D Background - Animated HomeBg
           <HomeBg />
         ) : (
-          // 3D Background - Beautiful Silk shader effect (Full Page)
+          // 3D Background - Silk shader with accent color overlay
           <div className="fixed inset-0 w-full h-full z-0">
             <Silk
               speed={5}
               scale={1}
-              color="#7B7481"
+              color="#915EFF"
               noiseIntensity={1.5}
               rotation={0}
             />
+            {/* Accent color overlay for vibrancy */}
+            <div className="absolute inset-0 bg-[#915EFF]/20 pointer-events-none mix-blend-lighten" />
           </div>
         )}
 
@@ -63,7 +65,7 @@ const Home = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className={`space-y-8 ${
                   is3DEnabled
-                    ? "bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-10 shadow-2xl"
+                    ? "bg-[#18122B]/90 border border-[#915EFF]/40 rounded-3xl p-10 shadow-2xl"
                     : ""
                 }`}
               >
@@ -71,13 +73,13 @@ const Home = () => {
                 <div className="space-y-4">
                   {is3DEnabled ? (
                     <>
-                      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent leading-tight">
+                      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#915EFF] leading-tight drop-shadow-[0_2px_12px_rgba(145,94,255,0.25)]">
                         Crafting Digital
                       </h1>
                       <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                         Masterpieces
                       </h2>
-                      <p className="text-xl md:text-2xl bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent font-light mt-4">
+                      <p className="text-xl md:text-2xl text-[#B39DFF] font-light mt-4">
                         Where Innovation Meets Artistry
                       </p>
                     </>
@@ -101,7 +103,11 @@ const Home = () => {
                 </div>
 
                 {/* Description - Different for 3D */}
-                <p className="text-lg text-gray-400 leading-relaxed max-w-lg">
+                <p
+                  className={`text-lg leading-relaxed max-w-lg ${
+                    is3DEnabled ? "text-[#C7BFFF]" : "text-gray-400"
+                  }`}
+                >
                   {is3DEnabled
                     ? "Transforming ideas into immersive digital realities. I blend cutting-edge technology with creative vision to build experiences that captivate, inspire, and push the boundaries of what's possible on the web."
                     : "I create beautiful, functional, and user-centered digital experiences. Passionate about turning ideas into reality through clean code and thoughtful design."}
@@ -113,7 +119,7 @@ const Home = () => {
                     <>
                       <button
                         onClick={handleViewWork}
-                        className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold rounded-xl hover:from-cyan-400 hover:to-purple-400 transition-all duration-300 shadow-lg hover:shadow-cyan-400/25 hover:scale-105 transform cursor-pointer relative overflow-hidden group"
+                        className="px-8 py-4 bg-[#915EFF] text-white font-semibold rounded-xl hover:bg-[#7b4ed9] transition-colors duration-200 shadow-lg hover:shadow-[#915EFF]/25 hover:scale-105 transform cursor-pointer relative overflow-hidden group"
                       >
                         <span className="relative z-10 flex items-center justify-center gap-2">
                           <span>Launch Experience</span>
@@ -135,7 +141,7 @@ const Home = () => {
 
                       <button
                         onClick={handleGetInTouch}
-                        className="px-8 py-4 border-2 border-cyan-400/50 bg-cyan-400/10 text-cyan-300 font-semibold rounded-xl hover:bg-cyan-400/20 hover:border-cyan-400 transition-all duration-300 hover:scale-105 transform cursor-pointer relative overflow-hidden group"
+                        className="px-8 py-4 border-2 border-[#915EFF] bg-[#915EFF]/10 text-[#B39DFF] font-semibold rounded-xl hover:bg-[#915EFF]/20 hover:border-[#915EFF] transition-all duration-300 hover:scale-105 transform cursor-pointer relative overflow-hidden group"
                       >
                         <span className="relative z-10 flex items-center justify-center gap-2">
                           <span>Start Collaboration</span>
@@ -201,7 +207,7 @@ const Home = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="pt-6 border-t border-white/10">
+                  <div className="pt-6 border-t border-[#915EFF]/20">
                     <div className="flex flex-wrap gap-3">
                       {[
                         "React",
@@ -219,7 +225,7 @@ const Home = () => {
                             duration: 0.3,
                             delay: index * 0.1 + 0.8,
                           }}
-                          className="px-4 py-2 bg-white/10 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/20 transition-all duration-200"
+                          className="px-4 py-2 bg-[#915EFF]/10 border border-[#915EFF]/40 rounded-full text-sm text-[#B39DFF] hover:bg-[#915EFF]/20 transition-all duration-200"
                         >
                           {tech}
                         </motion.span>
@@ -250,7 +256,7 @@ const Home = () => {
                     className="w-full flex items-center justify-center"
                   >
                     <div
-                      className="relative mx-auto"
+                      className="relative mx-auto accent-3d-model"
                       style={{
                         width: "100%",
                         maxWidth: 600,
@@ -259,11 +265,11 @@ const Home = () => {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        background: "rgba(20,20,30,0.7)",
+                        background: "rgba(30,20,60,0.85)",
                         borderRadius: "2rem",
-                        boxShadow: "0 8px 32px 0 rgba(0,0,0,0.25)",
-                        border: "1px solid rgba(255,255,255,0.08)",
-                        backdropFilter: "blur(12px)",
+                        boxShadow: "0 8px 32px 0 rgba(145,94,255,0.25)",
+                        border: "2px solid #915EFF",
+                        backdropFilter: "blur(16px)",
                         overflow: "hidden",
                         position: "relative",
                       }}

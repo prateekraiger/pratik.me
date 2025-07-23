@@ -14,7 +14,6 @@ import { initSmoothScroll } from "./utils/animations";
 
 // 3D Components
 import { ThreeDProvider, useThreeD } from "./contexts/ThreeDContext";
-import ThreeDModePopup from "./components/3D/ThreeDModePopup";
 import ThreeDToggle from "./components/3D/ThreeDToggle";
 import ThreeDScene from "./components/3D/ThreeDScene";
 import ThreeDLoader from "./components/3D/ThreeDLoader";
@@ -45,8 +44,7 @@ const AppContent = () => {
         <AnimeNavbar />
         <SmoothCursor />
 
-        {/* 3D Mode Popup */}
-        <ThreeDModePopup onEnable3D={() => {}} onDisable3D={() => {}} />
+        {/* 3D Mode Popup removed as per user request */}
 
         {/* 3D Toggle Button */}
         <ThreeDToggle />

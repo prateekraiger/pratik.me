@@ -11,6 +11,7 @@ import ScrollStack, { ScrollStackItem } from "../components/common/ScrollStack";
 import { useThreeD } from "../contexts/ThreeDContext";
 import DarkViel from "../components/DarkViel";
 import ProjectDeatils from "../components/ProjectDeatils";
+import ExpandableCardDemo from "../components/ExpandableCard";
 
 const Project = () => {
   const { is3DEnabled } = useThreeD();
@@ -175,26 +176,9 @@ const Project = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="h-screen"
+            className="min-h-screen pb-20"
           >
-            <ScrollStack
-              itemDistance={120}
-              itemScale={0.05}
-              itemStackDistance={40}
-              stackPosition="15%"
-              scaleEndPosition="5%"
-              baseScale={0.8}
-              className="h-full"
-            >
-              {myProjects.map((project) => (
-                <ScrollStackItem
-                  key={project.id}
-                  itemClassName="bg-gradient-to-br from-zinc-900/95 to-zinc-800/95 backdrop-blur-md border border-[#915EFF]/30"
-                >
-                  <ProjectCard2D project={project} />
-                </ScrollStackItem>
-              ))}
-            </ScrollStack>
+            <ExpandableCardDemo projects={myProjects} />
           </motion.div>
         )}
       </AnimatePresence>

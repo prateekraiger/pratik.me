@@ -6,6 +6,7 @@ export const myProjects = [
       "A modern AI-powered web app to discover and generate innovative project ideas.",
     subDescription: [
       "PromptEdge helps users find creative project ideas using AI, featuring a sleek, responsive interface built with React and Vite. With secure Clerk authentication, smooth animations, and interactive components from Radix and Shadcn UI, it offers a seamless user experience.",
+      "The application leverages modern web technologies to provide an intuitive user interface where users can generate, explore, and save project ideas. Built with performance and user experience in mind, it features responsive design that works seamlessly across all devices.",
     ],
     href: "https://prompt-edge.vercel.app/",
     logo: "",
@@ -42,6 +43,7 @@ export const myProjects = [
       "NextGadget is a modern e-commerce web application built with Next.js, React, and MongoDB.",
     subDescription: [
       "It features user authentication, product browsing, cart management, order placement, Stripe payments, and an admin login. The UI is styled with Tailwind CSS and enhanced with Framer Motion for smooth animations.",
+      "The platform includes a comprehensive admin dashboard for managing products, orders, and user accounts. With secure payment processing through Stripe and a responsive design, it provides a complete e-commerce solution.",
     ],
     href: "https://next-gadget-sigma.vercel.app/",
     logo: null,
@@ -78,6 +80,7 @@ export const myProjects = [
       "TIT Conference is a dynamic web application designed for showcasing speakers, events, and sponsors.",
     subDescription: [
       "It is a React-based website for the ICACIT Conference. It provides information about the conference, including details about the event, keynote speakers, venue, rules, and more. The website is built using modern web technologies like React, TailwindCSS, and Vite.",
+      "The website features a modern, professional design with sections for conference schedule, speaker profiles, registration information, and venue details. It's optimized for both desktop and mobile viewing to ensure accessibility for all attendees.",
     ],
     href: "https://www.icacit2025titbpl.in/",
     logo: "",
@@ -114,6 +117,7 @@ export const myProjects = [
       "A secure and modern messaging platform with end-to-end encryption.",
     subDescription: [
       "Whisprr ensures private and safe communication through end-to-end encryption. Built with React and Clerk, it offers real-time messaging, a sleek UI, responsive design, and cross-device support for seamless chatting.",
+      "The application prioritizes user privacy and security with advanced encryption protocols. Features include group chats, file sharing, message history, and real-time notifications, all wrapped in an intuitive and modern interface.",
     ],
     href: "https://github.com/prateekraiger/Whisprr",
     logo: "",
@@ -150,6 +154,7 @@ export const myProjects = [
       "BioCraft helps you craft engaging, professional, and platform-optimized bios for Instagram, Twitter, LinkedIn, Facebook, WhatsApp, and more—instantly, with AI.",
     subDescription: [
       "An AI-powered web application that generates personalized bios using GPT-3.5. Features include multi-platform support, customization options, character limit awareness, multiple bio options, fallback mode, and one-click copy functionality. Built with React, TypeScript, and Tailwind CSS for a seamless user experience.",
+      "The tool understands different platform requirements and generates optimized bios for each social media platform. With intelligent character counting and multiple style options, users can create professional bios that stand out and effectively communicate their personal brand.",
     ],
     href: "https://bio-craft-swart.vercel.app/",
     logo: "",
@@ -186,6 +191,7 @@ export const myProjects = [
       "One Piece Gear 5 Experience - An interactive tribute to Luffy's legendary transformation into Joy Boy.",
     subDescription: [
       "Immerse yourself in a visually dynamic experience with floating video effects and GSAP-powered animations. Built with React and Tailwind CSS, the site is fully responsive across devices. A bold call-to-action lets fans explore more about Gear 5's epic awakening.",
+      "This interactive tribute showcases advanced web animation techniques and creative design elements. The site demonstrates proficiency in modern web technologies while celebrating one of anime's most iconic transformations.",
     ],
     href: "https://1-piece.vercel.app/",
     logo: null,
@@ -217,6 +223,7 @@ export const myProjects = [
       "StyleVerse is a modern e-commerce platform built with React, offering customers a seamless shopping experience with a user-friendly interface and robust functionality.",
     subDescription: [
       "StyleVerse is a sleek and responsive e-commerce platform tailored for fashion lovers. Built with React, Vite, and Node.js, it offers dynamic product browsing, seamless cart and order management, and secure payments via Razorpay and Stripe. The platform also includes an admin dashboard for streamlined management and order tracking.",
+      "The platform features advanced filtering and search capabilities, wishlist functionality, and detailed product views. With integrated payment gateways and real-time inventory management, it provides a complete solution for online fashion retail.",
     ],
     href: "https://github.com/prateekraiger/StyleVerse",
     logo: "",
@@ -253,6 +260,7 @@ export const myProjects = [
       "Grilli - Responsive Web Design for Expertly Grilled Cuisine, Bringing Flavor to Life with a Modern Dining Experience.",
     subDescription: [
       "Welcome to the Grilli Restaurant Website! This modern web application is designed to provide a seamless dining experience for customers. With features like menu management, a reservation system, and a contact form, we aim to create a user-friendly interface that makes it easy for customers to find and order their favorite dishes.",
+      "The website showcases elegant design principles with smooth animations and intuitive navigation. Built with vanilla JavaScript, HTML5, and CSS3, it demonstrates solid fundamentals in web development while providing an engaging user experience for restaurant patrons.",
     ],
     href: "https://grilli-50z.pages.dev/",
     logo: null,
@@ -284,6 +292,7 @@ export const myProjects = [
       "A modern, responsive portfolio template designed specifically for GitHub users to showcase their coding journey.",
     subDescription: [
       "Built with Next.js and Tailwind CSS, it fetches real-time data from the GitHub API for a personalized display. Highlights include contribution heatmaps, top repo metrics, and detailed developer stats. Easily customizable via a config file, it's perfect for showcasing your coding journey with style.",
+      "The portfolio automatically updates with your latest GitHub activity, displaying commit patterns, language usage, and repository statistics. With responsive design and dark mode support, it provides a professional way to showcase your development work and coding achievements.",
     ],
     href: "https://prartik-git-port.vercel.app/",
     logo: null,

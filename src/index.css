@@ -611,3 +611,69 @@ input[type="button"],
     opacity: 0;
     transform: translateY(100%);
 }
+
+@keyframes float {
+
+    0%,
+    100% {
+
+        transform: translateY(0);
+        /* Start and end at original position */
+
+    }
+
+    50% {
+
+        transform: translateY(-10px);
+        /* Move up 10px at midpoint */
+
+    }
+
+}
+
+/* Data stream animation (if you were to use it for other elements) */
+
+@keyframes dataStream {
+
+    0% {
+
+        stroke-dashoffset: 20;
+        /* Start with a dash offset */
+
+    }
+
+    100% {
+
+        stroke-dashoffset: 0;
+        /* End with no dash offset */
+
+    }
+
+}
+
+/* Schema pulse animation (if you were to use it for other elements) */
+
+@keyframes schemaPulse {
+
+    0%,
+    100% {
+
+        transform: scale(1);
+        /* Start and end at original size */
+
+        opacity: 0.8;
+        /* Slightly transparent */
+
+    }
+
+    50% {
+
+        transform: scale(1.02);
+        /* Slightly enlarge at midpoint */
+
+        opacity: 1;
+        /* Fully opaque */
+
+    }
+
+}

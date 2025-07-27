@@ -66,7 +66,7 @@ export default function ExpandableCardDemo({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm h-full w-full z-10"
+            className="fixed inset-0 bg-black/70 backdrop-blur-md h-full w-full z-10"
           />
         )}
       </AnimatePresence>
@@ -92,7 +92,7 @@ export default function ExpandableCardDemo({
             <motion.div
               layoutId={`card-${active.id}-${id}`}
               ref={ref}
-              className="w-full max-w-[800px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-gradient-to-br from-zinc-900/98 to-zinc-800/98 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl border border-[#915EFF]/30"
+              className="w-full max-w-[800px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-gradient-to-br from-black/95 to-zinc-900/95 backdrop-blur-2xl rounded-3xl overflow-hidden shadow-2xl border border-[#915EFF]/50"
             >
               {/* Project Image */}
               <motion.div layoutId={`image-${active.id}-${id}`}>
@@ -274,7 +274,7 @@ export default function ExpandableCardDemo({
             inViewMargin="-100px"
           >
             <CardContainer className="inter-var w-full">
-              <CardBody className="bg-gradient-to-br from-zinc-900/95 to-zinc-800/95 backdrop-blur-md relative group/card dark:hover:shadow-2xl dark:hover:shadow-[#915EFF]/[0.1] border border-[#915EFF]/30 hover:border-[#915EFF]/60 w-full h-auto rounded-2xl p-6 transition-all duration-300 cursor-pointer">
+              <CardBody className="bg-gradient-to-br from-black/80 to-zinc-900/90 backdrop-blur-xl relative group/card dark:hover:shadow-2xl dark:hover:shadow-[#915EFF]/[0.2] border border-[#915EFF]/40 hover:border-[#915EFF]/80 w-full h-auto rounded-2xl p-6 transition-all duration-300 cursor-pointer shadow-2xl">
                 <motion.div
                   layoutId={`card-${project.id}-${id}`}
                   key={`card-${project.id}-${id}`}

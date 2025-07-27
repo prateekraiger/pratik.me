@@ -7,11 +7,11 @@ import { useSpring } from "framer-motion";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import Title from "../components/common/Title";
-import ScrollStack, { ScrollStackItem } from "../components/common/ScrollStack";
 import { useThreeD } from "../contexts/ThreeDContext";
 import DarkViel from "../components/DarkViel";
 import ProjectDeatils from "../components/ProjectDeatils";
 import ExpandableCardDemo from "../components/ExpandableCard";
+import BackgroundMusicVisualiser from "../components/ui/Background-visual";
 
 const Project = () => {
   const { is3DEnabled } = useThreeD();
@@ -110,20 +110,10 @@ const Project = () => {
   );
 
   return (
-    <section className="relative min-h-screen w-full">
+    <section className="relative w-full">
       {/* 3D DarkViel background only in 3D mode */}
       {is3DEnabled && (
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            zIndex: 0,
-            pointerEvents: "none",
-          }}
-        >
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
           <DarkViel
             hueShift={330} // blue-purple, on-theme
             noiseIntensity={0.04} // subtle
@@ -149,7 +139,7 @@ const Project = () => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
             onMouseMove={handleMouseMove}
-            className="px-5 pb-10 relative z-10"
+            className="px-5 pb-20 relative z-10"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {myProjects.map((project) => (
@@ -176,9 +166,17 @@ const Project = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="min-h-screen pb-20"
+            className="pb-20 relative"
           >
-            <ExpandableCardDemo projects={myProjects} />
+            {/* Background Visual for 2D mode */}
+            <div className="absolute inset-0 w-full min-h-full">
+              <BackgroundMusicVisualiser />
+            </div>
+
+            {/* Content overlay */}
+            <div className="relative z-10">
+              <ExpandableCardDemo projects={myProjects} />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -273,8 +273,8 @@ export default function ExpandableCardDemo({
             duration={0.8}
             inViewMargin="-100px"
           >
-            <CardContainer className="inter-var w-full">
-              <CardBody className="bg-gradient-to-br from-black/80 to-zinc-900/90 backdrop-blur-xl relative group/card dark:hover:shadow-2xl dark:hover:shadow-[#915EFF]/[0.2] border border-[#915EFF]/40 hover:border-[#915EFF]/80 w-full h-auto rounded-2xl p-6 transition-all duration-300 cursor-pointer shadow-2xl">
+            <CardContainer className="inter-var">
+              <CardBody className="bg-gradient-to-br from-black/80 to-zinc-900/90 backdrop-blur-xl relative group/card dark:hover:shadow-2xl dark:hover:shadow-[#915EFF]/[0.4] border border-[#915EFF]/40 hover:border-[#915EFF] w-full h-auto rounded-2xl p-6 transition-all duration-500 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-[#915EFF]/30 transform hover:-translate-y-2">
                 <motion.div
                   layoutId={`card-${project.id}-${id}`}
                   key={`card-${project.id}-${id}`}
@@ -290,25 +290,54 @@ export default function ExpandableCardDemo({
                     duration={0.6}
                   >
                     <CardItem
-                      translateZ="100"
-                      rotateX={2}
-                      rotateY={-2}
+                      translateZ="150"
+                      rotateX={5}
+                      rotateY={-5}
                       className="w-full mb-6"
                     >
                       <motion.div
                         layoutId={`image-${project.id}-${id}`}
                         className="relative"
+                        whileHover={{
+                          scale: 1.05,
+                          rotateX: -2,
+                          rotateY: 2,
+                          translateZ: 50,
+                          transition: { duration: 0.3, type: "spring", stiffness: 300 }
+                        }}
+                        style={{ perspective: 1000 }}
                       >
-                        <div className="relative rounded-xl overflow-hidden group-hover/card:shadow-2xl transition-shadow duration-300">
-                          <img
+                        <div className="relative rounded-xl overflow-hidden group-hover/card:shadow-2xl transition-all duration-300">
+                          <motion.img
                             width={200}
                             height={200}
                             src={project.image}
                             alt={project.title}
-                            className="h-48 w-full object-cover object-center transition-transform duration-500 group-hover/card:scale-110"
+                            className="h-48 w-full object-cover object-center"
+                            whileHover={{
+                              scale: 1.1,
+                              transition: { duration: 0.4, ease: "easeOut" }
+                            }}
+                            style={{
+                              filter: "brightness(0.9) contrast(1.1)"
+                            }}
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300" />
-                          <div className="absolute top-3 right-3 bg-[#915EFF]/90 backdrop-blur-sm text-white px-2 py-1 rounded-full text-xs font-medium">
+                          <motion.div
+                            className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-all duration-300"
+                            whileHover={{
+                              background: "linear-gradient(to top, rgba(0,0,0,0.6), transparent)"
+                            }}
+                          />
+                          <motion.div
+                            className="absolute inset-0 rounded-xl shadow-lg group-hover/card:shadow-2xl group-hover/card:shadow-[#915EFF]/30 transition-all duration-300"
+                            style={{
+                              boxShadow: "0 0 0 0 rgba(145, 94, 255, 0)"
+                            }}
+                            whileHover={{
+                              boxShadow: "0 25px 50px -12px rgba(145, 94, 255, 0.25), 0 0 0 1px rgba(145, 94, 255, 0.1)"
+                            }}
+                          />
+                          <div className="absolute top-3 right-3 bg-[#915EFF]/90 backdrop-blur-sm text-white px-2 py-1 rounded-full text-xs font-medium transform transition-all duration-300 group-hover/card:scale-110 group-hover/card:bg-[#915EFF]">
                             #{project.id}
                           </div>
                         </div>
@@ -325,10 +354,11 @@ export default function ExpandableCardDemo({
                       blur="3px"
                       duration={0.5}
                     >
-                      <CardItem translateZ="50" className="w-full">
+                      <CardItem translateZ="80" className="w-full">
                         <motion.h3
                           layoutId={`title-${project.id}-${id}`}
-                          className="font-bold text-xl text-white mb-3 font-cal-sans group-hover/card:text-[#c5aeff] transition-colors duration-300"
+                          className="font-bold text-xl text-white mb-3 font-cal-sans group-hover/card:text-[#c5aeff] transition-all duration-300 transform group-hover/card:scale-105"
+                          whileHover={{ translateZ: 20 }}
                         >
                           {project.title}
                         </motion.h3>
@@ -345,11 +375,13 @@ export default function ExpandableCardDemo({
                     >
                       <CardItem
                         as="p"
-                        translateZ="60"
-                        className="text-gray-300 text-sm mb-4 leading-relaxed font-sansation max-w-sm"
+                        translateZ="70"
+                        className="text-gray-300 text-sm mb-4 leading-relaxed font-sansation max-w-sm transition-all duration-300"
+                        whileHover={{ translateZ: 15 }}
                       >
                         <motion.span
                           layoutId={`description-${project.id}-${id}`}
+                          className="transition-all duration-300 group-hover/card:text-gray-100"
                         >
                           {project.description}
                         </motion.span>

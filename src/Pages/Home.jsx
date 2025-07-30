@@ -7,6 +7,7 @@ import { HomeBg, GlobalStylesAndKeyframes } from "../components/ui/HomeBg";
 import { useThreeD } from "../contexts/ThreeDContext";
 import Silk from "../components/ui/Silk";
 import ModelViewer from "../components/3D/ModelViewer";
+import About from "./About";
 
 const Home = () => {
   const { setPage, is3DEnabled } = useThreeD();
@@ -139,12 +140,14 @@ const Home = () => {
                         </span>
                       </button>
 
-                      <button
-                        onClick={handleGetInTouch}
+                      <a
+                        href="https://ik.imagekit.io/mtk2a0sx6/Pratik_REsume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="px-8 py-4 border-2 border-[#915EFF] bg-[#915EFF]/10 text-[#B39DFF] font-semibold rounded-xl hover:bg-[#915EFF]/20 hover:border-[#915EFF] transition-all duration-300 hover:scale-105 transform cursor-pointer relative overflow-hidden group"
                       >
                         <span className="relative z-10 flex items-center justify-center gap-2">
-                          <span>Start Collaboration</span>
+                          <span>Download Resume</span>
                           <svg
                             className="w-4 h-4 transition-transform group-hover:scale-110"
                             fill="none"
@@ -155,11 +158,11 @@ const Home = () => {
                               strokeLinecap="round"
                               strokeLinejoin="round"
                               strokeWidth={2}
-                              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                             />
                           </svg>
                         </span>
-                      </button>
+                      </a>
                     </>
                   ) : (
                     <>
@@ -170,12 +173,14 @@ const Home = () => {
                         View My Work
                       </button>
 
-                      <button
-                        onClick={handleGetInTouch}
+                      <a
+                        href="https://ik.imagekit.io/mtk2a0sx6/Pratik_REsume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="px-8 py-4 border-2 border-[#915EFF] text-[#915EFF] font-semibold rounded-lg hover:bg-[#915EFF] hover:text-white transition-all duration-200 hover:scale-105 transform cursor-pointer"
                       >
-                        Get In Touch
-                      </button>
+                        Download Resume
+                      </a>
                     </>
                   )}
                 </div>
@@ -318,6 +323,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      {!is3DEnabled && <About />}
     </>
   );
 };

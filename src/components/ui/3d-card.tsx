@@ -115,7 +115,7 @@ export const CardItem = ({
   rotateZ?: number | string;
   [key: string]: any;
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const [isMouseEntered] = useMouseEnter();
 
   useEffect(() => {
@@ -131,11 +131,24 @@ export const CardItem = ({
     }
   };
 
+  // Filter out motion-specific props to prevent DOM warnings
+  const {
+    whileHover,
+    whileTap,
+    whileFocus,
+    whileDrag,
+    whileInView,
+    animate,
+    initial,
+    transition,
+    ...domProps
+  } = rest;
+
   return (
     <Tag
       ref={ref}
       className={cn("w-fit transition duration-200 ease-linear", className)}
-      {...rest}
+      {...domProps}
     >
       {children}
     </Tag>

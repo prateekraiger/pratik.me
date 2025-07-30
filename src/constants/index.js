@@ -1,6 +1,117 @@
 export const myProjects = [
   {
     id: 1,
+    title: "Riya",
+    description:
+      "A secure, intelligent, and emotionally aware AI companion offering personalized conversations and real-time voice chat.",
+    subDescription: [
+      "Riya AI Companion is a secure and intelligent AI girlfriend built with React, TypeScript, and Google Gemini AI. It offers advanced conversational AI with emotional intelligence, memory, multilingual support, and personalized interactions for a unique user experience.",
+      "The platform provides real-time voice chat capabilities, contextual memory, and adaptive personality features that evolve based on user interactions, creating a truly personalized AI companion experience.",
+    ],
+    href: "https://github.com/prateekraiger/riya",
+    logo: "",
+    image:
+      "https://ik.imagekit.io/mtk2a0sx6/riya_preview.png",
+    tags: [
+      {
+        id: 1,
+        name: "React",
+        path: "skill-icons:react-dark",
+      },
+      {
+        id: 2,
+        name: "TypeScript",
+        path: "skill-icons:typescript",
+      },
+      {
+        id: 3,
+        name: "postgresql",
+        path: "skill-icons:postgresql",
+      },
+      {
+        id: 4,
+        name: "TailwindCSS",
+        path: "skill-icons:tailwindcss-dark",
+      },
+    ],
+  },
+
+  {
+    id: 2,
+    title: "BuildMeCV",
+    description:
+      "An AI-powered resume builder with a stunning dark-themed UI, live preview, and ATS-optimized PDF export.",
+    subDescription: [
+      "BuildMeCV is a modern, AI-powered resume builder featuring a striking dark-themed UI, fluid animations, and a live preview. It leverages Google Gemini AI for content enhancement and offers customizable, ATS-optimized PDF exports to help users create professional resumes in minutes.",
+      "The platform includes intelligent content suggestions, real-time formatting preview, and industry-specific templates that ensure compatibility with applicant tracking systems while maintaining visual appeal and professional standards.",
+    ],
+    href: "https://github.com/prateekraiger/buildmecv",
+    logo: "",
+    image:
+      "https://ik.imagekit.io/mtk2a0sx6/image(1).png",
+    tags: [
+      {
+        id: 1,
+        name: "React",
+        path: "skill-icons:react-dark",
+      },
+      {
+        id: 2,
+        name: "TypeScript",
+        path: "skill-icons:typescript",
+      },
+      {
+        id: 3,
+        name: "TailwindCSS",
+        path: "skill-icons:tailwindcss-dark",
+      },
+      {
+        id: 4,
+        name: "Vite",
+        path: "logos:vitejs",
+      },
+    ],
+  },
+
+  {
+    id: 3,
+    title: "QuickHire",
+    description:
+      "An intelligent AI-powered platform for job seekers to optimize resumes and enhance job application success.",
+    subDescription: [
+      "QuickHire AI is an intelligent platform leveraging AI to analyze resumes against job descriptions, providing job seekers with smart feedback, ATS compatibility scores, and job-specific optimization to help them land their dream jobs.",
+      "The system uses advanced AI algorithms to match resumes with job requirements, offering detailed insights on keyword optimization, skill gaps, and application improvements to significantly increase interview callback rates and job placement success.",
+    ],
+    href: "https://github.com/prateekraiger/quickhire",
+    logo: "",
+    image:
+      "https://ik.imagekit.io/mtk2a0sx6/Screenshot%202025-07-30%20095546.png",
+    tags: [
+      {
+        id: 1,
+        name: "Next.js",
+        path: "skill-icons:nextjs-dark",
+      },
+      {
+        id: 2,
+        name: "PostgreSQL",
+        path: "skill-icons:postgresql-dark",
+      },
+      {
+        id: 3,
+        name: "TailwindCSS",
+        path: "skill-icons:tailwindcss-dark",
+      },
+      {
+        id: 4,
+        name: "Puter",
+        path: "logos:Puter",
+      },
+    ],
+  },
+
+  {
+    id: 4,
     title: "PromptEdge AI Project Generator",
     description:
       "A modern AI-powered web app to discover and generate innovative project ideas.",
@@ -37,44 +148,7 @@ export const myProjects = [
   },
 
   {
-    id: 2,
-    title: "NextGadget Ecommerce Website",
-    description:
-      "NextGadget is a modern e-commerce web application built with Next.js, React, and MongoDB.",
-    subDescription: [
-      "It features user authentication, product browsing, cart management, order placement, Stripe payments, and an admin login. The UI is styled with Tailwind CSS and enhanced with Framer Motion for smooth animations.",
-      "The platform includes a comprehensive admin dashboard for managing products, orders, and user accounts. With secure payment processing through Stripe and a responsive design, it provides a complete e-commerce solution.",
-    ],
-    href: "https://next-gadget-sigma.vercel.app/",
-    logo: null,
-    image:
-      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746698316/nextgadget_kabozx.png",
-    tags: [
-      {
-        id: 1,
-        name: "NextJs",
-        path: "skill-icons:nextjs-dark",
-      },
-      {
-        id: 2,
-        name: "MongoDB",
-        path: "skill-icons:mongodb",
-      },
-      {
-        id: 3,
-        name: "TailwindCSS",
-        path: "skill-icons:tailwindcss-dark",
-      },
-      {
-        id: 4,
-        name: "Clerk",
-        path: "logos:clerk",
-      },
-    ],
-  },
-
-  {
-    id: 3,
+    id: 5,
     title: "TIT Conference",
     description:
       "TIT Conference is a dynamic web application designed for showcasing speakers, events, and sponsors.",
@@ -111,7 +185,7 @@ export const myProjects = [
   },
 
   {
-    id: 4,
+    id: 6,
     title: "Whisprr",
     description:
       "A secure and modern messaging platform with end-to-end encryption.",
@@ -148,7 +222,7 @@ export const myProjects = [
   },
 
   {
-    id: 5,
+    id: 7,
     title: "BioCraft",
     description:
       "BioCraft helps you craft engaging, professional, and platform-optimized bios for Instagram, Twitter, LinkedIn, Facebook, WhatsApp, and more—instantly, with AI.",
@@ -185,7 +259,7 @@ export const myProjects = [
   },
 
   {
-    id: 6,
+    id: 8,
     title: "1-Piece",
     description:
       "One Piece Gear 5 Experience - An interactive tribute to Luffy's legendary transformation into Joy Boy.",
@@ -217,7 +291,7 @@ export const myProjects = [
   },
 
   {
-    id: 7,
+    id: 9,
     title: "StyleVerse Store",
     description:
       "StyleVerse is a modern e-commerce platform built with React, offering customers a seamless shopping experience with a user-friendly interface and robust functionality.",
@@ -254,7 +328,7 @@ export const myProjects = [
   },
 
   {
-    id: 8,
+    id: 10,
     title: "Grilli Restaurant",
     description:
       "Grilli - Responsive Web Design for Expertly Grilled Cuisine, Bringing Flavor to Life with a Modern Dining Experience.",
@@ -286,7 +360,7 @@ export const myProjects = [
   },
 
   {
-    id: 9,
+    id: 11,
     title: "Github Portfolio",
     description:
       "A modern, responsive portfolio template designed specifically for GitHub users to showcase their coding journey.",

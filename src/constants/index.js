@@ -1,7 +1,8 @@
-export const myProjects = [
+export const professionalProjects = [
   {
     id: 1,
     title: "Riya",
+    category: "professional",
     description:
       "A secure, intelligent, and emotionally aware AI companion offering personalized conversations and real-time voice chat.",
     subDescription: [
@@ -10,8 +11,7 @@ export const myProjects = [
     ],
     href: "https://github.com/prateekraiger/riya",
     logo: "",
-    image:
-      "https://ik.imagekit.io/mtk2a0sx6/riya_preview.png",
+    image: "https://ik.imagekit.io/mtk2a0sx6/riya_preview.png",
     tags: [
       {
         id: 1,
@@ -39,6 +39,7 @@ export const myProjects = [
   {
     id: 2,
     title: "BuildMeCV",
+    category: "professional",
     description:
       "An AI-powered resume builder with a stunning dark-themed UI, live preview, and ATS-optimized PDF export.",
     subDescription: [
@@ -47,8 +48,7 @@ export const myProjects = [
     ],
     href: "https://github.com/prateekraiger/buildmecv",
     logo: "",
-    image:
-      "https://ik.imagekit.io/mtk2a0sx6/image(1).png",
+    image: "https://ik.imagekit.io/mtk2a0sx6/image(1).png",
     tags: [
       {
         id: 1,
@@ -76,6 +76,7 @@ export const myProjects = [
   {
     id: 3,
     title: "QuickHire",
+    category: "professional",
     description:
       "An intelligent AI-powered platform for job seekers to optimize resumes and enhance job application success.",
     subDescription: [
@@ -113,6 +114,7 @@ export const myProjects = [
   {
     id: 4,
     title: "PromptEdge AI Project Generator",
+    category: "professional",
     description:
       "A modern AI-powered web app to discover and generate innovative project ideas.",
     subDescription: [
@@ -150,6 +152,7 @@ export const myProjects = [
   {
     id: 5,
     title: "TIT Conference",
+    category: "professional",
     description:
       "TIT Conference is a dynamic web application designed for showcasing speakers, events, and sponsors.",
     subDescription: [
@@ -187,6 +190,7 @@ export const myProjects = [
   {
     id: 6,
     title: "Whisprr",
+    category: "professional",
     description:
       "A secure and modern messaging platform with end-to-end encryption.",
     subDescription: [
@@ -224,6 +228,7 @@ export const myProjects = [
   {
     id: 7,
     title: "BioCraft",
+    category: "professional",
     description:
       "BioCraft helps you craft engaging, professional, and platform-optimized bios for Instagram, Twitter, LinkedIn, Facebook, WhatsApp, and more—instantly, with AI.",
     subDescription: [
@@ -260,17 +265,17 @@ export const myProjects = [
 
   {
     id: 8,
-    title: "1-Piece",
+    title: "Echelon Prompt Library",
+    category: "professional",
     description:
-      "One Piece Gear 5 Experience - An interactive tribute to Luffy's legendary transformation into Joy Boy.",
+      "A curated library of powerful AI prompts designed to boost productivity and creativity across various AI platforms.",
     subDescription: [
-      "Immerse yourself in a visually dynamic experience with floating video effects and GSAP-powered animations. Built with React and Tailwind CSS, the site is fully responsive across devices. A bold call-to-action lets fans explore more about Gear 5's epic awakening.",
-      "This interactive tribute showcases advanced web animation techniques and creative design elements. The site demonstrates proficiency in modern web technologies while celebrating one of anime's most iconic transformations.",
+      "Echelon Prompt Library offers a comprehensive collection of prompts tailored for different AI models and use cases, allowing users to leverage the full potential of AI-driven solutions.",
+      "The platform supports community contributions, categorized search, and regular updates to keep the prompt library relevant and highly effective.",
     ],
-    href: "https://1-piece.vercel.app/",
-    logo: null,
-    image:
-      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746696959/1-piece-min_liwxfl.png",
+    href: "https://github.com/prateekraiger/echelon-prompt-library",
+    logo: "",
+    image: "https://ik.imagekit.io/mtk2a0sx6/echelon_preview.png",
     tags: [
       {
         id: 1,
@@ -279,8 +284,8 @@ export const myProjects = [
       },
       {
         id: 2,
-        name: "GSAP",
-        path: "logos:gsap",
+        name: "TypeScript",
+        path: "skill-icons:typescript",
       },
       {
         id: 3,
@@ -292,7 +297,45 @@ export const myProjects = [
 
   {
     id: 9,
+    title: "X Clone",
+    category: "professional",
+    description:
+      "A full-featured social media platform clone recreating core features with modern web technologies and scalable architecture.",
+    subDescription: [
+      "X Clone replicates user timelines, posting, following, and real-time notifications, offering an immersive social media experience.",
+      "Built with React and TypeScript, it integrates a robust backend for handling user authentication, content storage, and dynamic feeds.",
+    ],
+    href: "https://github.com/prateekraiger/x-clone",
+    logo: "",
+    image: "https://ik.imagekit.io/mtk2a0sx6/xclone_preview.png",
+    tags: [
+      {
+        id: 1,
+        name: "React",
+        path: "skill-icons:react-dark",
+      },
+      {
+        id: 2,
+        name: "JavaScript",
+        path: "skill-icons:javascript",
+      },
+      {
+        id: 3,
+        name: "MongoDb",
+        path: "skill-icons:mongodb",
+      },
+      {
+        id: 4,
+        name: "Nodejs",
+        path: "skill-icons:nodejs-dark",
+      },
+    ],
+  },
+
+  {
+    id: 10,
     title: "StyleVerse Store",
+    category: "professional",
     description:
       "StyleVerse is a modern e-commerce platform built with React, offering customers a seamless shopping experience with a user-friendly interface and robust functionality.",
     subDescription: [
@@ -326,10 +369,105 @@ export const myProjects = [
       },
     ],
   },
+];
+
+export const hobbyProjects = [
+  {
+    id: 11,
+    title: "1-Piece",
+    category: "hobby",
+    description:
+      "One Piece Gear 5 Experience - An interactive tribute to Luffy's legendary transformation into Joy Boy.",
+    subDescription: [
+      "Immerse yourself in a visually dynamic experience with floating video effects and GSAP-powered animations. Built with React and Tailwind CSS, the site is fully responsive across devices. A bold call-to-action lets fans explore more about Gear 5's epic awakening.",
+      "This interactive tribute showcases advanced web animation techniques and creative design elements. The site demonstrates proficiency in modern web technologies while celebrating one of anime's most iconic transformations.",
+    ],
+    href: "https://1-piece.vercel.app/",
+    logo: null,
+    image:
+      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1746696959/1-piece-min_liwxfl.png",
+    tags: [
+      {
+        id: 1,
+        name: "React",
+        path: "skill-icons:react-dark",
+      },
+      {
+        id: 2,
+        name: "GSAP",
+        path: "logos:gsap",
+      },
+      {
+        id: 3,
+        name: "TailwindCSS",
+        path: "skill-icons:tailwindcss-dark",
+      },
+    ],
+  },
 
   {
-    id: 10,
+    id: 12,
+    title: "ScreenVault",
+    category: "hobby",
+    description:
+      "A lightweight and intuitive screenshot manager to capture, organize, and share screenshots efficiently.",
+    subDescription: [
+      "ScreenVault provides quick screenshot capture with annotation tools and cloud sync, simplifying workflow for content creators and developers.",
+      "The app supports multiple platforms and integrates with popular sharing services to streamline collaboration.",
+    ],
+    href: "https://github.com/prateekraiger/screenvault",
+    logo: "",
+    image: "https://ik.imagekit.io/mtk2a0sx6/screenvault_preview.png",
+    tags: [
+      {
+        id: 1,
+        name: "React",
+        path: "skill-icons:react-dark",
+      },
+      {
+        id: 2,
+        name: "TypeScript",
+        path: "skill-icons:typescript",
+      },
+      {
+        id: 3,
+        name: "TailwindCSS",
+        path: "skill-icons:tailwindcss-dark",
+      },
+    ],
+  },
+
+  {
+    id: 13,
+    title: "QR Code Generator",
+    category: "hobby",
+    description:
+      "An easy-to-use QR code generator for creating customizable QR codes for URLs, text, and more.",
+    subDescription: [
+      "The QR Code Generator supports dynamic code creation with options for color, size, and embedded logos.",
+      "Designed for hobbyists and small projects, it offers instant preview and download capabilities with a simple and clean UI.",
+    ],
+    href: "https://github.com/prateekraiger/qrcode-generator",
+    logo: "",
+    image: "https://ik.imagekit.io/mtk2a0sx6/qrcode_preview.png",
+    tags: [
+      {
+        id: 1,
+        name: "React",
+        path: "skill-icons:react-dark",
+      },
+      {
+        id: 2,
+        name: "TypeScript",
+        path: "skill-icons:typescript",
+      },
+    ],
+  },
+
+  {
+    id: 14,
     title: "Grilli Restaurant",
+    category: "hobby",
     description:
       "Grilli - Responsive Web Design for Expertly Grilled Cuisine, Bringing Flavor to Life with a Modern Dining Experience.",
     subDescription: [
@@ -362,6 +500,7 @@ export const myProjects = [
   {
     id: 11,
     title: "Github Portfolio",
+    category: "hobby",
     description:
       "A modern, responsive portfolio template designed specifically for GitHub users to showcase their coding journey.",
     subDescription: [
@@ -396,6 +535,9 @@ export const myProjects = [
     ],
   },
 ];
+
+// Combined export for backward compatibility
+export const myProjects = [...professionalProjects, ...hobbyProjects];
 
 export const categorizedSkills = {
   "Programming Languages": [

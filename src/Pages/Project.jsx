@@ -1,5 +1,5 @@
 import React from "react";
-import { myProjects } from "../constants";
+import { myProjects, professionalProjects, hobbyProjects } from "../constants";
 import Procont from "../components/Procont";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMotionValue } from "framer-motion";
@@ -10,7 +10,7 @@ import Title from "../components/common/Title";
 import { useThreeD } from "../contexts/ThreeDContext";
 import DarkViel from "../components/DarkViel";
 import ProjectDeatils from "../components/ProjectDeatils";
-import ExpandableCardDemo from "../components/ExpandableCard";
+import TabbedProjectView from "../components/TabbedProjectView";
 import BackgroundMusicVisualiser from "../components/ui/Background-visual";
 
 const Project = () => {
@@ -127,7 +127,18 @@ const Project = () => {
       )}
 
       <div className="px-5 py-10 relative z-10">
-        <Title text1="My" text2="Projects" />
+        <Title text1="Featured" text2="Portfolio" />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center mt-6"
+        >
+          <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
+            Explore my professional work and creative experiments, showcasing
+            technical expertise and innovative solutions
+          </p>
+        </motion.div>
       </div>
 
       <AnimatePresence mode="wait">
@@ -175,7 +186,10 @@ const Project = () => {
 
             {/* Content overlay */}
             <div className="relative z-10">
-              <ExpandableCardDemo projects={myProjects} />
+              <TabbedProjectView
+                professionalProjects={professionalProjects}
+                hobbyProjects={hobbyProjects}
+              />
             </div>
           </motion.div>
         )}

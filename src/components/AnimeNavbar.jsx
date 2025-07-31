@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-// Removed Hero UI imports - using standard HTML elements instead
 import { FaTimes, FaBars, FaPlay, FaPause } from "react-icons/fa";
 import { Home, User, FolderOpen, Mail } from "lucide-react";
 import logo from "../assets/logo.png";
@@ -9,7 +8,7 @@ import navbarImage from "../assets/navbar_image.webp";
 import MagneticButton from "./common/MagneticButton";
 import { useThreeD } from "../contexts/ThreeDContext";
 
-// Utility function for conditional class names
+
 function cn(...inputs) {
   return inputs.filter(Boolean).join(" ");
 }

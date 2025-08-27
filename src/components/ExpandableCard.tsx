@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "../hooks/use-outside-click";
 import { BlurFade } from "./ui/BlurFade";
 import { CardContainer, CardBody, CardItem } from "./ui/3d-card";
+import ElectricBorder from "./common/ElectricBorder";
 
 // Define the interface for a single project tag
 interface ProjectTag {
@@ -274,184 +275,192 @@ export default function ExpandableCardDemo({
             inViewMargin="-100px"
           >
             <CardContainer className="inter-var">
-              <CardBody className="bg-gradient-to-br from-black/80 to-zinc-900/90 backdrop-blur-xl relative group/card dark:hover:shadow-2xl dark:hover:shadow-[#915EFF]/[0.4] border border-[#915EFF]/40 hover:border-[#915EFF] w-full h-auto rounded-2xl p-6 transition-all duration-500 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-[#915EFF]/30 transform hover:-translate-y-2">
-                <motion.div
-                  layoutId={`card-${project.id}-${id}`}
-                  key={`card-${project.id}-${id}`}
-                  onClick={() => setActive(project)}
-                  className="flex flex-col items-center h-full"
-                >
-                  {/* Project Image (Thumbnail) */}
-                  <BlurFade
-                    delay={0.25 + index * 0.1}
-                    direction="down"
-                    offset={8}
-                    blur="4px"
-                    duration={0.6}
+              <ElectricBorder
+                color="#915EFF"
+                speed={1}
+                chaos={0.5}
+                thickness={2}
+                style={{ borderRadius: "16px" }}
+              >
+                <CardBody className="bg-gradient-to-br from-black/80 to-zinc-900/90 backdrop-blur-xl relative group/card dark:hover:shadow-2xl dark:hover:shadow-[#915EFF]/[0.4] w-full h-auto rounded-2xl p-6 transition-all duration-500 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-[#915EFF]/30 transform hover:-translate-y-2">
+                  <motion.div
+                    layoutId={`card-${project.id}-${id}`}
+                    key={`card-${project.id}-${id}`}
+                    onClick={() => setActive(project)}
+                    className="flex flex-col items-center h-full"
                   >
-                    <CardItem
-                      translateZ="150"
-                      rotateX={5}
-                      rotateY={-5}
-                      className="w-full mb-6"
-                    >
-                      <motion.div
-                        layoutId={`image-${project.id}-${id}`}
-                        className="relative"
-                        whileHover={{
-                          scale: 1.05,
-                          rotateX: -2,
-                          rotateY: 2,
-                          translateZ: 50,
-                          transition: { duration: 0.3, type: "spring", stiffness: 300 }
-                        }}
-                        style={{ perspective: 1000 }}
-                      >
-                        <div className="relative rounded-xl overflow-hidden group-hover/card:shadow-2xl transition-all duration-300">
-                          <motion.img
-                            width={200}
-                            height={200}
-                            src={project.image}
-                            alt={project.title}
-                            className="h-48 w-full object-cover object-center"
-                            whileHover={{
-                              scale: 1.1,
-                              transition: { duration: 0.4, ease: "easeOut" }
-                            }}
-                            style={{
-                              filter: "brightness(0.9) contrast(1.1)"
-                            }}
-                          />
-                          <motion.div
-                            className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-all duration-300"
-                            whileHover={{
-                              background: "linear-gradient(to top, rgba(0,0,0,0.6), transparent)"
-                            }}
-                          />
-                          <motion.div
-                            className="absolute inset-0 rounded-xl shadow-lg group-hover/card:shadow-2xl group-hover/card:shadow-[#915EFF]/30 transition-all duration-300"
-                            style={{
-                              boxShadow: "0 0 0 0 rgba(145, 94, 255, 0)"
-                            }}
-                            whileHover={{
-                              boxShadow: "0 25px 50px -12px rgba(145, 94, 255, 0.25), 0 0 0 1px rgba(145, 94, 255, 0.1)"
-                            }}
-                          />
-                          <div className="absolute top-3 right-3 bg-[#915EFF]/90 backdrop-blur-sm text-white px-2 py-1 rounded-full text-xs font-medium transform transition-all duration-300 group-hover/card:scale-110 group-hover/card:bg-[#915EFF]">
-                            #{project.id}
-                          </div>
-                        </div>
-                      </motion.div>
-                    </CardItem>
-                  </BlurFade>
-
-                  <div className="text-center flex-1">
-                    {/* Project Title */}
+                    {/* Project Image (Thumbnail) */}
                     <BlurFade
-                      delay={0.35 + index * 0.1}
-                      direction="up"
-                      offset={6}
-                      blur="3px"
-                      duration={0.5}
-                    >
-                      <CardItem translateZ="80" className="w-full">
-                        <motion.h3
-                          layoutId={`title-${project.id}-${id}`}
-                          className="font-bold text-xl text-white mb-3 font-cal-sans group-hover/card:text-[#c5aeff] transition-all duration-300 transform group-hover/card:scale-105"
-                          whileHover={{ translateZ: 20 }}
-                        >
-                          {project.title}
-                        </motion.h3>
-                      </CardItem>
-                    </BlurFade>
-
-                    {/* Project Short Description/Tagline */}
-                    <BlurFade
-                      delay={0.45 + index * 0.1}
-                      direction="up"
-                      offset={4}
-                      blur="2px"
-                      duration={0.5}
+                      delay={0.25 + index * 0.1}
+                      direction="down"
+                      offset={8}
+                      blur="4px"
+                      duration={0.6}
                     >
                       <CardItem
-                        as="p"
-                        translateZ="70"
-                        className="text-gray-300 text-sm mb-4 leading-relaxed font-sansation max-w-sm transition-all duration-300"
-                        whileHover={{ translateZ: 15 }}
+                        translateZ="150"
+                        rotateX={5}
+                        rotateY={-5}
+                        className="w-full mb-6"
                       >
-                        <motion.span
-                          layoutId={`description-${project.id}-${id}`}
-                          className="transition-all duration-300 group-hover/card:text-gray-100"
+                        <motion.div
+                          layoutId={`image-${project.id}-${id}`}
+                          className="relative"
+                          whileHover={{
+                            scale: 1.05,
+                            rotateX: -2,
+                            rotateY: 2,
+                            translateZ: 50,
+                            transition: { duration: 0.3, type: "spring", stiffness: 300 }
+                          }}
+                          style={{ perspective: 1000 }}
                         >
-                          {project.description}
-                        </motion.span>
+                          <div className="relative rounded-xl overflow-hidden group-hover/card:shadow-2xl transition-all duration-300">
+                            <motion.img
+                              width={200}
+                              height={200}
+                              src={project.image}
+                              alt={project.title}
+                              className="h-48 w-full object-cover object-center"
+                              whileHover={{
+                                scale: 1.1,
+                                transition: { duration: 0.4, ease: "easeOut" }
+                              }}
+                              style={{
+                                filter: "brightness(0.9) contrast(1.1)"
+                              }}
+                            />
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-all duration-300"
+                              whileHover={{
+                                background: "linear-gradient(to top, rgba(0,0,0,0.6), transparent)"
+                              }}
+                            />
+                            <motion.div
+                              className="absolute inset-0 rounded-xl shadow-lg group-hover/card:shadow-2xl group-hover/card:shadow-[#915EFF]/30 transition-all duration-300"
+                              style={{
+                                boxShadow: "0 0 0 0 rgba(145, 94, 255, 0)"
+                              }}
+                              whileHover={{
+                                boxShadow: "0 25px 50px -12px rgba(145, 94, 255, 0.25), 0 0 0 1px rgba(145, 94, 255, 0.1)"
+                              }}
+                            />
+                            <div className="absolute top-3 right-3 bg-[#915EFF]/90 backdrop-blur-sm text-white px-2 py-1 rounded-full text-xs font-medium transform transition-all duration-300 group-hover/card:scale-110 group-hover/card:bg-[#915EFF]">
+                              #{project.id}
+                            </div>
+                          </div>
+                        </motion.div>
                       </CardItem>
                     </BlurFade>
 
-                    {/* Tags in collapsed view */}
-                    {project.tags && project.tags.length > 0 && (
+                    <div className="text-center flex-1">
+                      {/* Project Title */}
                       <BlurFade
-                        delay={0.55 + index * 0.1}
+                        delay={0.35 + index * 0.1}
                         direction="up"
                         offset={6}
                         blur="3px"
-                        duration={0.6}
+                        duration={0.5}
                       >
-                        <CardItem translateZ="40" className="w-full">
-                          <div className="flex flex-wrap justify-center gap-2 mt-4 mb-4">
-                            {project.tags
-                              .slice(0, 3)
-                              .map((tag: ProjectTag, tagIndex: number) => (
-                                <motion.span
-                                  key={`tag-thumb-${project.id}-${tag.id}`}
-                                  initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                                  transition={{
-                                    delay: 0.65 + index * 0.1 + tagIndex * 0.05,
-                                    duration: 0.4,
-                                    ease: "easeOut",
-                                  }}
-                                  className="px-3 py-1 bg-[#915EFF]/20 text-[#c5aeff] rounded-full text-xs font-medium border border-[#915EFF]/30 hover:bg-[#915EFF]/30 transition-colors duration-200"
-                                >
-                                  {tag.name}
-                                </motion.span>
-                              ))}
-                            {project.tags.length > 3 && (
-                              <motion.span
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 0.8 + index * 0.1 }}
-                                className="px-3 py-1 bg-[#915EFF]/10 text-[#c5aeff] rounded-full text-xs font-medium"
-                              >
-                                +{project.tags.length - 3}
-                              </motion.span>
-                            )}
-                          </div>
+                        <CardItem translateZ="80" className="w-full">
+                          <motion.h3
+                            layoutId={`title-${project.id}-${id}`}
+                            className="font-bold text-xl text-white mb-3 font-cal-sans group-hover/card:text-[#c5aeff] transition-all duration-300 transform group-hover/card:scale-105"
+                            whileHover={{ translateZ: 20 }}
+                          >
+                            {project.title}
+                          </motion.h3>
                         </CardItem>
                       </BlurFade>
-                    )}
-                  </div>
 
-                  {/* Call to Action Button */}
-                  <BlurFade
-                    delay={0.75 + index * 0.1}
-                    direction="up"
-                    offset={8}
-                    blur="4px"
-                    duration={0.6}
-                  >
-                    <CardItem
-                      translateZ={20}
-                      as="button"
-                      className="px-6 py-3 text-sm rounded-full font-bold bg-[#915EFF] hover:bg-[#915EFF]/80 text-white transition-all duration-200 shadow-lg hover:shadow-xl mt-auto"
+                      {/* Project Short Description/Tagline */}
+                      <BlurFade
+                        delay={0.45 + index * 0.1}
+                        direction="up"
+                        offset={4}
+                        blur="2px"
+                        duration={0.5}
+                      >
+                        <CardItem
+                          as="p"
+                          translateZ="70"
+                          className="text-gray-300 text-sm mb-4 leading-relaxed font-sansation max-w-sm transition-all duration-300"
+                          whileHover={{ translateZ: 15 }}
+                        >
+                          <motion.span
+                            layoutId={`description-${project.id}-${id}`}
+                            className="transition-all duration-300 group-hover/card:text-gray-100"
+                          >
+                            {project.description}
+                          </motion.span>
+                        </CardItem>
+                      </BlurFade>
+
+                      {/* Tags in collapsed view */}
+                      {project.tags && project.tags.length > 0 && (
+                        <BlurFade
+                          delay={0.55 + index * 0.1}
+                          direction="up"
+                          offset={6}
+                          blur="3px"
+                          duration={0.6}
+                        >
+                          <CardItem translateZ="40" className="w-full">
+                            <div className="flex flex-wrap justify-center gap-2 mt-4 mb-4">
+                              {project.tags
+                                .slice(0, 3)
+                                .map((tag: ProjectTag, tagIndex: number) => (
+                                  <motion.span
+                                    key={`tag-thumb-${project.id}-${tag.id}`}
+                                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                                    transition={{
+                                      delay: 0.65 + index * 0.1 + tagIndex * 0.05,
+                                      duration: 0.4,
+                                      ease: "easeOut",
+                                    }}
+                                    className="px-3 py-1 bg-[#915EFF]/20 text-[#c5aeff] rounded-full text-xs font-medium border border-[#915EFF]/30 hover:bg-[#915EFF]/30 transition-colors duration-200"
+                                  >
+                                    {tag.name}
+                                  </motion.span>
+                                ))}
+                              {project.tags.length > 3 && (
+                                <motion.span
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{ delay: 0.8 + index * 0.1 }}
+                                  className="px-3 py-1 bg-[#915EFF]/10 text-[#c5aeff] rounded-full text-xs font-medium"
+                                >
+                                  +{project.tags.length - 3}
+                                </motion.span>
+                              )}
+                            </div>
+                          </CardItem>
+                        </BlurFade>
+                      )}
+                    </div>
+
+                    {/* Call to Action Button */}
+                    <BlurFade
+                      delay={0.75 + index * 0.1}
+                      direction="up"
+                      offset={8}
+                      blur="4px"
+                      duration={0.6}
                     >
-                      <motion.span layoutId={`button-${project.id}-${id}`}>
-                        View Project
-                      </motion.span>
-                    </CardItem>
-                  </BlurFade>
-                </motion.div>
-              </CardBody>
+                      <CardItem
+                        translateZ={20}
+                        as="button"
+                        className="px-6 py-3 text-sm rounded-full font-bold bg-[#915EFF] hover:bg-[#915EFF]/80 text-white transition-all duration-200 shadow-lg hover:shadow-xl mt-auto"
+                      >
+                        <motion.span layoutId={`button-${project.id}-${id}`}>
+                          View Project
+                        </motion.span>
+                      </CardItem>
+                    </BlurFade>
+                  </motion.div>
+                </CardBody>
+              </ElectricBorder>
             </CardContainer>
           </BlurFade>
         ))}

@@ -275,7 +275,7 @@ export const professionalProjects = [
     ],
     href: "https://github.com/prateekraiger/echelon-prompt-library",
     logo: "",
-    image: "https://ik.imagekit.io/mtk2a0sx6/echelon_preview.png",
+    image: "https://ik.imagekit.io/mtk2a0sx6/image.png",
     tags: [
       {
         id: 1,
@@ -307,7 +307,8 @@ export const professionalProjects = [
     ],
     href: "https://github.com/prateekraiger/x-clone",
     logo: "",
-    image: "https://ik.imagekit.io/mtk2a0sx6/xclone_preview.png",
+    image:
+      "https://ik.imagekit.io/mtk2a0sx6/x-clone.png?updatedAt=1756294314847",
     tags: [
       {
         id: 1,
@@ -410,14 +411,15 @@ export const hobbyProjects = [
     title: "ScreenVault",
     category: "hobby",
     description:
-      "A lightweight and intuitive screenshot manager to capture, organize, and share screenshots efficiently.",
+      "ScreenVault is a beautifully organized, personal vault where cherished shows are collected, revisited, and shared—a showcase of favorite stories and unforgettable moments.",
     subDescription: [
-      "ScreenVault provides quick screenshot capture with annotation tools and cloud sync, simplifying workflow for content creators and developers.",
-      "The app supports multiple platforms and integrates with popular sharing services to streamline collaboration.",
+      "ScreenVault makes it effortless to curate every series and film that left a mark, adding thoughtful notes, memories, and ratings for each entry.",
+      "The app supports multiple platforms and showcases each type of thing u watched",
     ],
     href: "https://github.com/prateekraiger/screenvault",
     logo: "",
-    image: "https://ik.imagekit.io/mtk2a0sx6/screenvault_preview.png",
+    image:
+      "https://res.cloudinary.com/dk3pg4zly/image/upload/v1751098921/screenvault_tgy7an.png",
     tags: [
       {
         id: 1,
@@ -449,7 +451,7 @@ export const hobbyProjects = [
     ],
     href: "https://github.com/prateekraiger/qrcode-generator",
     logo: "",
-    image: "https://ik.imagekit.io/mtk2a0sx6/qrcode_preview.png",
+    image: "https://github.com/prateekraiger/qrcode-generator",
     tags: [
       {
         id: 1,
@@ -498,7 +500,7 @@ export const hobbyProjects = [
   },
 
   {
-    id: 11,
+    id: 15,
     title: "Github Portfolio",
     category: "hobby",
     description:
